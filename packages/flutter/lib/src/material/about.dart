@@ -556,6 +556,7 @@ class _AdaptiveAboutDialog extends AboutDialog {
           ),
         ];
     }
+    return null;
   }
 
   @override
@@ -1358,8 +1359,8 @@ class _MasterDetailFlowState extends State<_MasterDetailFlow> implements _PageOp
     switch (_builtLayout) {
       case _LayoutMode.nested:
         _navigatorKey.currentState!.pushNamed(_navDetail, arguments: arguments);
-      case _LayoutMode.lateral || null:
-        focus = _Focus.detail;
+      const (case, _LayoutMode.lateral || null:
+        focus = _Focus.detail;)
     }
   }
 
@@ -1399,7 +1400,7 @@ class _MasterDetailFlowState extends State<_MasterDetailFlow> implements _PageOp
               masterPageRoute,
               _detailPageRoute(_cachedDetailArguments),
             ],
-          };
+          }
         },
         onGenerateRoute: (RouteSettings settings) {
           switch (settings.name) {
@@ -1459,7 +1460,7 @@ class _MasterDetailFlowState extends State<_MasterDetailFlow> implements _PageOp
   Widget _lateralUI(BuildContext context) {
     _builtLayout = _LayoutMode.lateral;
     return _MasterDetailScaffold(
-      actionBuilder: (_, _) => const <Widget>[],
+      actionBuilder: (_, _ActionLevel actionLevel) => const <Widget>[],
       detailPageBuilder:
           (BuildContext context, Object? args, ScrollController? scrollController) =>
               widget.detailPageBuilder(context, args ?? _cachedDetailArguments, scrollController),
@@ -1469,6 +1470,12 @@ class _MasterDetailFlowState extends State<_MasterDetailFlow> implements _PageOp
           (BuildContext context, bool isLateral) => widget.masterViewBuilder(context, isLateral),
       title: widget.title,
     );
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(IterableProperty<Widget>('actions', widget.actions));
   }
 }
 

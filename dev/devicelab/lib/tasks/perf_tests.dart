@@ -757,8 +757,8 @@ void _updateManifestSettings(
   final String xmlStr = file.readAsStringSync();
   final XmlDocument xmlDoc = XmlDocument.parse(xmlStr);
   final List<(String, String)> keyPairs = <(String, String)>[
-    if (disablePartialRepaint) ('FLTDisablePartialRepaint', disablePartialRepaint.toString()),
-    if (platformThreadMerged) ('FLTEnableMergedPlatformUIThread', platformThreadMerged.toString()),
+    if (disablePartialRepaint) 'FLTDisablePartialRepaint', disablePartialRepaint.toString(),
+    if (platformThreadMerged) 'FLTEnableMergedPlatformUIThread', platformThreadMerged.toString(),
   ];
 
   final XmlElement applicationNode = xmlDoc.findAllElements('dict').first;
@@ -827,7 +827,7 @@ void _addMetadataToManifest(String testDirectory, List<(String, String)> keyPair
 
 void _addMergedPlatformThreadSupportToManifest(String testDirectory) {
   final List<(String, String)> keyPairs = <(String, String)>[
-    ('io.flutter.embedding.android.EnableMergedPlatformUIThread', 'true'),
+    'io.flutter.embedding.android.EnableMergedPlatformUIThread', 'true',
   ];
   _addMetadataToManifest(testDirectory, keyPairs);
 }
@@ -838,7 +838,7 @@ void _addMergedPlatformThreadSupportToManifest(String testDirectory) {
 ///   android:value="true" />
 void _addVulkanGPUTracingToManifest(String testDirectory) {
   final List<(String, String)> keyPairs = <(String, String)>[
-    ('io.flutter.embedding.android.EnableVulkanGPUTracing', 'true'),
+    'io.flutter.embedding.android.EnableVulkanGPUTracing', 'true',
   ];
   _addMetadataToManifest(testDirectory, keyPairs);
 }
@@ -853,8 +853,8 @@ void _addVulkanGPUTracingToManifest(String testDirectory) {
 ///   android:value="true" />
 void _addOpenGLESToManifest(String testDirectory) {
   final List<(String, String)> keyPairs = <(String, String)>[
-    ('io.flutter.embedding.android.ImpellerBackend', 'opengles'),
-    ('io.flutter.embedding.android.EnableOpenGLGPUTracing', 'true'),
+    'io.flutter.embedding.android.ImpellerBackend', 'opengles',
+    'io.flutter.embedding.android.EnableOpenGLGPUTracing', 'true',
   ];
   _addMetadataToManifest(testDirectory, keyPairs);
 }
@@ -2145,7 +2145,7 @@ String _reportedDurationTestToString(ReportedDurationTestFlavor flavor) {
     ReportedDurationTestFlavor.debug => 'debug',
     ReportedDurationTestFlavor.profile => 'profile',
     ReportedDurationTestFlavor.release => 'release',
-  };
+  }
 }
 
 class ReportedDurationTest {

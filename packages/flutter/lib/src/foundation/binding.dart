@@ -612,7 +612,7 @@ abstract class BindingBase {
               'Brightness.light' => ui.Brightness.light,
               'Brightness.dark' => ui.Brightness.dark,
               _ => null,
-            };
+            }
             _postExtensionStateChangedEvent(
               FoundationServiceExtensions.brightnessOverride.name,
               (debugBrightnessOverride ?? platformDispatcher.platformBrightness).toString(),

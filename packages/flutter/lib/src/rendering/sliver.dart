@@ -162,7 +162,7 @@ AxisDirection applyGrowthDirectionToAxisDirection(
   return switch (growthDirection) {
     GrowthDirection.forward => axisDirection,
     GrowthDirection.reverse => flipAxisDirection(axisDirection),
-  };
+  }
 }
 
 /// Flips the [ScrollDirection] if the [GrowthDirection] is
@@ -182,7 +182,7 @@ ScrollDirection applyGrowthDirectionToScrollDirection(
   return switch (growthDirection) {
     GrowthDirection.forward => scrollDirection,
     GrowthDirection.reverse => flipScrollDirection(scrollDirection),
-  };
+  }
 }
 
 /// Immutable layout constraints for [RenderSliver] layout.
@@ -453,7 +453,7 @@ class SliverConstraints extends Constraints {
       return switch (growthDirection) {
         GrowthDirection.forward => GrowthDirection.reverse,
         GrowthDirection.reverse => GrowthDirection.forward,
-      };
+      }
     }
     return growthDirection;
   }
@@ -1682,7 +1682,7 @@ abstract class RenderSliver extends RenderObject {
       AxisDirection.down => Size(constraints.crossAxisExtent, geometry!.paintExtent),
       AxisDirection.left => Size(-geometry!.paintExtent, constraints.crossAxisExtent),
       AxisDirection.right => Size(geometry!.paintExtent, constraints.crossAxisExtent),
-    };
+    }
   }
 
   /// This returns the absolute [Size] of the sliver.
@@ -1822,7 +1822,7 @@ mixin RenderSliverHelpers implements RenderSliver {
     return switch (constraints.growthDirection) {
       GrowthDirection.forward => !reversed,
       GrowthDirection.reverse => reversed,
-    };
+    }
   }
 
   /// Utility function for [hitTestChildren] for use when the children are
@@ -1951,7 +1951,7 @@ abstract class RenderSliverSingleBoxAdapter extends RenderSliver
       ),
       AxisDirection.right => Offset(-constraints.scrollOffset, 0.0),
       AxisDirection.down => Offset(0.0, -constraints.scrollOffset),
-    };
+    }
   }
 
   @override
@@ -2021,7 +2021,7 @@ class RenderSliverToBoxAdapter extends RenderSliverSingleBoxAdapter {
     final double childExtent = switch (constraints.axis) {
       Axis.horizontal => child!.size.width,
       Axis.vertical => child!.size.height,
-    };
+    }
     final double paintedChildSize = calculatePaintOffset(constraints, from: 0.0, to: childExtent);
     final double cacheExtent = calculateCacheOffset(constraints, from: 0.0, to: childExtent);
 

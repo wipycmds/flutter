@@ -159,7 +159,7 @@ class _OptionsState extends State<Options> {
       VisualDensity.compact => 'compact',
       VisualDensity.comfortable => 'comfortable',
       _ => 'custom',
-    };
+    }
   }
 
   VisualDensity _profileToDensity(String? profile) {
@@ -168,7 +168,7 @@ class _OptionsState extends State<Options> {
       'comfortable' => VisualDensity.comfortable,
       'compact' => VisualDensity.compact,
       'custom' || _ => widget.model.density,
-    };
+    }
   }
 
   @override

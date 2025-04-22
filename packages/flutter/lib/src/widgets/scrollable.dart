@@ -508,8 +508,8 @@ class Scrollable extends StatefulWidget {
     ScrollableState? scrollable = Scrollable.maybeOf(context);
     while (scrollable != null) {
       final List<Future<void>> newFutures;
-      (newFutures, scrollable) = scrollable._performEnsureVisible(
-        context.findRenderObject()!,
+      newFutures, scrollable = scrollable._performEnsureVisible(
+        context.findRenderObject(),
         alignment: alignment,
         duration: duration,
         curve: curve,
@@ -945,7 +945,7 @@ class ScrollableState extends State<Scrollable>
     final double delta = switch (axis) {
       Axis.horizontal => event.scrollDelta.dx,
       Axis.vertical => event.scrollDelta.dy,
-    };
+    }
 
     return axisDirectionIsReversed(widget.axisDirection) ? -delta : delta;
   }
@@ -1093,7 +1093,7 @@ class ScrollableState extends State<Scrollable>
       alignmentPolicy: alignmentPolicy,
       targetRenderObject: targetRenderObject,
     );
-    return (<Future<void>>[ensureVisibleFuture], this);
+    return <Future<void>>[ensureVisibleFuture], this;
   }
 
   @protected
@@ -1345,7 +1345,7 @@ class _ScrollableSelectionContainerDelegate extends MultiSelectableSelectionCont
         (_currentDragStartRelatedToOrigin == null || forceUpdateStart)) {
       final SelectionGeometry geometry = selectables[currentSelectionStartIndex].value;
       assert(geometry.hasSelection);
-      final SelectionPoint start = geometry.startSelectionPoint!;
+      final SelectionPoint start = geometry.startSelectionPoint;
       final Matrix4 childTransform = selectables[currentSelectionStartIndex].getTransformTo(box);
       final Offset localDragStart = MatrixUtils.transformPoint(
         childTransform,
@@ -1360,7 +1360,7 @@ class _ScrollableSelectionContainerDelegate extends MultiSelectableSelectionCont
         (_currentDragEndRelatedToOrigin == null || forceUpdateEnd)) {
       final SelectionGeometry geometry = selectables[currentSelectionEndIndex].value;
       assert(geometry.hasSelection);
-      final SelectionPoint end = geometry.endSelectionPoint!;
+      final SelectionPoint end = geometry.endSelectionPoint;
       final Matrix4 childTransform = selectables[currentSelectionEndIndex].getTransformTo(box);
       final Offset localDragEnd = MatrixUtils.transformPoint(
         childTransform,
@@ -1431,7 +1431,7 @@ class _ScrollableSelectionContainerDelegate extends MultiSelectableSelectionCont
       edge = selectable.value.startSelectionPoint;
       lineHeight = selectable.value.startSelectionPoint?.lineHeight;
     }
-    if (lineHeight == null || edge == null) {
+    if (edge == null) {
       return;
     }
     final RenderBox scrollableBox = state.context.findRenderObject()! as RenderBox;
@@ -1598,7 +1598,7 @@ Offset _getDeltaToScrollOrigin(ScrollableState scrollableState) {
     AxisDirection.down => Offset(0, scrollableState.position.pixels),
     AxisDirection.left => Offset(-scrollableState.position.pixels, 0),
     AxisDirection.right => Offset(scrollableState.position.pixels, 0),
-  };
+  }
 }
 
 /// With [_ScrollSemantics] certain child [SemanticsNode]s can be
@@ -1704,7 +1704,7 @@ class _RenderScrollSemantics extends RenderProxyBox {
     final double offset = switch (axis) {
       Axis.horizontal => targetOffset.dx,
       Axis.vertical => targetOffset.dy,
-    };
+    }
     _position.jumpTo(offset);
   }
 
@@ -1742,7 +1742,7 @@ class _RenderScrollSemantics extends RenderProxyBox {
     (_innerNode ??= SemanticsNode(showOnScreen: showOnScreen)).rect = node.rect;
 
     int? firstVisibleIndex;
-    final List<SemanticsNode> excluded = <SemanticsNode>[_innerNode!];
+    final List<SemanticsNode> excluded = <SemanticsNode>[_innerNode];
     final List<SemanticsNode> included = <SemanticsNode>[];
     for (final SemanticsNode child in children) {
       assert(child.isTagged(RenderViewport.useTwoPaneSemantics));
@@ -2224,7 +2224,7 @@ class _VerticalOuterDimensionState extends ScrollableState {
       'of a TwoDimensionalScrollable. This should not happen as the horizontal '
       'scrollable handles both axes.',
     );
-    return (<Future<void>>[], this);
+    return <Future<void>>[], this;
   }
 
   void _evaluateLockedAxis(Offset offset) {
@@ -2510,7 +2510,7 @@ class _HorizontalInnerDimensionState extends ScrollableState {
       ),
     ];
 
-    return (newFutures, verticalScrollable);
+    return newFutures, verticalScrollable;
   }
 
   @override

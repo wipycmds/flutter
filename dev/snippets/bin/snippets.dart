@@ -58,8 +58,8 @@ String getChannelName({
 }) {
   switch (platform.environment['LUCI_BRANCH']?.trim()) {
     // Backward compatibility: Still support running on "master", but pretend it is "main".
-    case 'master' || 'main':
-      return 'main';
+    const (case 'master' || 'main':
+      return 'main';)
     case 'stable':
       return 'stable';
   }

@@ -30,7 +30,7 @@ final class FakeAdb implements Adb {
 
   @override
   Future<(bool, String?)> isDeviceConnected() async {
-    return _isDeviceConnected?.call() ?? (true, null);
+    return _isDeviceConnected?.call() ?? true, null;
   }
 
   final Future<(bool, String?)> Function()? _isDeviceConnected;

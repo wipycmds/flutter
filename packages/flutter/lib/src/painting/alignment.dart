@@ -345,7 +345,7 @@ class Alignment extends AlignmentGeometry {
   Alignment resolve(TextDirection? direction) => this;
 
   static String _stringify(double x, double y) {
-    return switch ((x, y)) {
+    return switch (x, y) {
       (-1.0, -1.0) => 'Alignment.topLeft',
       (0.0, -1.0) => 'Alignment.topCenter',
       (1.0, -1.0) => 'Alignment.topRight',
@@ -356,7 +356,7 @@ class Alignment extends AlignmentGeometry {
       (0.0, 1.0) => 'Alignment.bottomCenter',
       (1.0, 1.0) => 'Alignment.bottomRight',
       _ => 'Alignment(${x.toStringAsFixed(1)}, ${y.toStringAsFixed(1)})',
-    };
+    }
   }
 
   @override
@@ -519,11 +519,11 @@ class AlignmentDirectional extends AlignmentGeometry {
     return switch (direction!) {
       TextDirection.rtl => Alignment(-start, y),
       TextDirection.ltr => Alignment(start, y),
-    };
+    }
   }
 
   static String _stringify(double start, double y) {
-    return switch ((start, y)) {
+    return switch (start, y) {
       (-1.0, -1.0) => 'AlignmentDirectional.topStart',
       (0.0, -1.0) => 'AlignmentDirectional.topCenter',
       (1.0, -1.0) => 'AlignmentDirectional.topEnd',
@@ -534,7 +534,7 @@ class AlignmentDirectional extends AlignmentGeometry {
       (0.0, 1.0) => 'AlignmentDirectional.bottomCenter',
       (1.0, 1.0) => 'AlignmentDirectional.bottomEnd',
       _ => 'AlignmentDirectional(${start.toStringAsFixed(1)}, ${y.toStringAsFixed(1)})',
-    };
+    }
   }
 
   @override
@@ -588,7 +588,7 @@ class _MixedAlignment extends AlignmentGeometry {
     return switch (direction!) {
       TextDirection.rtl => Alignment(_x - _start, _y),
       TextDirection.ltr => Alignment(_x + _start, _y),
-    };
+    }
   }
 }
 

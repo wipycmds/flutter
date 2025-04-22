@@ -56,5 +56,5 @@ platform.TargetPlatform _operatingSystemToTargetPlatform(ui_web.OperatingSystem 
     ui_web.OperatingSystem.windows => platform.TargetPlatform.windows,
     // Resolve 'unknown' OS values to `android`.
     ui_web.OperatingSystem.unknown => platform.TargetPlatform.android,
-  };
+  }
 }

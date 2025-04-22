@@ -481,7 +481,7 @@ void main() {
     expect(semantics, hasSemantics(expectedSemantics));
 
     // Do the actions work?
-    final SemanticsOwner semanticsOwner = tester.binding.pipelineOwner.semanticsOwner!;
+    final SemanticsOwner semanticsOwner = tester.binding.pipelineOwner.semanticsOwner;
     int expectedLength = 1;
     for (final SemanticsAction action in allActions) {
       switch (action) {
@@ -658,7 +658,7 @@ void main() {
       ],
     );
 
-    final SemanticsOwner semanticsOwner = tester.binding.pipelineOwner.semanticsOwner!;
+    final SemanticsOwner semanticsOwner = tester.binding.pipelineOwner.semanticsOwner;
 
     expect(semantics, hasSemantics(expectedSemantics));
     semanticsOwner.performAction(expectedId, SemanticsAction.tap);
@@ -1463,7 +1463,7 @@ void main() {
       ),
     );
 
-    final SemanticsNode node = RendererBinding.instance.renderView.debugSemantics!;
+    final SemanticsNode node = RendererBinding.instance.renderView.debugSemantics;
 
     expect(node.transform, null); // Make sure the zero transform didn't end up on the root somehow.
     expect(node.childrenCount, 0);
@@ -1622,22 +1622,22 @@ void main() {
     // Tuples contain (parent level, child level, expected combined level).
     final List<(int, int, int)> scenarios = <(int, int, int)>[
       // Case: neither are headings
-      (0, 0, 0), // expect not a heading
+      0, 0, 0, // expect not a heading
       // Case: parent not a heading, child always wins.
-      (0, 1, 1),
-      (0, 2, 2),
+      0, 1, 1,
+      0, 2, 2,
 
       // Case: child not a heading, parent always wins.
-      (1, 0, 1),
-      (2, 0, 2),
+      1, 0, 1,
+      2, 0, 2,
 
       // Case: child heading level higher, parent still wins.
-      (3, 2, 3),
-      (4, 1, 4),
+      3, 2, 3,
+      4, 1, 4,
 
       // Case: parent heading level higher, parent still wins.
-      (2, 3, 2),
-      (1, 5, 1),
+      2, 3, 2,
+      1, 5, 1,
     ];
 
     for (final (int, int, int) scenario in scenarios) {

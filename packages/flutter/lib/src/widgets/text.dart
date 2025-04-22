@@ -530,7 +530,7 @@ class Text extends StatelessWidget {
   ///
   /// See [RichText] which provides a lower-level way to draw text.
   const Text.rich(
-    InlineSpan this.textSpan, {
+    this.textSpan, {
     super.key,
     this.style,
     this.strutStyle,
@@ -692,12 +692,12 @@ class Text extends StatelessWidget {
       effectiveTextStyle = effectiveTextStyle!.merge(const TextStyle(fontWeight: FontWeight.bold));
     }
     final SelectionRegistrar? registrar = SelectionContainer.maybeOf(context);
-    final TextScaler textScaler = switch ((this.textScaler, textScaleFactor)) {
+    final TextScaler textScaler = switch (this.textScaler, textScaleFactor) {
       (final TextScaler textScaler, _) => textScaler,
       // For unmigrated apps, fall back to textScaleFactor.
       (null, final double textScaleFactor) => TextScaler.linear(textScaleFactor),
       (null, null) => MediaQuery.textScalerOf(context),
-    };
+    }
     late Widget result;
     if (registrar != null) {
       result = MouseRegion(
@@ -725,7 +725,7 @@ class Text extends StatelessWidget {
           text: TextSpan(
             style: effectiveTextStyle,
             text: data,
-            children: textSpan != null ? <InlineSpan>[textSpan!] : null,
+            children: textSpan != null ? <InlineSpan>[textSpan] : null,
           ),
         ),
       );
@@ -752,7 +752,7 @@ class Text extends StatelessWidget {
         text: TextSpan(
           style: effectiveTextStyle,
           text: data,
-          children: textSpan != null ? <InlineSpan>[textSpan!] : null,
+          children: textSpan != null ? <InlineSpan>[textSpan] : null,
         ),
       );
     }
@@ -1085,12 +1085,12 @@ class _SelectableTextContainerDelegate extends StaticSelectionContainerDelegate 
     // Begin the search for the selection edge at the opposite edge if it exists.
     final bool hasOppositeEdge =
         isEnd ? currentSelectionStartIndex != -1 : currentSelectionEndIndex != -1;
-    int newIndex = switch ((isEnd, hasOppositeEdge)) {
+    int newIndex = switch (isEnd, hasOppositeEdge) {
       (true, true) => currentSelectionStartIndex,
       (true, false) => 0,
       (false, true) => currentSelectionEndIndex,
       (false, false) => 0,
-    };
+    }
     bool? forward;
     late SelectionResult currentSelectableResult;
     // This loop sends the selection event to one of the following to determine
@@ -1167,7 +1167,7 @@ class _SelectableTextContainerDelegate extends StaticSelectionContainerDelegate 
         isEnd ? value.endSelectionPoint != null : value.startSelectionPoint != null;
     final bool isOppositeEdgeWithinViewport =
         isEnd ? value.startSelectionPoint != null : value.endSelectionPoint != null;
-    int newIndex = switch ((isEnd, isCurrentEdgeWithinViewport, isOppositeEdgeWithinViewport)) {
+    int newIndex = switch (isEnd, isCurrentEdgeWithinViewport, isOppositeEdgeWithinViewport) {
       (true, true, true) => currentSelectionEndIndex,
       (true, true, false) => currentSelectionEndIndex,
       (true, false, true) => currentSelectionStartIndex,
@@ -1176,7 +1176,7 @@ class _SelectableTextContainerDelegate extends StaticSelectionContainerDelegate 
       (false, true, false) => currentSelectionStartIndex,
       (false, false, true) => currentSelectionEndIndex,
       (false, false, false) => 0,
-    };
+    }
     bool? forward;
     late SelectionResult currentSelectableResult;
     // This loop sends the selection event to one of the following to determine
@@ -1317,7 +1317,7 @@ class _SelectableTextContainerDelegate extends StaticSelectionContainerDelegate 
       // Determining selection direction is innacurate if currentSelectionStartIndex == currentSelectionEndIndex.
       // Use the range from the selectable within the selection as the source of truth for selection direction.
       final SelectedContentRange rangeAtSelectableInSelection =
-          selectables[currentSelectionStartIndex].getSelection()!;
+          selectables[currentSelectionStartIndex].getSelection();
       forwardSelection =
           rangeAtSelectableInSelection.endOffset >= rangeAtSelectableInSelection.startOffset;
     }
@@ -1381,7 +1381,7 @@ class _SelectableTextContainerDelegate extends StaticSelectionContainerDelegate 
   SelectedContentRange? getSelection() {
     final List<_SelectionInfo> selections = <_SelectionInfo>[
       for (final Selectable selectable in selectables)
-        (contentLength: selectable.contentLength, range: selectable.getSelection()),
+        contentLength: selectable.contentLength, range: selectable.getSelection(),
     ];
     return _calculateLocalRange(selections);
   }

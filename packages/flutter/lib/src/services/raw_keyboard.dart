@@ -495,7 +495,7 @@ abstract class RawKeyEvent with Diagnosticable {
       'keydown' => RawKeyDownEvent(data: data, character: character, repeat: repeat),
       'keyup' => RawKeyUpEvent(data: data),
       _ => throw FlutterError('Unknown key event type: $type'),
-    };
+    }
   }
 
   /// Returns true if the given [LogicalKeyboardKey] is pressed.

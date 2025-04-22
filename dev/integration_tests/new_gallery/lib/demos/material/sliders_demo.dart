@@ -372,7 +372,7 @@ class _CustomThumbShape extends SliderComponentShape {
     );
     final double size = _thumbSize * sizeTween.evaluate(enableAnimation);
     final Path thumbPath = _downTriangle(size, thumbCenter);
-    canvas.drawPath(thumbPath, Paint()..color = colorTween.evaluate(enableAnimation)!);
+    canvas.drawPath(thumbPath, Paint()..color = colorTween.evaluate(enableAnimation));
   }
 }
 

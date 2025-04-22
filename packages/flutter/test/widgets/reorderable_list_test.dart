@@ -170,10 +170,10 @@ void main() {
     final SemanticsData data = node.getSemanticsData();
     expect(data.customSemanticsActionIds!.length, 2);
     final CustomSemanticsAction action1 =
-        CustomSemanticsAction.getAction(data.customSemanticsActionIds![0])!;
+        CustomSemanticsAction.getAction(data.customSemanticsActionIds![0]);
     expect(action1.label, 'Move down');
     final CustomSemanticsAction action2 =
-        CustomSemanticsAction.getAction(data.customSemanticsActionIds![1])!;
+        CustomSemanticsAction.getAction(data.customSemanticsActionIds![1]);
     expect(action2.label, 'Move to the end');
   });
 
@@ -417,7 +417,7 @@ void main() {
       return tester
           .widget<RichText>(find.descendant(of: find.byType(Icon), matching: find.byType(RichText)))
           .text
-          .style!;
+          .style;
     }
 
     TextStyle getTextStyle() {
@@ -426,7 +426,7 @@ void main() {
             find.descendant(of: find.text('item 0'), matching: find.byType(RichText)),
           )
           .text
-          .style!;
+          .style;
     }
 
     // This SliverReorderableList has just one item: "item 0".
@@ -1642,7 +1642,7 @@ void main() {
       await tester.pumpAndSettle();
     }
 
-    final List<(int, int)> testCases = <(int, int)>[(3, 1), (3, 3), (3, 5), (0, 5), (5, 0)];
+    final List<(int, int)> testCases = <(int, int)>[3, 1, 3, 3, 3, 5, 0, 5, 5, 0];
     for (final (int, int) element in testCases) {
       await testMove(element.$1, element.$2);
       await testMove(element.$1, element.$2, reverse: true);

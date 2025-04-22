@@ -215,7 +215,7 @@ class _RenderSliverFloatingHeader extends RenderSliverSingleBoxAdapter {
         ScrollDirection.forward when effectiveScrollOffset <= 0 => false, // completely visible
         ScrollDirection.reverse when effectiveScrollOffset >= childExtent => false, // not visible
         _ => true,
-      };
+      }
       if (headerIsPartiallyVisible) {
         snapController ??= AnimationController(vsync: vsync!)..addListener(() {
           if (effectiveScrollOffset != snapAnimation.value) {
@@ -226,7 +226,7 @@ class _RenderSliverFloatingHeader extends RenderSliverSingleBoxAdapter {
         snapController!.duration = switch (direction) {
           ScrollDirection.forward => animationStyle?.duration ?? const Duration(milliseconds: 300),
           _ => animationStyle?.reverseDuration ?? const Duration(milliseconds: 300),
-        };
+        }
         snapAnimation = snapController!.drive(
           Tween<double>(
             begin: effectiveScrollOffset,
@@ -256,7 +256,7 @@ class _RenderSliverFloatingHeader extends RenderSliverSingleBoxAdapter {
     return switch (constraints.axis) {
       Axis.vertical => child!.size.height,
       Axis.horizontal => child!.size.width,
-    };
+    }
   }
 
   @override
@@ -303,7 +303,7 @@ class _RenderSliverFloatingHeader extends RenderSliverSingleBoxAdapter {
     final double layoutExtent = switch (snapMode ?? FloatingHeaderSnapMode.overlay) {
       FloatingHeaderSnapMode.overlay => childExtent - constraints.scrollOffset,
       FloatingHeaderSnapMode.scroll => paintExtent,
-    };
+    }
     geometry = SliverGeometry(
       paintOrigin: math.min(constraints.overlap, 0.0),
       scrollExtent: childExtent,
@@ -344,7 +344,7 @@ class _RenderSliverFloatingHeader extends RenderSliverSingleBoxAdapter {
         ),
         AxisDirection.right => Offset(childMainAxisPosition(child!), 0.0),
         AxisDirection.down => Offset(0.0, childMainAxisPosition(child!)),
-      };
+      }
       context.paintChild(child!, offset);
     }
   }

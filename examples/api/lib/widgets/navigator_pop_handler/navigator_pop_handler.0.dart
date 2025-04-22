@@ -38,7 +38,7 @@ class NavigatorPopHandlerApp extends StatelessWidget {
               return const _UnknownPage();
             },
           ),
-        };
+        }
       },
     );
   }
@@ -114,7 +114,7 @@ class _NestedNavigatorsPageState extends State<_NestedNavigatorsPage> {
                 return const _UnknownPage();
               },
             ),
-          };
+          }
         },
       ),
     );

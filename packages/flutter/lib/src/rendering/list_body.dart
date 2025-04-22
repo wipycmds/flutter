@@ -307,7 +307,7 @@ class RenderListBody extends RenderBox
       Axis.vertical => _getIntrinsicCrossAxis(
         (RenderBox child) => child.getMinIntrinsicWidth(height),
       ),
-    };
+    }
   }
 
   @override
@@ -319,7 +319,7 @@ class RenderListBody extends RenderBox
       Axis.vertical => _getIntrinsicCrossAxis(
         (RenderBox child) => child.getMaxIntrinsicWidth(height),
       ),
-    };
+    }
   }
 
   @override
@@ -331,7 +331,7 @@ class RenderListBody extends RenderBox
       Axis.vertical => _getIntrinsicCrossAxis(
         (RenderBox child) => child.getMinIntrinsicHeight(width),
       ),
-    };
+    }
   }
 
   @override
@@ -343,7 +343,7 @@ class RenderListBody extends RenderBox
       Axis.vertical => _getIntrinsicCrossAxis(
         (RenderBox child) => child.getMaxIntrinsicHeight(width),
       ),
-    };
+    }
   }
 
   @override

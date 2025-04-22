@@ -123,7 +123,7 @@ class DisplayFeatureSubScreen extends StatelessWidget {
     return switch (Directionality.of(context)) {
       TextDirection.rtl => const Offset(double.maxFinite, 0),
       TextDirection.ltr => Offset.zero,
-    };
+    }
   }
 
   /// Returns the areas of the screen that are obstructed by display features.

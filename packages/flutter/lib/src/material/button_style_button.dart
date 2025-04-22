@@ -301,7 +301,7 @@ abstract class ButtonStyleButton extends StatefulWidget {
       < 2 => EdgeInsetsGeometry.lerp(geometry1x, geometry2x, fontSizeMultiplier - 1)!,
       < 3 => EdgeInsetsGeometry.lerp(geometry2x, geometry3x, fontSizeMultiplier - 2)!,
       _ => geometry3x,
-    };
+    }
   }
 }
 

@@ -573,7 +573,7 @@ class SingleActivator with Diagnosticable, MenuSerializableShortcut implements S
       LockState.ignored => true,
       LockState.locked => state.lockModesEnabled.contains(KeyboardLockMode.numLock),
       LockState.unlocked => !state.lockModesEnabled.contains(KeyboardLockMode.numLock),
-    };
+    }
   }
 
   @override

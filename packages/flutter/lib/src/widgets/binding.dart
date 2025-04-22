@@ -1008,7 +1008,7 @@ mixin WidgetsBinding
       ),
       // Return false for unhandled method.
       _ => Future<bool>.value(false),
-    };
+    }
   }
 
   Future<dynamic> _handleBackGestureInvocation(MethodCall methodCall) {
@@ -1020,7 +1020,7 @@ mixin WidgetsBinding
       'commitBackGesture' => _handleCommitBackGesture(),
       'cancelBackGesture' => _handleCancelBackGesture(),
       _ => throw MissingPluginException(),
-    };
+    }
   }
 
   @override
@@ -1300,7 +1300,7 @@ mixin WidgetsBinding
     }
 
     return View(
-      view: platformDispatcher.implicitView!,
+      view: platformDispatcher.implicitView,
       deprecatedDoNotUseWillBeRemovedWithoutNoticePipelineOwner: pipelineOwner,
       deprecatedDoNotUseWillBeRemovedWithoutNoticeRenderView: renderView,
       child: rootWidget,

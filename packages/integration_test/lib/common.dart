@@ -203,7 +203,7 @@ class DriverTestMessage {
       'pending' => DriverTestMessage.pending(),
       'complete' => DriverTestMessage.complete(),
       _ => throw StateError('This type of status does not exist: $status'),
-    };
+    }
   }
 }
 

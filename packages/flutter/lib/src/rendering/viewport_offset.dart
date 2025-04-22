@@ -80,7 +80,7 @@ ScrollDirection flipScrollDirection(ScrollDirection direction) {
     ScrollDirection.idle => ScrollDirection.idle,
     ScrollDirection.forward => ScrollDirection.reverse,
     ScrollDirection.reverse => ScrollDirection.forward,
-  };
+  }
 }
 
 /// Which part of the content inside the viewport should be visible.

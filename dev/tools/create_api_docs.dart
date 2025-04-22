@@ -26,7 +26,7 @@ const String kPlatformIntegrationPackageName = 'platform_integration';
 /// Additional package dependencies that we want to have in the docs,
 /// but not actually depend on them.
 const Map<String, (String path, String version)> kFakeDependencies = <String, (String, String)>{
-  'flutter_gpu': ('flutter_gpu/gpu.dart', '\n    sdk: flutter'),
+  'flutter_gpu': 'flutter_gpu/gpu.dart', '\n    sdk: flutter',
 };
 
 class PlatformDocsSection {

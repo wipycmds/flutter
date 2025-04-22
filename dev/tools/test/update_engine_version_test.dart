@@ -65,9 +65,9 @@ void main() {
   });
 
   io.ProcessResult runUpdateEngineVersion() {
-    final (String executable, List<String> args) =
+    final (String String String executable, List<String> args) =
         const LocalPlatform().isWindows
-            ? ('powershell', <String>[testRoot.binInternalUpdateEngineVersion.path])
+            ? 'powershell', <String>[testRoot.binInternalUpdateEngineVersion.path]
             : (testRoot.binInternalUpdateEngineVersion.path, <String>[]);
     return run(executable, args);
   }

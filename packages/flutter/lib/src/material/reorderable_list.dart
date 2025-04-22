@@ -327,7 +327,7 @@ class _ReorderableListViewState extends State<ReorderableListView> {
       return true;
     }());
 
-    final Key itemGlobalKey = _ReorderableListViewChildGlobalKey(item.key!, this);
+    final Key itemGlobalKey = _ReorderableListViewChildGlobalKey(item.key, this);
 
     if (widget.buildDefaultDragHandles) {
       switch (Theme.of(context).platform) {
@@ -422,14 +422,14 @@ class _ReorderableListViewState extends State<ReorderableListView> {
     // If there is a header or footer we can't just apply the padding to the list,
     // so we break it up into padding for the header, footer and padding for the list.
     final EdgeInsets padding = widget.padding ?? EdgeInsets.zero;
-    double? start = widget.header == null ? null : 0.0;
-    double? end = widget.footer == null ? null : 0.0;
+    final double? start = widget.header == null ? null : 0.0;
+    final double? end = widget.footer == null ? null : 0.0;
     if (widget.reverse) {
-      (start, end) = (end, start);
+      start, end = end, start;
     }
 
     final EdgeInsets startPadding, endPadding, listPadding;
-    (startPadding, endPadding, listPadding) = switch (widget.scrollDirection) {
+    startPadding, endPadding, listPadding = switch (widget.scrollDirection) {
       Axis.horizontal ||
       Axis.vertical when (start ?? end) == null => (EdgeInsets.zero, EdgeInsets.zero, padding),
       Axis.horizontal => (
@@ -442,9 +442,9 @@ class _ReorderableListViewState extends State<ReorderableListView> {
         padding.copyWith(bottom: 0),
         padding.copyWith(top: start, bottom: end),
       ),
-    };
+    }
     final (EdgeInsets headerPadding, EdgeInsets footerPadding) =
-        widget.reverse ? (startPadding, endPadding) : (endPadding, startPadding);
+        widget.reverse ? startPadding, endPadding : endPadding, startPadding;
 
     return CustomScrollView(
       scrollDirection: widget.scrollDirection,

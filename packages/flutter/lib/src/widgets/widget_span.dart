@@ -104,7 +104,7 @@ class WidgetSpan extends PlaceholderSpan {
       final double? fontSizeToPush = switch (span.style?.fontSize) {
         final double size when size != fontSizeStack.last => size,
         _ => null,
-      };
+      }
       if (fontSizeToPush != null) {
         fontSizeStack.add(fontSizeToPush);
       }
@@ -385,7 +385,7 @@ class _RenderScaledInlineWidget extends RenderBox with RenderObjectWithChildMixi
     return switch (child?.getDistanceToActualBaseline(baseline)) {
       null => super.computeDistanceToActualBaseline(baseline),
       final double childBaseline => scale * childBaseline,
-    };
+    }
   }
 
   @override

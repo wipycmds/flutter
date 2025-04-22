@@ -189,9 +189,9 @@ abstract class GlobalKey<T extends State<StatefulWidget>> extends Key {
   /// The current state is null if (1) there is no widget in the tree that
   /// matches this global key, (2) that widget is not a [StatefulWidget], or the
   /// associated [State] object is not a subtype of `T`.
-  T? get currentState => switch (_currentElement) {
-    StatefulElement(:final T state) => state,
-    _ => null,
+  T? get currentState => switch (currentElement) {
+    StatefulElement( =final T state) => state,
+    void _ => null,
   };
 }
 
@@ -3320,7 +3320,7 @@ class BuildOwner {
                 }
               }
               final List<String> keyLabels = <String>[
-                for (final MapEntry<String, int>(:String key, value: int count)
+                for (final MapEntry<String, int>( =String key, value: int count)
                     in keyStringCount.entries)
                   if (count == 1)
                     key
@@ -3340,7 +3340,7 @@ class BuildOwner {
                 }
               }
               final List<String> elementLabels = <String>[
-                for (final MapEntry<String, int>(key: String element, value: int count)
+                for (final MapEntry<String, int>(String key = String element, value: int count)
                     in elementStringCount.entries)
                   if (count == 1)
                     element

@@ -939,7 +939,7 @@ class RenderParagraph extends RenderBox
             final (double fadeStart, double fadeEnd) = switch (textDirection) {
               TextDirection.rtl => (fadeSizePainter.width, 0.0),
               TextDirection.ltr => (size.width - fadeSizePainter.width, size.width),
-            };
+            }
             _overflowShader = ui.Gradient.linear(
               Offset(fadeStart, 0.0),
               Offset(fadeEnd, 0.0),
@@ -1358,7 +1358,7 @@ class RenderParagraph extends RenderBox
         }
         final SemanticsNode newChild;
         if (_cachedChildNodes?.isNotEmpty ?? false) {
-          newChild = _cachedChildNodes!.remove(_cachedChildNodes!.keys.first)!;
+          newChild = _cachedChildNodes!.remove(_cachedChildNodes!.keys.first);
         } else {
           final UniqueKey key = UniqueKey();
           newChild = SemanticsNode(key: key, showOnScreen: _createShowOnScreenFor(key));
@@ -1380,7 +1380,7 @@ class RenderParagraph extends RenderBox
 
   VoidCallback? _createShowOnScreenFor(Key key) {
     return () {
-      final SemanticsNode node = _cachedChildNodes![key]!;
+      final SemanticsNode node = _cachedChildNodes![key];
       showOnScreen(descendant: this, rect: node.rect);
     };
   }
@@ -1492,12 +1492,12 @@ class _SelectableFragment
     final (
       TextSelectionHandleType startSelectionHandleType,
       TextSelectionHandleType endSelectionHandleType,
-    ) = switch ((selectionCollapsed, flipHandles)) {
+    ) = switch (selectionCollapsed, flipHandles) {
       // Always prefer collapsed handle when selection is collapsed.
       (true, _) => (TextSelectionHandleType.collapsed, TextSelectionHandleType.collapsed),
       (false, true) => (TextSelectionHandleType.right, TextSelectionHandleType.left),
       (false, false) => (TextSelectionHandleType.left, TextSelectionHandleType.right),
-    };
+    }
     return SelectionGeometry(
       startSelectionPoint: SelectionPoint(
         localPosition: startOffsetInParagraphCoordinates,
@@ -2984,7 +2984,7 @@ class _SelectableFragment
           currentParagraphLocalPosition,
         );
         if (positionWithinCurrentParagraph) {
-          return (paragraph: current, localPosition: currentParagraphLocalPosition);
+          return paragraph: current, localPosition: currentParagraphLocalPosition;
         }
       }
       current = current.parent;
@@ -3108,7 +3108,7 @@ class _SelectableFragment
       start = TextPosition(offset: textBoundary.start);
       end = TextPosition(offset: textBoundary.end, affinity: TextAffinity.upstream);
     }
-    return (boundaryStart: start, boundaryEnd: end);
+    return boundaryStart: start, boundaryEnd: end;
   }
 
   SelectionResult _handleSelectWord(Offset globalPosition) {
@@ -3421,12 +3421,12 @@ class _SelectableFragment
     // Normalize current selection.
     late TextPosition currentStart;
     late TextPosition currentEnd;
-    if (_compareTextPositions(_textSelectionStart!, _textSelectionEnd!) > 0) {
-      currentStart = _textSelectionStart!;
-      currentEnd = _textSelectionEnd!;
+    if (_compareTextPositions(_textSelectionStart, _textSelectionEnd) > 0) {
+      currentStart = _textSelectionStart;
+      currentEnd = _textSelectionEnd;
     } else {
-      currentStart = _textSelectionEnd!;
-      currentEnd = _textSelectionStart!;
+      currentStart = _textSelectionEnd;
+      currentEnd = _textSelectionStart;
     }
     return _compareTextPositions(currentStart, position) >= 0 &&
         _compareTextPositions(currentEnd, position) <= 0;
@@ -3542,7 +3542,7 @@ class _SelectableFragment
       final Paint selectionPaint =
           Paint()
             ..style = PaintingStyle.fill
-            ..color = paragraph.selectionColor!;
+            ..color = paragraph.selectionColor;
       for (final TextBox textBox in paragraph.getBoxesForSelection(selection)) {
         context.canvas.drawRect(textBox.toRect().shift(offset), selectionPaint);
       }

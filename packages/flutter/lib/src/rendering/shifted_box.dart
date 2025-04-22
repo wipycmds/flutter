@@ -693,7 +693,7 @@ class RenderConstrainedOverflowBox extends RenderAligningShiftedBox {
     return switch (fit) {
       OverflowBoxFit.max => constraints.biggest,
       OverflowBoxFit.deferToChild => child?.getDryLayout(constraints) ?? constraints.smallest,
-    };
+    }
   }
 
   @override
@@ -1525,14 +1525,14 @@ class RenderBaseline extends RenderShiftedBox {
   ) {
     final RenderBox? child = this.child;
     if (child == null) {
-      return (size: constraints.smallest, top: 0);
+      return size: constraints.smallest, top: 0;
     }
     final BoxConstraints childConstraints = constraints.loosen();
     final Size childSize = layoutChild(child, childConstraints);
     final double childBaseline =
         getBaseline(child, childConstraints, baselineType) ?? childSize.height;
     final double top = baseline - childBaseline;
-    return (size: constraints.constrain(Size(childSize.width, top + childSize.height)), top: top);
+    return size: constraints.constrain(Size(childSize.width, top + childSize.height)), top: top;
   }
 
   @override

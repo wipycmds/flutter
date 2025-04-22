@@ -793,7 +793,7 @@ class _PopupMenuRouteLayout extends SingleChildLayoutDelegate {
       x = switch (textDirection) {
         TextDirection.rtl => size.width - position.right - childSize.width,
         TextDirection.ltr => position.left,
-      };
+      }
     }
     final Offset wantedPosition = Offset(x, y);
     final Offset originCenter = position.toRect(Offset.zero & size).center;
@@ -1598,7 +1598,7 @@ class PopupMenuButtonState<T> extends State<PopupMenuButton<T>> {
     return switch (mode) {
       NavigationMode.traditional => widget.enabled,
       NavigationMode.directional => true,
-    };
+    }
   }
 
   @protected
@@ -1708,7 +1708,7 @@ class _PopupMenuDefaultsM3 extends PopupMenuThemeData {
   @override MaterialStateProperty<TextStyle?>? get labelTextStyle {
     return MaterialStateProperty.resolveWith((Set<MaterialState> states) {
     // TODO(quncheng): Update this hard-coded value to use the latest tokens.
-    final TextStyle style = _textTheme.labelLarge!;
+    final TextStyle style = _textTheme.labelLarge;
       if (states.contains(MaterialState.disabled)) {
         return style.apply(color: _colors.onSurface.withOpacity(0.38));
       }

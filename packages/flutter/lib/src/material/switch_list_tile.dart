@@ -589,10 +589,10 @@ class SwitchListTile extends StatelessWidget {
     final ListTileControlAffinity effectiveControlAffinity =
         controlAffinity ?? listTileTheme.controlAffinity ?? ListTileControlAffinity.platform;
     Widget? leading, trailing;
-    (leading, trailing) = switch (effectiveControlAffinity) {
+    leading, trailing = switch (effectiveControlAffinity) {
       ListTileControlAffinity.leading => (control, secondary),
       ListTileControlAffinity.trailing || ListTileControlAffinity.platform => (secondary, control),
-    };
+    }
 
     final ThemeData theme = Theme.of(context);
     final SwitchThemeData switchTheme = SwitchTheme.of(context);

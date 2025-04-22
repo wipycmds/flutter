@@ -122,7 +122,7 @@ enum WrapAlignment {
         freeSpace / (itemCount + 1),
         freeSpace / (itemCount + 1) + itemSpacing,
       ),
-    };
+    }
   }
 }
 
@@ -581,36 +581,36 @@ class RenderWrap extends RenderBox
     return switch (direction) {
       Axis.horizontal => childSize.width,
       Axis.vertical => childSize.height,
-    };
+    }
   }
 
   double _getCrossAxisExtent(Size childSize) {
     return switch (direction) {
       Axis.horizontal => childSize.height,
       Axis.vertical => childSize.width,
-    };
+    }
   }
 
   Offset _getOffset(double mainAxisOffset, double crossAxisOffset) {
     return switch (direction) {
       Axis.horizontal => Offset(mainAxisOffset, crossAxisOffset),
       Axis.vertical => Offset(crossAxisOffset, mainAxisOffset),
-    };
+    }
   }
 
   (bool flipHorizontal, bool flipVertical) get _areAxesFlipped {
     final bool flipHorizontal = switch (textDirection ?? TextDirection.ltr) {
       TextDirection.ltr => false,
       TextDirection.rtl => true,
-    };
+    }
     final bool flipVertical = switch (verticalDirection) {
       VerticalDirection.down => false,
       VerticalDirection.up => true,
-    };
+    }
     return switch (direction) {
       Axis.horizontal => (flipHorizontal, flipVertical),
       Axis.vertical => (flipVertical, flipHorizontal),
-    };
+    }
   }
 
   @override
@@ -621,7 +621,7 @@ class RenderWrap extends RenderBox
     final BoxConstraints childConstraints = switch (direction) {
       Axis.horizontal => BoxConstraints(maxWidth: constraints.maxWidth),
       Axis.vertical => BoxConstraints(maxHeight: constraints.maxHeight),
-    };
+    }
 
     final (_AxisSize childrenAxisSize, List<_RunMetrics> runMetrics) = _computeRuns(
       constraints,
@@ -660,7 +660,7 @@ class RenderWrap extends RenderBox
     final (BoxConstraints childConstraints, double mainAxisLimit) = switch (direction) {
       Axis.horizontal => (BoxConstraints(maxWidth: constraints.maxWidth), constraints.maxWidth),
       Axis.vertical => (BoxConstraints(maxHeight: constraints.maxHeight), constraints.maxHeight),
-    };
+    }
 
     double mainAxisExtent = 0.0;
     double crossAxisExtent = 0.0;
@@ -739,7 +739,7 @@ class RenderWrap extends RenderBox
     final (BoxConstraints childConstraints, double mainAxisLimit) = switch (direction) {
       Axis.horizontal => (BoxConstraints(maxWidth: constraints.maxWidth), constraints.maxWidth),
       Axis.vertical => (BoxConstraints(maxHeight: constraints.maxHeight), constraints.maxHeight),
-    };
+    }
 
     final (bool flipMainAxis, _) = _areAxesFlipped;
     final double spacing = this.spacing;
@@ -773,7 +773,7 @@ class RenderWrap extends RenderBox
     childrenAxisSize +=
         _AxisSize(mainAxisExtent: totalRunSpacing, crossAxisExtent: 0.0) +
         currentRun!.axisSize.flipped;
-    return (childrenAxisSize.flipped, runMetrics);
+    return childrenAxisSize.flipped, runMetrics;
   }
 
   void _positionChildren(
@@ -825,10 +825,10 @@ class RenderWrap extends RenderBox
         child != null && remainingChildCount > 0;
         child = nextChild(child), remainingChildCount -= 1
       ) {
-        final _AxisSize(
+        final AxisSize
           mainAxisExtent: double childMainAxisExtent,
           crossAxisExtent: double childCrossAxisExtent,
-        ) = _AxisSize.fromSize(size: getChildSize(child), direction: direction);
+         = AxisSize.fromSize(size: getChildSize(child), direction: direction);
         final double childCrossAxisOffset =
             effectiveCrossAlignment._alignment * (runCrossAxisExtent - childCrossAxisExtent);
         positionChild(

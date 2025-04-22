@@ -669,7 +669,7 @@ mixin FabStartOffsetX on StandardFabLocation {
     return switch (scaffoldGeometry.textDirection) {
       TextDirection.rtl => StandardFabLocation._rightOffsetX(scaffoldGeometry, adjustment),
       TextDirection.ltr => StandardFabLocation._leftOffsetX(scaffoldGeometry, adjustment),
-    };
+    }
   }
 }
 
@@ -691,7 +691,7 @@ mixin FabEndOffsetX on StandardFabLocation {
     return switch (scaffoldGeometry.textDirection) {
       TextDirection.rtl => StandardFabLocation._leftOffsetX(scaffoldGeometry, adjustment),
       TextDirection.ltr => StandardFabLocation._rightOffsetX(scaffoldGeometry, adjustment),
-    };
+    }
   }
 }
 

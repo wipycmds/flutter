@@ -44,7 +44,7 @@ class SynchronousFuture<T> implements Future<T> {
     return switch (onValue(_value)) {
       final Future<R> result => result,
       final R result => SynchronousFuture<R>(result),
-    };
+    }
   }
 
   @override

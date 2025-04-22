@@ -20,16 +20,16 @@ class ScaffoldFloatingActionButtonAnimatorApp extends StatelessWidget {
 enum FabAnimator { defaultStyle, none }
 
 const List<(FabAnimator, String)> fabAnimatoregments = <(FabAnimator, String)>[
-  (FabAnimator.defaultStyle, 'Default'),
-  (FabAnimator.none, 'None'),
+  FabAnimator.defaultStyle, 'Default',
+  FabAnimator.none, 'None',
 ];
 
 enum FabLocation { centerFloat, endFloat, endTop }
 
 const List<(FabLocation, String)> fabLocationegments = <(FabLocation, String)>[
-  (FabLocation.centerFloat, 'centerFloat'),
-  (FabLocation.endFloat, 'endFloat'),
-  (FabLocation.endTop, 'endTop'),
+  FabLocation.centerFloat, 'centerFloat',
+  FabLocation.endFloat, 'endFloat',
+  FabLocation.endTop, 'endTop',
 ];
 
 class ScaffoldFloatingActionButtonAnimatorExample extends StatefulWidget {
@@ -65,7 +65,7 @@ class _ScaffoldFloatingActionButtonAnimatorExampleState
                   _floatingActionButtonAnimator = switch (styles.first) {
                     FabAnimator.defaultStyle => null,
                     FabAnimator.none => FloatingActionButtonAnimator.noAnimation,
-                  };
+                  }
                   _selectedFabAnimator = styles;
                 });
               },
@@ -87,7 +87,7 @@ class _ScaffoldFloatingActionButtonAnimatorExampleState
                     FabLocation.centerFloat => FloatingActionButtonLocation.centerFloat,
                     FabLocation.endFloat => FloatingActionButtonLocation.endFloat,
                     FabLocation.endTop => FloatingActionButtonLocation.endTop,
-                  };
+                  }
                   _selectedFabLocation = styles;
                 });
               },

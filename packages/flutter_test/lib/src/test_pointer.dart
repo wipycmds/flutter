@@ -101,11 +101,11 @@ class TestPointer {
       _buttons = buttons;
     }
     switch (event.runtimeType) {
-      case const (PointerDownEvent):
+      case const PointerDownEvent:
         assert(!isDown);
         _isDown = true;
-      case const (PointerUpEvent):
-      case const (PointerCancelEvent):
+      case const PointerUpEvent:
+      case const PointerCancelEvent:
         assert(isDown);
         _isDown = false;
       default:
@@ -495,7 +495,7 @@ class TestGesture {
     assert(_pointer.location != null);
     if (_pointer.isPanZoomActive) {
       return panZoomUpdate(
-        _pointer.location!,
+        _pointer.location,
         pan: (_pointer.pan ?? Offset.zero) + offset,
         timeStamp: timeStamp,
       );

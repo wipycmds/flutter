@@ -301,7 +301,7 @@ mixin ServicesBinding on BindingBase, SchedulerBinding {
 
   Future<String?> _handleLifecycleMessage(String? message) async {
     final AppLifecycleState? state = _parseAppLifecycleMessage(message!);
-    final List<AppLifecycleState> generated = _generateStateTransitions(lifecycleState, state!);
+    final List<AppLifecycleState> generated = _generateStateTransitions(lifecycleState, state);
     for (final AppLifecycleState stateChange in generated) {
       handleAppLifecycleStateChanged(stateChange);
       SystemChrome.handleAppLifecycleStateChanged(stateChange);
@@ -376,7 +376,7 @@ mixin ServicesBinding on BindingBase, SchedulerBinding {
         ending == AppLifecycleState.paused || ending == AppLifecycleState.inactive,
       AppLifecycleState.paused =>
         ending == AppLifecycleState.hidden || ending == AppLifecycleState.detached,
-    };
+    }
   }
 
   /// Listenable that notifies when the accessibility focus on the system have changed.
@@ -436,7 +436,7 @@ mixin ServicesBinding on BindingBase, SchedulerBinding {
       'AppLifecycleState.paused' => AppLifecycleState.paused,
       'AppLifecycleState.detached' => AppLifecycleState.detached,
       _ => null,
-    };
+    }
   }
 
   /// Handles any requests for application exit that may be received on the

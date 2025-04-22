@@ -116,7 +116,7 @@ class _FocusDemoState extends State<FocusDemo> {
         LogicalKeyboardKey.arrowUp => TraversalDirection.up,
         LogicalKeyboardKey.arrowDown => TraversalDirection.down,
         _ => null,
-      };
+      }
       if (direction != null) {
         node.focusInDirection(direction);
         return KeyEventResult.handled;

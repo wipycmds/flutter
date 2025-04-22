@@ -24,7 +24,7 @@ bool autoUpdateGoldenFiles = () {
   return switch (updateGoldens?.toLowerCase()) {
     '1' || 'true' => true,
     _ => false,
-  };
+  }
 }();
 
 /// Compares pixels against those of a golden image file.
@@ -191,7 +191,7 @@ AsyncMatcher matchesGoldenFile(Object key, {int? version}) {
     Uri() => _MatchesGoldenFile(key, version),
     String() => _MatchesGoldenFile.forStringPath(key, version),
     _ => throw ArgumentError('Unexpected type for golden file: ${key.runtimeType}'),
-  };
+  }
 }
 
 /// The matcher created by [matchesGoldenFile].

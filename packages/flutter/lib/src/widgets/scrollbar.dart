@@ -396,7 +396,7 @@ class ScrollbarPainter extends ChangeNotifier implements CustomPainter {
   // The track is offset by only padding.
   double get _totalTrackMainAxisOffsets => _isVertical ? padding.vertical : padding.horizontal;
 
-  double get _leadingTrackMainAxisOffset => switch (_resolvedOrientation) {
+  double get _leadingTrackMainAxisOffset => switch (resolvedOrientation) {
     ScrollbarOrientation.left || ScrollbarOrientation.right => padding.top,
     ScrollbarOrientation.top || ScrollbarOrientation.bottom => padding.left,
   };
@@ -734,7 +734,7 @@ class ScrollbarPainter extends ChangeNotifier implements CustomPainter {
       return false;
     }
 
-    final Rect interactiveRect = _trackRect!;
+    final Rect interactiveRect = _trackRect;
     final Rect paddedRect = interactiveRect.expandToInclude(
       Rect.fromCircle(center: _thumbRect!.center, radius: _kMinInteractiveSize / 2),
     );
@@ -1748,7 +1748,7 @@ class RawScrollbarState<T extends RawScrollbar> extends State<T> with TickerProv
     final Offset delta = switch (direction) {
       Axis.horizontal => Offset(primaryDelta, 0),
       Axis.vertical => Offset(0, primaryDelta),
-    };
+    }
     final RenderBox renderBox =
         _scrollbarPainterKey.currentContext!.findRenderObject()! as RenderBox;
     final DragUpdateDetails scrollDetails = DragUpdateDetails(
@@ -1790,7 +1790,7 @@ class RawScrollbarState<T extends RawScrollbar> extends State<T> with TickerProv
     final Velocity adjustedVelocity = switch (platform) {
       TargetPlatform.iOS || TargetPlatform.android => -velocity,
       _ => Velocity.zero,
-    };
+    }
     final RenderBox renderBox =
         _scrollbarPainterKey.currentContext!.findRenderObject()! as RenderBox;
     final DragEndDetails details = DragEndDetails(

@@ -118,7 +118,7 @@ abstract class BoxBorder extends ShapeBorder {
       return BorderDirectional.lerp(a, b, t);
     }
     if (b is Border && a is BorderDirectional) {
-      (a, b) = (b, a);
+      a, b = b, a;
       t = 1.0 - t;
       // fall through to next case
     }
@@ -1064,7 +1064,7 @@ class BorderDirectional extends BoxBorder {
     final (BorderSide left, BorderSide right) = switch (textDirection!) {
       TextDirection.rtl => (end, start),
       TextDirection.ltr => (start, end),
-    };
+    }
 
     // Allow painting non-uniform borders if the visible colors are uniform.
     final Set<Color> visibleColors = _distinctVisibleColors();

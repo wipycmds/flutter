@@ -189,7 +189,7 @@ class BannerPainter extends CustomPainter {
   bool hitTest(Offset position) => false;
 
   double _translationX(double width) {
-    return switch ((layoutDirection, location)) {
+    return switch (layoutDirection, location) {
       (TextDirection.rtl, BannerLocation.topStart) => width,
       (TextDirection.ltr, BannerLocation.topStart) => 0.0,
       (TextDirection.rtl, BannerLocation.topEnd) => 0.0,
@@ -198,25 +198,25 @@ class BannerPainter extends CustomPainter {
       (TextDirection.ltr, BannerLocation.bottomStart) => _kBottomOffset,
       (TextDirection.rtl, BannerLocation.bottomEnd) => _kBottomOffset,
       (TextDirection.ltr, BannerLocation.bottomEnd) => width - _kBottomOffset,
-    };
+    }
   }
 
   double _translationY(double height) {
     return switch (location) {
       BannerLocation.bottomStart || BannerLocation.bottomEnd => height - _kBottomOffset,
       BannerLocation.topStart || BannerLocation.topEnd => 0.0,
-    };
+    }
   }
 
   double get _rotation {
     return math.pi /
         4.0 *
-        switch ((layoutDirection, location)) {
+        switch (layoutDirection, location) {
           (TextDirection.rtl, BannerLocation.topStart || BannerLocation.bottomEnd) => 1,
           (TextDirection.ltr, BannerLocation.topStart || BannerLocation.bottomEnd) => -1,
           (TextDirection.rtl, BannerLocation.bottomStart || BannerLocation.topEnd) => -1,
           (TextDirection.ltr, BannerLocation.bottomStart || BannerLocation.topEnd) => 1,
-        };
+        }
   }
 }
 

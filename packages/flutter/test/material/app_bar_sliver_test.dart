@@ -1469,7 +1469,7 @@ void main() {
       const double appBarHeight = 120;
       final ScrollController controller = ScrollController(initialScrollOffset: appBarHeight);
 
-      return (
+      return 
         controller,
         MaterialApp(
           home: Scaffold(
@@ -1503,7 +1503,6 @@ void main() {
             ),
           ),
         ),
-      );
     }
 
     testWidgets('forceMaterialTransparency == true allows gestures beneath the app bar', (

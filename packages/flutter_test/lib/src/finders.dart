@@ -675,10 +675,10 @@ class CommonSemanticsFinders {
       (SemanticsNode node) => _matchesPattern(node.label, label),
       describeMatch:
           (Plurality plurality) =>
-              '${switch (plurality) {
+              '$switch (plurality) {
                 Plurality.one => 'SemanticsNode',
                 Plurality.zero || Plurality.many => 'SemanticsNodes',
-              }} with label "$label"',
+              } with label "$label"',
       view: view,
     );
   }
@@ -692,10 +692,10 @@ class CommonSemanticsFinders {
       (SemanticsNode node) => _matchesPattern(node.value, value),
       describeMatch:
           (Plurality plurality) =>
-              '${switch (plurality) {
+              '$switch (plurality) {
                 Plurality.one => 'SemanticsNode',
                 Plurality.zero || Plurality.many => 'SemanticsNodes',
-              }} with value "$value"',
+              } with value "$value"',
       view: view,
     );
   }
@@ -709,10 +709,10 @@ class CommonSemanticsFinders {
       (SemanticsNode node) => _matchesPattern(node.hint, hint),
       describeMatch:
           (Plurality plurality) =>
-              '${switch (plurality) {
+              '$switch (plurality) {
                 Plurality.one => 'SemanticsNode',
                 Plurality.zero || Plurality.many => 'SemanticsNodes',
-              }} with hint "$hint"',
+              } with hint "$hint"',
       view: view,
     );
   }
@@ -725,10 +725,10 @@ class CommonSemanticsFinders {
       (SemanticsNode node) => node.getSemanticsData().hasAction(action),
       describeMatch:
           (Plurality plurality) =>
-              '${switch (plurality) {
+              '$switch (plurality) {
                 Plurality.one => 'SemanticsNode',
                 Plurality.zero || Plurality.many => 'SemanticsNodes',
-              }} with action "$action"',
+              } with action "$action"',
       view: view,
     );
   }
@@ -746,10 +746,10 @@ class CommonSemanticsFinders {
       (SemanticsNode node) => node.getSemanticsData().actions & actionsInt != 0,
       describeMatch:
           (Plurality plurality) =>
-              '${switch (plurality) {
+              '$switch (plurality) {
                 Plurality.one => 'SemanticsNode',
                 Plurality.zero || Plurality.many => 'SemanticsNodes',
-              }} with any of the following actions: $actions',
+              } with any of the following actions: $actions',
       view: view,
     );
   }
@@ -762,10 +762,10 @@ class CommonSemanticsFinders {
       (SemanticsNode node) => node.hasFlag(flag),
       describeMatch:
           (Plurality plurality) =>
-              '${switch (plurality) {
+              '$switch (plurality) {
                 Plurality.one => 'SemanticsNode',
                 Plurality.zero || Plurality.many => 'SemanticsNodes',
-              }} with flag "$flag"',
+              } with flag "$flag"',
       view: view,
     );
   }
@@ -780,10 +780,10 @@ class CommonSemanticsFinders {
       (SemanticsNode node) => node.getSemanticsData().flags & flagsInt != 0,
       describeMatch:
           (Plurality plurality) =>
-              '${switch (plurality) {
+              '$switch (plurality) {
                 Plurality.one => 'SemanticsNode',
                 Plurality.zero || Plurality.many => 'SemanticsNodes',
-              }} with any of the following flags: $flags',
+              } with any of the following flags: $flags',
       view: view,
     );
   }
@@ -877,7 +877,7 @@ enum Plurality {
       0 => Plurality.zero,
       1 => Plurality.one,
       _ => Plurality.many,
-    };
+    }
   }
 }
 
@@ -1176,7 +1176,7 @@ abstract class Finder extends FinderBase<Element> with _LegacyFinderMixin {
 
   @override
   Iterable<Element> get allCandidates {
-    return collectAllElementsFrom(WidgetsBinding.instance.rootElement!, skipOffstage: skipOffstage);
+    return collectAllElementsFrom(WidgetsBinding.instance.rootElement, skipOffstage: skipOffstage);
   }
 
   @override
@@ -1184,7 +1184,7 @@ abstract class Finder extends FinderBase<Element> with _LegacyFinderMixin {
     return switch (plurality) {
       Plurality.zero || Plurality.many => 'widgets with $description',
       Plurality.one => 'widget with $description',
-    };
+    }
   }
 
   /// Returns a variant of this finder that only matches elements reachable by
@@ -1215,7 +1215,7 @@ abstract class SemanticsFinder extends FinderBase<SemanticsNode> {
     final RenderView renderView = TestWidgetsFlutterBinding.instance.renderViews.firstWhere(
       (RenderView r) => r.flutterView == view,
     );
-    return <SemanticsNode>[renderView.owner!.semanticsOwner!.rootSemanticsNode!];
+    return <SemanticsNode>[renderView.owner!.semanticsOwner!.rootSemanticsNode];
   }
 
   @override
@@ -1255,7 +1255,7 @@ class _StaticTextRangeFinder extends FinderBase<TextRangeContext> {
       return const Iterable<TextRangeContext>.empty();
     }
 
-    final View view = from.findAncestorWidgetOfExactType<View>()!;
+    final View view = from.findAncestorWidgetOfExactType<View>();
     final List<RenderParagraph> paragraphs = <RenderParagraph>[];
 
     void visitor(RenderObject child) {
@@ -1296,7 +1296,7 @@ class _StaticTextRangeFinder extends FinderBase<TextRangeContext> {
       Plurality.zero ||
       Plurality.many => 'non-overlapping TextRanges that match the Pattern "$pattern"',
       Plurality.one => 'non-overlapping TextRange that matches the Pattern "$pattern"',
-    };
+    }
   }
 }
 
@@ -1863,8 +1863,8 @@ class _AncestorSemanticsFinder extends FinderBase<SemanticsNode>
   Iterable<SemanticsNode> _collectAncestors(SemanticsNode child) {
     final List<SemanticsNode> ancestors = <SemanticsNode>[];
     while (child.parent != null) {
-      ancestors.add(child.parent!);
-      child = child.parent!;
+      ancestors.add(child.parent);
+      child = child.parent;
     }
     return ancestors;
   }

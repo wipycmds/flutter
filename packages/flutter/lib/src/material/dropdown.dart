@@ -171,7 +171,7 @@ class _DropdownMenuItemButtonState<T> extends State<_DropdownMenuItemButton<T>> 
     final bool inTraditionalMode = switch (FocusManager.instance.highlightMode) {
       FocusHighlightMode.touch => false,
       FocusHighlightMode.traditional => true,
-    };
+    }
 
     if (focused && inTraditionalMode) {
       final _MenuLimits menuLimits = widget.route.getMenuLimits(
@@ -426,7 +426,7 @@ class _DropdownMenuRouteLayout<T> extends SingleChildLayoutDelegate {
     final double left = switch (textDirection!) {
       TextDirection.rtl => clampDouble(buttonRect.right, 0.0, size.width) - childSize.width,
       TextDirection.ltr => clampDouble(buttonRect.left, 0.0, size.width - childSize.width),
-    };
+    }
 
     return Offset(left, menuLimits.top);
   }
@@ -1423,7 +1423,7 @@ class _DropdownButtonState<T> extends State<DropdownButton<T>> with WidgetsBindi
       selectedIndex: _selectedIndex ?? 0,
       elevation: widget.elevation,
       capturedThemes: InheritedTheme.capture(from: context, to: navigator.context),
-      style: _textStyle!,
+      style: _textStyle,
       barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
       itemHeight: widget.itemHeight,
       menuWidth: widget.menuWidth,
@@ -1464,13 +1464,13 @@ class _DropdownButtonState<T> extends State<DropdownButton<T>> with WidgetsBindi
           switch (brightness) {
             Brightness.light => Colors.grey.shade700,
             Brightness.dark => Colors.white70,
-          };
+          }
     } else {
       return widget.iconDisabledColor ??
           switch (brightness) {
             Brightness.light => Colors.grey.shade400,
             Brightness.dark => Colors.white10,
-          };
+          }
     }
   }
 

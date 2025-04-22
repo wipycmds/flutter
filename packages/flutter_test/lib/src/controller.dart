@@ -47,7 +47,7 @@ const double kDragSlopDefault = 20.0;
   while (i < endIndex && rootSpan.getSpanForPosition(TextPosition(offset: i)) == subspan) {
     i += 1;
   }
-  return (subspan, i);
+  return subspan, i;
 }
 
 // Examples can assume:
@@ -214,7 +214,7 @@ class SemanticsController {
         );
       }
     } else if (startNode != null) {
-      final SemanticsOwner owner = startNode.evaluate().single.owner!;
+      final SemanticsOwner owner = startNode.evaluate().single.owner;
       final RenderView renderView = _controller.binding.renderViews.firstWhere(
         (RenderView render) => render.owner!.semanticsOwner == owner,
       );
@@ -241,7 +241,7 @@ class SemanticsController {
         );
       }
     } else if (endNode != null) {
-      final SemanticsOwner owner = endNode.evaluate().single.owner!;
+      final SemanticsOwner owner = endNode.evaluate().single.owner;
       final RenderView renderView = _controller.binding.renderViews.firstWhere(
         (RenderView render) => render.owner!.semanticsOwner == owner,
       );
@@ -272,7 +272,7 @@ class SemanticsController {
     );
 
     final List<SemanticsNode> traversal = <SemanticsNode>[];
-    _accessibilityTraversal(renderView.owner!.semanticsOwner!.rootSemanticsNode!, traversal);
+    _accessibilityTraversal(renderView.owner!.semanticsOwner!.rootSemanticsNode, traversal);
 
     // Setting the range
     SemanticsNode? node;
@@ -833,12 +833,12 @@ abstract class WidgetController {
   Iterable<Layer> layerListOf(finders.FinderBase<Element> finder) {
     TestAsyncUtils.guardSync();
     final Element element = finder.evaluate().single;
-    final RenderObject object = element.renderObject!;
+    final RenderObject object = element.renderObject;
     RenderObject current = object;
     while (current.debugLayer == null) {
-      current = current.parent!;
+      current = current.parent;
     }
-    final ContainerLayer layer = current.debugLayer!;
+    final ContainerLayer layer = current.debugLayer;
     return _walkLayers(layer);
   }
 
@@ -849,7 +849,7 @@ abstract class WidgetController {
   /// using [Iterator.moveNext].
   Iterable<Element> get allElements {
     TestAsyncUtils.guardSync();
-    return collectAllElementsFrom(binding.rootElement!, skipOffstage: false);
+    return collectAllElementsFrom(binding.rootElement, skipOffstage: false);
   }
 
   /// The matching element in the widget tree.
@@ -951,7 +951,7 @@ abstract class WidgetController {
   /// their own render object.
   Iterable<RenderObject> get allRenderObjects {
     TestAsyncUtils.guardSync();
-    return allElements.map<RenderObject>((Element element) => element.renderObject!);
+    return allElements.map<RenderObject>((Element element) => element.renderObject);
   }
 
   /// The render object of the matching widget in the widget tree.
@@ -993,7 +993,7 @@ abstract class WidgetController {
   List<Layer> get layers {
     return <Layer>[
       for (final RenderView renderView in binding.renderViews)
-        ..._walkLayers(renderView.debugLayer!),
+        ..._walkLayers(renderView.debugLayer),
     ];
   }
 
@@ -1971,7 +1971,7 @@ abstract class WidgetController {
     int spanStart = range.start;
     while (spanStart < range.end) {
       switch (_findEndOfSpan(textRangeContext.renderObject.text, spanStart, range.end)) {
-        case (final HitTestTarget target, final int endIndex):
+        case final HitTestTarget target, final int endIndex:
           // Uses BoxHeightStyle.tight in getBoxesForSelection to make sure the
           // returned boxes don't extend outside of the hit-testable region.
           final Iterable<Offset> testOffsets = textRangeContext.renderObject
@@ -1988,7 +1988,7 @@ abstract class WidgetController {
             }
           }
           spanStart = endIndex;
-        case (_, final int endIndex):
+        case _, final int endIndex:
           spanStart = endIndex;
         case null:
           break;

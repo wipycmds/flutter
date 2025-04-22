@@ -779,7 +779,7 @@ TextAffinity? _toTextAffinity(String? affinity) {
     'TextAffinity.downstream' => TextAffinity.downstream,
     'TextAffinity.upstream' => TextAffinity.upstream,
     _ => null,
-  };
+  }
 }
 
 /// The state of a "floating cursor" drag on an iOS soft keyboard.
@@ -1602,7 +1602,7 @@ TextInputAction _toTextInputAction(String action) {
       throw FlutterError.fromParts(<DiagnosticsNode>[
         ErrorSummary('Unknown text input action: $action'),
       ]),
-  };
+  }
 }
 
 FloatingCursorDragState _toTextCursorAction(String state) {
@@ -1614,7 +1614,7 @@ FloatingCursorDragState _toTextCursorAction(String state) {
       throw FlutterError.fromParts(<DiagnosticsNode>[
         ErrorSummary('Unknown text cursor action: $state'),
       ]),
-  };
+  }
 }
 
 RawFloatingCursorPoint _toTextPoint(FloatingCursorDragState state, Map<String, dynamic> encoded) {

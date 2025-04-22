@@ -245,7 +245,7 @@ abstract class Action<T extends Intent> with Diagnosticable {
 
   bool _isEnabled(T intent, BuildContext? context) => switch (this) {
     final ContextAction<T> action => action.isEnabled(intent, context),
-    _ => isEnabled(intent),
+    bool _ => isEnabled(intent),
   };
 
   /// Whether this [Action] is inherently enabled.
@@ -332,7 +332,7 @@ abstract class Action<T extends Intent> with Diagnosticable {
 
   Object? _invoke(T intent, BuildContext? context) => switch (this) {
     final ContextAction<T> action => action.invoke(intent, context),
-    _ => invoke(intent),
+    Object? _ => invoke(intent),
   };
 
   /// Register a callback to listen for changes to the state of this action.
@@ -663,9 +663,9 @@ class ActionDispatcher with Diagnosticable {
   ]) {
     final BuildContext? target = context ?? primaryFocus?.context;
     if (action._isEnabled(intent, target)) {
-      return (true, action._invoke(intent, target));
+      return true, action._invoke(intent, target);
     }
-    return (false, null);
+    return false, null;
   }
 }
 
@@ -1244,7 +1244,7 @@ class _FocusableActionDetectorState extends State<FocusableActionDetector> {
         _canShowHighlight = switch (FocusManager.instance.highlightMode) {
           FocusHighlightMode.touch => false,
           FocusHighlightMode.traditional => true,
-        };
+        }
       },
     );
   }
@@ -1308,7 +1308,7 @@ class _FocusableActionDetectorState extends State<FocusableActionDetector> {
       return switch (MediaQuery.maybeNavigationModeOf(context)) {
         NavigationMode.traditional || null => target.enabled,
         NavigationMode.directional => true,
-      };
+      }
     }
 
     bool shouldShowFocusHighlight(FocusableActionDetector target) {

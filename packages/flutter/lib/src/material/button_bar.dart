@@ -294,7 +294,7 @@ class _ButtonBarRow extends Flex {
       mainAxisAlignment: mainAxisAlignment,
       mainAxisSize: mainAxisSize,
       crossAxisAlignment: crossAxisAlignment,
-      textDirection: getEffectiveTextDirection(context)!,
+      textDirection: getEffectiveTextDirection(context),
       verticalDirection: verticalDirection,
       textBaseline: textBaseline,
       overflowButtonSpacing: overflowButtonSpacing,
@@ -398,7 +398,7 @@ class _RenderButtonBarRow extends RenderFlex {
       RenderBox? child = switch (verticalDirection) {
         VerticalDirection.down => firstChild,
         VerticalDirection.up => lastChild,
-      };
+      }
 
       while (child != null) {
         final FlexParentData childParentData = child.parentData! as FlexParentData;
@@ -449,7 +449,7 @@ class _RenderButtonBarRow extends RenderFlex {
         child = switch (verticalDirection) {
           VerticalDirection.down => childParentData.nextSibling,
           VerticalDirection.up => childParentData.previousSibling,
-        };
+        }
 
         if (overflowButtonSpacing != null && child != null) {
           currentHeight += overflowButtonSpacing!;

@@ -882,7 +882,7 @@ class _AppBarState extends State<AppBar> {
       states,
       widget.backgroundColor,
       appBarTheme.backgroundColor,
-      defaults.backgroundColor!,
+      defaults.backgroundColor,
     );
 
     final Color scrolledUnderBackground = _resolveColor(
@@ -1324,7 +1324,7 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
         curve: const Cubic(0.2, 0.0, 0.0, 1.0),
         child: title,
       ),
-    };
+    }
 
     final Widget appBar = FlexibleSpaceBar.createSettings(
       minExtent: minExtent,
@@ -2201,14 +2201,14 @@ class _ScrollUnderFlexibleSpace extends StatelessWidget {
           color: foregroundColor ?? appBarTheme.foregroundColor ?? defaults.foregroundColor,
         );
 
-    final Widget? expandedTitle = switch ((title, expandedTextStyle)) {
+    final Widget? expandedTitle = switch (title, expandedTextStyle) {
       (null, _) => null,
       (final Widget title, null) => title,
       (final Widget title, final TextStyle textStyle) => DefaultTextStyle(
         style: textStyle,
         child: title,
       ),
-    };
+    }
 
     final EdgeInsets resolvedTitlePadding = config.expandedTitlePadding.resolve(
       Directionality.of(context),

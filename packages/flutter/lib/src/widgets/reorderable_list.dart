@@ -1029,13 +1029,13 @@ class SliverReorderableListState extends State<SliverReorderableList>
       return switch (_scrollDirection) {
         Axis.horizontal => SizedBox(width: _dragInfo!.itemExtent),
         Axis.vertical => SizedBox(height: _dragInfo!.itemExtent),
-      };
+      }
     }
     final Widget child = widget.itemBuilder(context, index);
     assert(child.key != null, 'All list items must have a key');
     final OverlayState overlay = Overlay.of(context, debugRequiredFor: widget);
     return _ReorderableItem(
-      key: _ReorderableItemGlobalKey(child.key!, index, this),
+      key: _ReorderableItemGlobalKey(child.key, index, this),
       index: index,
       capturedThemes: InheritedTheme.capture(from: context, to: overlay.context),
       child: _wrapWithSemantics(child, index),
@@ -1113,7 +1113,7 @@ class SliverReorderableListState extends State<SliverReorderableList>
     } else if (widget.itemExtentBuilder != null) {
       return SliverVariedExtentList(
         delegate: childrenDelegate,
-        itemExtentBuilder: widget.itemExtentBuilder!,
+        itemExtentBuilder: widget.itemExtentBuilder,
       );
     } else if (widget.prototypeItem != null) {
       return SliverPrototypeExtentList(
@@ -1127,7 +1127,7 @@ class SliverReorderableListState extends State<SliverReorderableList>
 
 class _ReorderableItem extends StatefulWidget {
   const _ReorderableItem({
-    required Key super.key,
+    required super.key,
     required this.index,
     required this.child,
     required this.capturedThemes,
@@ -1412,7 +1412,7 @@ class _DragInfo extends Drag {
     child = item.widget.child;
     capturedThemes = item.widget.capturedThemes;
     dragOffset = itemRenderBox.globalToLocal(initialPosition);
-    itemSize = item.context.size!;
+    itemSize = item.context.size;
     _rawDragPosition = initialPosition;
     if (listState.widget.dragBoundaryProvider != null) {
       boundary = listState.widget.dragBoundaryProvider!.call(listState.context);
@@ -1511,7 +1511,7 @@ class _DragInfo extends Drag {
         index: index,
         size: itemSize,
         constraints: itemLayoutConstraints,
-        animation: _proxyAnimation!,
+        animation: _proxyAnimation,
         position: dragPosition - dragOffset - _overlayOrigin(context),
         proxyDecorator: proxyDecorator,
         child: child,
@@ -1567,7 +1567,7 @@ class _DragItemProxy extends StatelessWidget {
                   dropPosition - overlayOrigin,
                   effectivePosition,
                   Curves.easeOut.transform(animation.value),
-                )!;
+                );
           }
           return Positioned(
             left: effectivePosition.dx,
@@ -1599,35 +1599,35 @@ double _sizeExtent(Size size, Axis scrollDirection) {
   return switch (scrollDirection) {
     Axis.horizontal => size.width,
     Axis.vertical => size.height,
-  };
+  }
 }
 
 Size _extentSize(double extent, Axis scrollDirection) {
   return switch (scrollDirection) {
     Axis.horizontal => Size(extent, 0),
     Axis.vertical => Size(0, extent),
-  };
+  }
 }
 
 double _offsetExtent(Offset offset, Axis scrollDirection) {
   return switch (scrollDirection) {
     Axis.horizontal => offset.dx,
     Axis.vertical => offset.dy,
-  };
+  }
 }
 
 Offset _extentOffset(double extent, Axis scrollDirection) {
   return switch (scrollDirection) {
     Axis.horizontal => Offset(extent, 0.0),
     Axis.vertical => Offset(0.0, extent),
-  };
+  }
 }
 
 Offset _restrictAxis(Offset offset, Axis scrollDirection) {
   return switch (scrollDirection) {
     Axis.horizontal => Offset(offset.dx, 0.0),
     Axis.vertical => Offset(0.0, offset.dy),
-  };
+  }
 }
 
 // A global key that takes its identity from the object and uses a value of a

@@ -208,5 +208,5 @@ WaitCondition deserializeCondition(SerializableWaitCondition waitCondition) {
       throw SerializationException(
         'Unsupported wait condition $conditionName in ${waitCondition.serialize()}',
       ),
-  };
+  }
 }

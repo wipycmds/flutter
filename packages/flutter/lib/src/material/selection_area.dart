@@ -130,7 +130,7 @@ class SelectionAreaState extends State<SelectionArea> {
           TargetPlatform.linux || TargetPlatform.windows => desktopTextSelectionHandleControls,
           TargetPlatform.iOS => cupertinoTextSelectionHandleControls,
           TargetPlatform.macOS => cupertinoDesktopTextSelectionHandleControls,
-        };
+        }
     return SelectableRegion(
       key: _selectableRegionKey,
       selectionControls: controls,

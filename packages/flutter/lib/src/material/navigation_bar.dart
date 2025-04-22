@@ -1308,16 +1308,16 @@ class _CurvedAnimationBuilderState extends State<_CurvedAnimationBuilder> {
       });
     }
     switch (status) {
-      case AnimationStatus.forward || AnimationStatus.reverse when _preservedDirection != null:
-        break;
-      case AnimationStatus.forward || AnimationStatus.reverse:
+      const (case AnimationStatus.forward || AnimationStatus.reverse when _preservedDirection != null:
+        break;)
+      const (case AnimationStatus.forward || AnimationStatus.reverse:
         setState(() {
           _preservedDirection = status;
-        });
-      case AnimationStatus.completed || AnimationStatus.dismissed:
+        });)
+      const (case AnimationStatus.completed || AnimationStatus.dismissed:
         setState(() {
           _preservedDirection = null;
-        });
+        });)
     }
   }
 
@@ -1434,7 +1434,7 @@ class _NavigationBarDefaultsM3 extends NavigationBarThemeData {
   @override
   MaterialStateProperty<TextStyle?>? get labelTextStyle {
     return MaterialStateProperty.resolveWith((Set<MaterialState> states) {
-    final TextStyle style = _textTheme.labelMedium!;
+    final TextStyle style = _textTheme.labelMedium;
       return style.apply(
         color: states.contains(MaterialState.disabled)
           ? _colors.onSurfaceVariant.withOpacity(0.38)

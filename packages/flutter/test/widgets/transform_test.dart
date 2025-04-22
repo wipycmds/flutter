@@ -526,7 +526,7 @@ void main() {
     (WidgetTester tester) async {
       for (double angle = 0; angle <= math.pi / 4; angle += 0.01) {
         await tester.pumpWidget(RepaintBoundary(child: generateTransform(true, angle)));
-        final RenderBox renderBox = tester.binding.renderView.child!;
+        final RenderBox renderBox = tester.binding.renderView.child;
         final OffsetLayer layer = renderBox.debugLayer! as OffsetLayer;
         final ui.Image imageWithCompositing = await layer.toImage(renderBox.paintBounds);
         addTearDown(imageWithCompositing.dispose);

@@ -232,7 +232,7 @@ class _ControlsState extends State<_Controls> {
                       controller.open();
                     }
                   },
-                  child: child!,
+                  child: child,
                 );
               },
               child: const MenuAcceleratorLabel('Open Menu'),
@@ -458,7 +458,7 @@ class _TestMenusState extends State<_TestMenus> {
         false => true,
         true => null,
         null => false,
-      };
+      }
     });
   }
 

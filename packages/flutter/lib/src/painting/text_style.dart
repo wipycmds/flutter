@@ -1308,14 +1308,14 @@ class TextStyle with Diagnosticable {
       foreground:
           (a.foreground != null || b.foreground != null)
               ? t < 0.5
-                  ? a.foreground ?? (Paint()..color = a.color!)
-                  : b.foreground ?? (Paint()..color = b.color!)
+                  ? a.foreground ?? (Paint()..color = a.color)
+                  : b.foreground ?? (Paint()..color = b.color)
               : null,
       background:
           (a.background != null || b.background != null)
               ? t < 0.5
-                  ? a.background ?? (Paint()..color = a.backgroundColor!)
-                  : b.background ?? (Paint()..color = b.backgroundColor!)
+                  ? a.background ?? (Paint()..color = a.backgroundColor)
+                  : b.background ?? (Paint()..color = b.backgroundColor)
               : null,
       shadows: ui.Shadow.lerpList(a.shadows, b.shadows, t),
       fontFeatures: t < 0.5 ? a.fontFeatures : b.fontFeatures,
@@ -1354,7 +1354,7 @@ class TextStyle with Diagnosticable {
       null => null,
       final double size when textScaler == TextScaler.noScaling => size * textScaleFactor,
       final double size => textScaler.scale(size),
-    };
+    }
     return ui.TextStyle(
       color: color,
       decoration: decoration,
@@ -1754,7 +1754,7 @@ List<FontVariation>? lerpFontVariations(List<FontVariation>? a, List<FontVariati
       // The lists aren't compatible.
       break;
     }
-    result.add(FontVariation.lerp(a[index], b[index], t)!);
+    result.add(FontVariation.lerp(a[index], b[index], t));
   }
   final int maxLength = a.length > b.length ? a.length : b.length;
   if (index < maxLength) {

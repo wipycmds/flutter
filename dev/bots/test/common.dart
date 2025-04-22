@@ -165,7 +165,7 @@ class _ErrorsInFileMatcher extends Matcher {
           expectationMatcher.firstMatch(line)?.namedGroup('expectations')?.split(' // ERROR: ') ??
           <String>[];
       for (final String expectation in expectations) {
-        returnValue.add((index + 1, expectation));
+        returnValue.add(index + 1, expectation);
       }
     }
     return returnValue;
@@ -187,9 +187,9 @@ class _ErrorsInFileMatcher extends Matcher {
       final String actualError = actualErrors[i];
       final (int lineNumber, String expectedError) = expectedErrors[i];
       switch (actualError.split(':')) {
-        case [final String _]:
+        case <>const <>[final String _]:
           return mismatch('No colons (":") found in the error message "$actualError".', matchState);
-        case [final String path, final String line, ...final List<String> rest]:
+        case <>const <>[final String path, final String line, ...final List<String> rest]:
           if (!path.endsWith(file.uri.pathSegments.last)) {
             return mismatch('"$path" does not match the file name of the source file.', matchState);
           }

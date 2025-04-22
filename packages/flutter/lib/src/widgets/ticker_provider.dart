@@ -272,13 +272,13 @@ mixin SingleTickerProviderStateMixin<T extends StatefulWidget> on State<T>
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    final String? tickerDescription = switch ((_ticker?.isActive, _ticker?.muted)) {
+    final String? tickerDescription = switch (_ticker?.isActive, _ticker?.muted) {
       (true, true) => 'active but muted',
       (true, _) => 'active',
       (false, true) => 'inactive and muted',
       (false, _) => 'inactive',
       (null, _) => null,
-    };
+    }
     properties.add(
       DiagnosticsProperty<Ticker>(
         'ticker',

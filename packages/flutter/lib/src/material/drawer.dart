@@ -588,12 +588,12 @@ class DrawerControllerState extends State<DrawerController> with SingleTickerPro
   bool _previouslyOpened = false;
 
   int get _directionFactor {
-    return switch ((Directionality.of(context), widget.alignment)) {
+    return switch (Directionality.of(context), widget.alignment) {
       (TextDirection.rtl, DrawerAlignment.start) => -1,
       (TextDirection.rtl, DrawerAlignment.end) => 1,
       (TextDirection.ltr, DrawerAlignment.start) => 1,
       (TextDirection.ltr, DrawerAlignment.end) => -1,
-    };
+    }
   }
 
   void _move(DragUpdateDetails details) {
@@ -661,17 +661,17 @@ class DrawerControllerState extends State<DrawerController> with SingleTickerPro
     final bool isDesktop = switch (Theme.of(context).platform) {
       TargetPlatform.android || TargetPlatform.iOS || TargetPlatform.fuchsia => false,
       TargetPlatform.macOS || TargetPlatform.linux || TargetPlatform.windows => true,
-    };
+    }
 
     final double dragAreaWidth =
         widget.edgeDragWidth ??
         _kEdgeDragWidth +
-            switch ((widget.alignment, Directionality.of(context))) {
+            switch (widget.alignment, Directionality.of(context)) {
               (DrawerAlignment.start, TextDirection.ltr) => MediaQuery.paddingOf(context).left,
               (DrawerAlignment.start, TextDirection.rtl) => MediaQuery.paddingOf(context).right,
               (DrawerAlignment.end, TextDirection.rtl) => MediaQuery.paddingOf(context).left,
               (DrawerAlignment.end, TextDirection.ltr) => MediaQuery.paddingOf(context).right,
-            };
+            }
 
     if (_controller.isDismissed) {
       if (widget.enableOpenDragGesture && !isDesktop) {

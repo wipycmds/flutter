@@ -245,7 +245,7 @@ class RenderTreeSliver extends RenderSliverVariedExtentList {
         break;
       }
       if (_animationLeadingIndices.keys.contains(index)) {
-        final UniqueKey animationKey = _animationLeadingIndices[index]!;
+        final UniqueKey animationKey = _animationLeadingIndices[index];
         if (_animationOffsets[animationKey] == null) {
           // We have not computed the distance this block is traversing over the
           // lifetime of the animation.
@@ -305,7 +305,7 @@ class RenderTreeSliver extends RenderSliverVariedExtentList {
         break;
       }
       if (_animationLeadingIndices.keys.contains(currentIndex)) {
-        final UniqueKey animationKey = _animationLeadingIndices[currentIndex]!;
+        final UniqueKey animationKey = _animationLeadingIndices[currentIndex];
         assert(_animationOffsets[animationKey] != null);
         // We add the offset accounting for the animation value.
         totalAnimationOffset +=
@@ -358,10 +358,10 @@ class RenderTreeSliver extends RenderSliverVariedExtentList {
     final List<_PaintSegment> paintSegments = <_PaintSegment>[];
     while (animationIndices.isNotEmpty) {
       final int trailingIndex = animationIndices.removeAt(0);
-      paintSegments.add((leadingIndex: leadingIndex, trailingIndex: trailingIndex));
+      paintSegments.add(leadingIndex: leadingIndex, trailingIndex: trailingIndex);
       leadingIndex = trailingIndex + 1;
     }
-    paintSegments.add((leadingIndex: leadingIndex, trailingIndex: indexOf(lastChild!)));
+    paintSegments.add(leadingIndex: leadingIndex, trailingIndex: indexOf(lastChild!));
 
     // Paint, clipping for all but the first segment.
     paintUpTo(paintSegments.removeAt(0).trailingIndex, nextChild, context, offset);
@@ -386,7 +386,7 @@ class RenderTreeSliver extends RenderSliverVariedExtentList {
       );
       // We use the same animation key to keep track of the clip layer, unless
       // this is the odd man out segment.
-      final UniqueKey key = _animationLeadingIndices[parentIndex]!;
+      final UniqueKey key = _animationLeadingIndices[parentIndex];
       _clipHandles[key] ??= LayerHandle<ClipRectLayer>();
       _clipHandles[key]!.layer = context.pushClipRect(needsCompositing, offset, rect, (
         PaintingContext context,

@@ -103,7 +103,7 @@ class MaterialTextSelectionControls extends TextSelectionControls {
         angle: math.pi / 4.0,
         child: handle,
       ), // points up
-    };
+    }
   }
 
   /// Gets anchor for material-style text selection handles.
@@ -115,7 +115,7 @@ class MaterialTextSelectionControls extends TextSelectionControls {
       TextSelectionHandleType.collapsed => const Offset(_kHandleSize / 2, -4),
       TextSelectionHandleType.left => const Offset(_kHandleSize, 0),
       TextSelectionHandleType.right => Offset.zero,
-    };
+    }
   }
 
   @Deprecated(
@@ -247,22 +247,22 @@ class _TextSelectionControlsToolbarState extends State<_TextSelectionControlsToo
       if (widget.handleCut != null)
         _TextSelectionToolbarItemData(
           label: localizations.cutButtonLabel,
-          onPressed: widget.handleCut!,
+          onPressed: widget.handleCut,
         ),
       if (widget.handleCopy != null)
         _TextSelectionToolbarItemData(
           label: localizations.copyButtonLabel,
-          onPressed: widget.handleCopy!,
+          onPressed: widget.handleCopy,
         ),
       if (widget.handlePaste != null && widget.clipboardStatus?.value == ClipboardStatus.pasteable)
         _TextSelectionToolbarItemData(
           label: localizations.pasteButtonLabel,
-          onPressed: widget.handlePaste!,
+          onPressed: widget.handlePaste,
         ),
       if (widget.handleSelectAll != null)
         _TextSelectionToolbarItemData(
           label: localizations.selectAllButtonLabel,
-          onPressed: widget.handleSelectAll!,
+          onPressed: widget.handleSelectAll,
         ),
     ];
 

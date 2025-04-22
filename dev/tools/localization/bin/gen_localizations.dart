@@ -437,7 +437,7 @@ String generateType(Map<String, dynamic>? attributes) {
     'icuShortTimePattern' => 'TimeOfDayFormat',
     'scriptCategory' => 'ScriptCategory',
     _ => 'String',
-  };
+  }
   return type + (optional ? '?' : '');
 }
 

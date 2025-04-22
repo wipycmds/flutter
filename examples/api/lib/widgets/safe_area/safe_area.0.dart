@@ -209,7 +209,7 @@ class InsetsState extends State<Insets> {
         Inset.top => insets.copyWith(top: value),
         Inset.sides => insets.copyWith(left: value, right: value),
         Inset.bottom => insets.copyWith(bottom: value),
-      };
+      }
     });
   }
 

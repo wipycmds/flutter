@@ -686,7 +686,7 @@ class CupertinoPopupSurface extends StatelessWidget {
     final ColorFilter colorFilter = switch (brightness) {
       Brightness.dark => const ColorFilter.matrix(_darkSaturationMatrix),
       Brightness.light || null => const ColorFilter.matrix(_lightSaturationMatrix),
-    };
+    }
 
     if (blurSigma == 0) {
       return colorFilter;
@@ -1201,7 +1201,7 @@ class _CupertinoActionSheetState extends State<CupertinoActionSheet> {
         onPressStateChange: (bool state) {
           _onPressedUpdate(_kCancelButtonIndex, state);
         },
-        child: widget.cancelButton!,
+        child: widget.cancelButton,
       ),
     );
   }
@@ -1314,7 +1314,7 @@ class _CupertinoActionSheetState extends State<CupertinoActionSheet> {
     final double actionSheetWidth = switch (MediaQuery.orientationOf(context)) {
       Orientation.portrait => MediaQuery.sizeOf(context).width,
       Orientation.landscape => MediaQuery.sizeOf(context).height,
-    };
+    }
 
     return SafeArea(
       minimum: const EdgeInsets.only(bottom: _kActionSheetEdgePadding),
@@ -1449,7 +1449,7 @@ class _CupertinoActionSheetActionState extends State<CupertinoActionSheetAction>
       <= 21 => lerpDouble(23.0, 24.0, (contextBodySize - 19.0) / (21.0 - 19.0))!,
       <= 24 => 24.0,
       _ => contextBodySize,
-    };
+    }
   }
 
   @override
@@ -1837,7 +1837,7 @@ class _ActionSheetMainSheet extends StatelessWidget {
       return _scrolledActionsSection(context);
     }
     return _PriorityColumn(
-      top: contentSection!,
+      top: contentSection,
       bottom: _dividerAndActionsSection(context),
       bottomMinHeight: _kActionSheetActionsSectionMinHeight + _kDividerThickness,
     );
@@ -2390,7 +2390,7 @@ class _RenderAlertDialogActionsLayout extends RenderFlex {
     final double height = getMinIntrinsicHeight(overallWidth);
     size = Size(overallWidth, height);
 
-    RenderBox slot = firstChild!;
+    RenderBox slot = firstChild;
     double x = 0;
     while (true) {
       slot.layout(BoxConstraints.tight(Size(slotWidth, height)), parentUsesSize: true);
@@ -2405,7 +2405,7 @@ class _RenderAlertDialogActionsLayout extends RenderFlex {
       (divider.parentData! as FlexParentData).offset = Offset(x, 0);
       x += dividerThickness;
 
-      slot = childAfter(divider)!;
+      slot = childAfter(divider);
     }
   }
 
@@ -2433,7 +2433,7 @@ class _RenderAlertDialogActionsLayout extends RenderFlex {
       return false;
     }
     final double slotWidth = horizontalSlotWidthFor(overallWidth: overallWidth);
-    RenderBox child = firstChild!;
+    RenderBox child = firstChild;
     while (true) {
       // If both children fit into a half-row slot, use the horizontal layout.
       // Max intrinsic widths are used here, which, according to
@@ -2446,21 +2446,21 @@ class _RenderAlertDialogActionsLayout extends RenderFlex {
       if (divider == null) {
         break;
       }
-      child = childAfter(divider)!;
+      child = childAfter(divider);
     }
     return true;
   }
 
   void _forEachSlot(ValueSetter<RenderBox> action) {
     assert(childCount.isOdd);
-    RenderBox slot = firstChild!;
+    RenderBox slot = firstChild;
     while (true) {
       action(slot);
       final RenderBox? divider = childAfter(slot);
       if (divider == null) {
         break;
       }
-      slot = childAfter(divider)!;
+      slot = childAfter(divider);
     }
   }
 }
@@ -2568,23 +2568,22 @@ class _RenderPriorityColumn extends RenderFlex {
     final double bottomIntrinsic = lastChild!.getMinIntrinsicHeight(width);
     // Try to layout both children as their intrinsic height.
     if (topIntrinsic + bottomIntrinsic <= maxHeight) {
-      return (topChildHeight: topIntrinsic, bottomChildHeight: bottomIntrinsic);
+      return topChildHeight: topIntrinsic, bottomChildHeight: bottomIntrinsic;
     }
     // _bottomMinHeight is only effective when bottom actually needs that much.
     final double effectiveBottomMinHeight = math.min(_bottomMinHeight, bottomIntrinsic);
     // Try to layout top as intrinsics, as long as the bottom has at least
     // effectiveBottomMinHeight.
     if (maxHeight - topIntrinsic >= effectiveBottomMinHeight) {
-      return (topChildHeight: topIntrinsic, bottomChildHeight: maxHeight - topIntrinsic);
+      return topChildHeight: topIntrinsic, bottomChildHeight: maxHeight - topIntrinsic;
     }
     // Try to layout bottom as effectiveBottomMinHeight, as long as top has at
     // least 0.
     if (maxHeight >= effectiveBottomMinHeight) {
-      return (
+      return 
         topChildHeight: maxHeight - effectiveBottomMinHeight,
         bottomChildHeight: effectiveBottomMinHeight,
-      );
     }
-    return (topChildHeight: 0, bottomChildHeight: maxHeight);
+    return topChildHeight: 0, bottomChildHeight: maxHeight;
   }
 }

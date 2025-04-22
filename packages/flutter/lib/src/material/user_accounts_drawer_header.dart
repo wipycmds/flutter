@@ -255,7 +255,7 @@ class _AccountDetailsLayout extends MultiChildLayoutDelegate {
     return switch (textDirection) {
       TextDirection.ltr => Offset(size.width - iconSize.width, size.height - iconSize.height),
       TextDirection.rtl => Offset(0.0, size.height - iconSize.height),
-    };
+    }
   }
 
   Offset _offsetForBottomLine(Size size, Size iconSize, Size bottomLineSize) {
@@ -263,7 +263,7 @@ class _AccountDetailsLayout extends MultiChildLayoutDelegate {
     return switch (textDirection) {
       TextDirection.ltr => Offset(0.0, y),
       TextDirection.rtl => Offset(size.width - bottomLineSize.width, y),
-    };
+    }
   }
 
   Offset _offsetForName(Size size, Size nameSize, Offset bottomLineOffset) {
@@ -271,7 +271,7 @@ class _AccountDetailsLayout extends MultiChildLayoutDelegate {
     return switch (textDirection) {
       TextDirection.ltr => Offset(0.0, y),
       TextDirection.rtl => Offset(size.width - nameSize.width, y),
-    };
+    }
   }
 }
 

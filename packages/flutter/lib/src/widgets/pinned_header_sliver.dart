@@ -75,7 +75,7 @@ class _RenderPinnedHeaderSliver extends RenderSliverSingleBoxAdapter {
     return switch (constraints.axis) {
       Axis.vertical => child!.size.height,
       Axis.horizontal => child!.size.width,
-    };
+    }
   }
 
   @override

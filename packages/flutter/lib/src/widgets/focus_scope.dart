@@ -463,7 +463,7 @@ class Focus extends StatefulWidget {
       null => null,
       FocusScopeNode() when !scopeOk => null,
       final FocusNode node => node,
-    };
+    }
   }
 
   /// Returns true if the nearest enclosing [Focus] widget's node is focused.

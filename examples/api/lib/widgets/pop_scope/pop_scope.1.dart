@@ -22,7 +22,7 @@ class NavigatorPopHandlerApp extends StatelessWidget {
             builder: (BuildContext context) => const _PageTwo(),
           ),
           _ => MaterialPageRoute<void>(builder: (BuildContext context) => const _HomePage()),
-        };
+        }
       },
     );
   }

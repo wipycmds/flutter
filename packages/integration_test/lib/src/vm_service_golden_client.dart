@@ -193,7 +193,7 @@ final class VmServiceProxyGoldenFileComparator extends GoldenFileComparator {
     return switch (await _postAndWait(imageBytes, golden, operation: 'compare')) {
       _Success(:final bool result) => result,
       _Failure(:final String error) => Future<bool>.error(error),
-    };
+    }
   }
 
   @override

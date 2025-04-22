@@ -566,7 +566,7 @@ class SkiaGoldClient {
         switch (platform.environment[_kWebRendererKey]) {
           'canvaskit' || 'skwasm' => true,
           _ => false,
-        };
+        }
   }
 
   String? get _webRendererValue {

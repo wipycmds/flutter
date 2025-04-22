@@ -92,7 +92,7 @@ class TextButton extends ButtonStyleButton {
     super.clipBehavior,
     super.statesController,
     super.isSemanticButton,
-    required Widget super.child,
+    required super.child,
   });
 
   /// Create a text button from a pair of widgets that serve as the button's
@@ -229,21 +229,21 @@ class TextButton extends ButtonStyleButton {
     ButtonLayerBuilder? backgroundBuilder,
     ButtonLayerBuilder? foregroundBuilder,
   }) {
-    final MaterialStateProperty<Color?>? backgroundColorProp = switch ((
+    final MaterialStateProperty<Color?>? backgroundColorProp = switch (
       backgroundColor,
       disabledBackgroundColor,
-    )) {
+    ) {
       (_?, null) => MaterialStatePropertyAll<Color?>(backgroundColor),
       (_, _) => ButtonStyleButton.defaultColor(backgroundColor, disabledBackgroundColor),
-    };
-    final MaterialStateProperty<Color?>? iconColorProp = switch ((iconColor, disabledIconColor)) {
+    }
+    final MaterialStateProperty<Color?>? iconColorProp = switch (iconColor, disabledIconColor) {
       (_?, null) => MaterialStatePropertyAll<Color?>(iconColor),
       (_, _) => ButtonStyleButton.defaultColor(iconColor, disabledIconColor),
-    };
-    final MaterialStateProperty<Color?>? overlayColorProp = switch ((
+    }
+    final MaterialStateProperty<Color?>? overlayColorProp = switch (
       foregroundColor,
       overlayColor,
-    )) {
+    ) {
       (null, null) => null,
       (_, Color(a: 0.0)) => WidgetStatePropertyAll<Color?>(overlayColor),
       (_, final Color color) ||
@@ -252,7 +252,7 @@ class TextButton extends ButtonStyleButton {
         WidgetState.hovered: color.withOpacity(0.08),
         WidgetState.focused: color.withOpacity(0.1),
       }),
-    };
+    }
 
     return ButtonStyle(
       textStyle: ButtonStyleButton.allOrNull<TextStyle>(textStyle),

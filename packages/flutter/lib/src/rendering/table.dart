@@ -1064,7 +1064,7 @@ class RenderTable extends RenderBox {
         TableCellVerticalAlignment.bottom ||
         TableCellVerticalAlignment.fill ||
         TableCellVerticalAlignment.intrinsicHeight => null,
-      };
+      }
       if (childBaseline != null && (baselineOffset == null || baselineOffset < childBaseline)) {
         baselineOffset = childBaseline;
       }
@@ -1170,7 +1170,7 @@ class RenderTable extends RenderBox {
               );
               child.layout(BoxConstraints.tightFor(width: widths[x]), parentUsesSize: true);
               final double? childBaseline = child.getDistanceToBaseline(
-                textBaseline!,
+                textBaseline,
                 onlyReal: true,
               );
               if (childBaseline != null) {

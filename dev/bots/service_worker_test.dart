@@ -160,7 +160,7 @@ String _testTypeToIndexFile(ServiceWorkerTestType type) {
     ServiceWorkerTestType.withFlutterJsCustomServiceWorkerVersion =>
       'index_with_flutterjs_custom_sw_version.html',
     ServiceWorkerTestType.generatedEntrypoint => 'generated_entrypoint.html',
-  };
+  }
 }
 
 Future<void> _rebuildApp({

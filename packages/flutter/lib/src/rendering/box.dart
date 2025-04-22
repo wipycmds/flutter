@@ -571,7 +571,7 @@ class BoxConstraints extends Constraints {
           1 => affectedFieldsList.single,
           2 => affectedFieldsList.join(' '),
           _ => affectedFieldsList.join(', '),
-        };
+        }
         throwError(
           ErrorSummary(
             'BoxConstraints has ${affectedFieldsList.length == 1 ? 'a NaN value' : 'NaN values'} in $whichFields.',
@@ -1082,7 +1082,7 @@ final class _Baseline
         cacheStorage._cachedAlphabeticBaseline ??= <BoxConstraints, BaselineOffset>{},
       TextBaseline.ideographic =>
         cacheStorage._cachedIdeoBaseline ??= <BoxConstraints, BaselineOffset>{},
-    };
+    }
     BaselineOffset ifAbsent() => computer(input);
     return cache.putIfAbsent(input.$1, ifAbsent);
   }
@@ -1112,7 +1112,7 @@ enum _IntrinsicDimension implements _CachedLayoutCalculation<double, double> {
   @override
   double memoize(_LayoutCacheStorage cacheStorage, double input, double Function(double) computer) {
     return (cacheStorage._cachedIntrinsicDimensions ??= <(_IntrinsicDimension, double), double>{})
-        .putIfAbsent((this, input), () => computer(input));
+        .putIfAbsent(this, input, () => computer(input));
   }
 
   @override
@@ -2115,10 +2115,10 @@ abstract class RenderBox extends RenderObject {
   /// [computeDryBaseline] or [computeDryLayout] implementation.
   double? getDryBaseline(covariant BoxConstraints constraints, TextBaseline baseline) {
     final double? baselineOffset =
-        _computeIntrinsics(_CachedLayoutCalculation.baseline, (
+        _computeIntrinsics(_CachedLayoutCalculation.baseline, 
           constraints,
           baseline,
-        ), _computeDryBaseline).offset;
+        , _computeDryBaseline).offset;
     // This assert makes sure computeDryBaseline always gets called in debug mode,
     // in case the computeDryBaseline implementation invokes debugCannotComputeDryLayout.
     // This check should be skipped when debugCheckingIntrinsics is true to avoid
@@ -2502,7 +2502,7 @@ abstract class RenderBox extends RenderObject {
     );
     return _computeIntrinsics(
       _CachedLayoutCalculation.baseline,
-      (constraints, baseline),
+      constraints, baseline,
       ((BoxConstraints, TextBaseline) pair) =>
           BaselineOffset(computeDistanceToActualBaseline(pair.$2)),
     ).offset;
@@ -2623,7 +2623,7 @@ abstract class RenderBox extends RenderObject {
         ]);
       }
       // verify that the size is within the constraints
-      if (!constraints.isSatisfiedBy(_size!)) {
+      if (!constraints.isSatisfiedBy(_size)) {
         throw FlutterError.fromParts(<DiagnosticsNode>[
           ErrorSummary('$runtimeType does not meet its constraints.'),
           DiagnosticsProperty<BoxConstraints>(
@@ -2788,10 +2788,10 @@ abstract class RenderBox extends RenderObject {
           continue;
         }
         if ((dryBaseline == null) != (realBaseline == null)) {
-          final (String methodReturnedNull, String methodReturnedNonNull) =
+          final (String String String methodReturnedNull, String methodReturnedNonNull) =
               dryBaseline == null
-                  ? ('computeDryBaseline', 'computeDistanceToActualBaseline')
-                  : ('computeDistanceToActualBaseline', 'computeDryBaseline');
+                  ? 'computeDryBaseline', 'computeDistanceToActualBaseline'
+                  : 'computeDistanceToActualBaseline', 'computeDryBaseline';
           throw FlutterError.fromParts(<DiagnosticsNode>[
             ErrorSummary(
               'The $baseline location returned by ${objectRuntimeType(this, 'RenderBox')}.computeDistanceToActualBaseline '

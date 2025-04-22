@@ -210,14 +210,12 @@ class ScrollSpringSimulation extends SpringSimulation {
 abstract class _SpringSolution {
   factory _SpringSolution(
     SpringDescription spring,
-    double initialPosition,
-    double initialVelocity,
   ) {
     return switch (spring.damping * spring.damping - 4 * spring.mass * spring.stiffness) {
       > 0.0 => _OverdampedSolution(spring, initialPosition, initialVelocity),
       < 0.0 => _UnderdampedSolution(spring, initialPosition, initialVelocity),
       _ => _CriticalSolution(spring, initialPosition, initialVelocity),
-    };
+    }
   }
 
   double x(double time);

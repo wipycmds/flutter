@@ -88,9 +88,9 @@ void main() {
       List<String> args,
     ) async {
       switch (args) {
-        case ['shell', 'echo', 'connected']:
+        case const <String>['shell', 'echo', 'connected']:
           return FakeProcessManager.ok('connected');
-        case ['exec-out', 'screencap', '-p']:
+        case const <String>['exec-out', 'screencap', '-p']:
           return FakeProcessManager.okBinary(<int>[0, 1, 2, 3]);
         default:
           throw UnsupportedError('Unknown command: $args');
@@ -109,9 +109,9 @@ void main() {
       List<String> args,
     ) async {
       switch (args) {
-        case ['shell', 'echo', 'connected']:
+        case const <String>['shell', 'echo', 'connected']:
           return FakeProcessManager.ok('connected');
-        case ['shell', 'input', 'tap', '1', '2']:
+        case <String>const <String>['shell', 'input', 'tap', '1', '2']:
           return FakeProcessManager.ok();
         default:
           throw UnsupportedError('Unknown command: $args');

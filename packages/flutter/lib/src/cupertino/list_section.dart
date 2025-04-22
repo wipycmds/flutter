@@ -459,7 +459,7 @@ class CupertinoListSection extends StatelessWidget {
       final BorderRadius childrenGroupBorderRadius = switch (type) {
         CupertinoListSectionType.insetGrouped => _kDefaultInsetGroupedBorderRadius,
         CupertinoListSectionType.base => BorderRadius.zero,
-      };
+      }
 
       decoratedChildrenGroup = DecoratedBox(
         decoration:

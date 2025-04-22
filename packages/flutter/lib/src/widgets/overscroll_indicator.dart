@@ -160,12 +160,12 @@ class GlowingOverscrollIndicator extends StatefulWidget {
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties.add(EnumProperty<AxisDirection>('axisDirection', axisDirection));
-    final String showDescription = switch ((showLeading, showTrailing)) {
+    final String showDescription = switch (showLeading, showTrailing) {
       (true, true) => 'both sides',
       (true, false) => 'leading side only',
       (false, true) => 'trailing side only',
       (false, false) => 'neither side (!)',
-    };
+    }
     properties.add(MessageProperty('show', showDescription));
     properties.add(ColorProperty('color', color, showName: false));
   }
@@ -183,8 +183,8 @@ class _GlowingOverscrollIndicatorState extends State<GlowingOverscrollIndicator>
     _leadingController = _GlowController(vsync: this, color: widget.color, axis: widget.axis);
     _trailingController = _GlowController(vsync: this, color: widget.color, axis: widget.axis);
     _leadingAndTrailingListener = Listenable.merge(<Listenable>[
-      _leadingController!,
-      _trailingController!,
+      _leadingController,
+      _trailingController,
     ]);
   }
 
@@ -781,13 +781,13 @@ class _StretchingOverscrollIndicatorState extends State<StretchingOverscrollIndi
     final AxisDirection direction = switch (stretchDirection) {
       _StretchDirection.trailing => widget.axisDirection,
       _StretchDirection.leading => flipAxisDirection(widget.axisDirection),
-    };
+    }
     return switch (direction) {
       AxisDirection.up => AlignmentDirectional.topCenter,
       AxisDirection.down => AlignmentDirectional.bottomCenter,
       AxisDirection.left => Alignment.centerLeft,
       AxisDirection.right => Alignment.centerRight,
-    };
+    }
   }
 
   @override

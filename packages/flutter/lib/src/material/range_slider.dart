@@ -580,7 +580,7 @@ class _RangeSliderState extends State<RangeSlider> with TickerProviderStateMixin
       final (bool towardsStart, bool towardsEnd) = switch (textDirection) {
         TextDirection.ltr => (dx < 0, dx > 0),
         TextDirection.rtl => (dx > 0, dx < 0),
-      };
+      }
       if (towardsStart) {
         return Thumb.start;
       }
@@ -1185,7 +1185,7 @@ class _RenderRangeSlider extends RenderBox with RelayoutWhenSystemFontsChangeMix
     final (String text, TextPainter labelPainter) = switch (thumb) {
       Thumb.start => (labels.start, _startLabelPainter),
       Thumb.end => (labels.end, _endLabelPainter),
-    };
+    }
 
     labelPainter
       ..text = TextSpan(style: _sliderTheme.valueIndicatorTextStyle, text: text)
@@ -1242,7 +1242,7 @@ class _RenderRangeSlider extends RenderBox with RelayoutWhenSystemFontsChangeMix
     return switch (textDirection) {
       TextDirection.rtl => 1.0 - visualPosition,
       TextDirection.ltr => visualPosition,
-    };
+    }
   }
 
   double _getValueFromGlobalPosition(Offset globalPosition) {
@@ -1288,7 +1288,7 @@ class _RenderRangeSlider extends RenderBox with RelayoutWhenSystemFontsChangeMix
       _newValues = switch (_lastThumbSelection!) {
         Thumb.start => RangeValues(tapValue, currentValues.end),
         Thumb.end => RangeValues(currentValues.start, tapValue),
-      };
+      }
       _updateLabelPainter(_lastThumbSelection!);
 
       onChangeStart?.call(currentValues);
@@ -1355,7 +1355,7 @@ class _RenderRangeSlider extends RenderBox with RelayoutWhenSystemFontsChangeMix
           currentValues.start,
           math.max(currentDragValue, currentValues.start + _minThumbSeparationValue),
         ),
-      };
+      }
       onChanged!(_newValues);
     }
   }
@@ -1458,7 +1458,7 @@ class _RenderRangeSlider extends RenderBox with RelayoutWhenSystemFontsChangeMix
     final (double startVisualPosition, double endVisualPosition) = switch (textDirection) {
       TextDirection.rtl => (1.0 - startValue, 1.0 - endValue),
       TextDirection.ltr => (startValue, endValue),
-    };
+    }
 
     final Rect trackRect = _sliderTheme.rangeTrackShape!.getPreferredRect(
       parentBox: this,
@@ -1679,7 +1679,7 @@ class _RenderRangeSlider extends RenderBox with RelayoutWhenSystemFontsChangeMix
           switch (textDirection) {
             TextDirection.ltr => startOffset - endOffset,
             TextDirection.rtl => endOffset - startOffset,
-          };
+          }
 
       _state.paintTopValueIndicator = (PaintingContext context, Offset offset) {
         if (attached) {
@@ -1805,8 +1805,8 @@ class _RenderRangeSlider extends RenderBox with RelayoutWhenSystemFontsChangeMix
     _endSemanticsNode!.updateWith(config: endSemanticsConfiguration);
 
     final List<SemanticsNode> finalChildren = <SemanticsNode>[
-      _startSemanticsNode!,
-      _endSemanticsNode!,
+      _startSemanticsNode,
+      _endSemanticsNode,
     ];
 
     node.updateWith(config: config, childrenInInversePaintOrder: finalChildren);

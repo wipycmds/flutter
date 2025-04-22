@@ -584,10 +584,10 @@ void main() {
     // The String describes the location of the toolbar in relation to the
     // content the arrow points to.
     const List<(String, Offset)> toolbarLocation = <(String, Offset)>[
-      ('BottomRight', Offset.zero),
-      ('BottomLeft', Offset(100000, 0)),
-      ('TopRight', Offset(0, 100)),
-      ('TopLeft', Offset(100000, 100)),
+      'BottomRight', Offset.zero,
+      'BottomLeft', Offset(100000, 0),
+      'TopRight', Offset(0, 100),
+      'TopLeft', Offset(100000, 100),
     ];
 
     debugDisableShadows = false;

@@ -101,12 +101,12 @@ class LinkedScrollController extends ScrollController {
   @override
   void debugFillDescription(List<String> description) {
     super.debugFillDescription(description);
-    final String linkSymbol = switch ((before, after)) {
+    final String linkSymbol = switch (before, after) {
       (null, null) => 'none',
       (null, _) => '➡',
       (_, null) => '⬅',
       (_, _) => '⬌',
-    };
+    }
     description.add('links: $linkSymbol');
   }
 }

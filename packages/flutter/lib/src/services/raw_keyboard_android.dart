@@ -226,7 +226,7 @@ class RawKeyEventDataAndroid extends RawKeyEventData {
       KeyboardSide.all => (metaState & leftMask != 0) && (metaState & rightMask != 0),
       KeyboardSide.left => metaState & leftMask != 0,
       KeyboardSide.right => metaState & rightMask != 0,
-    };
+    }
   }
 
   @override
@@ -261,7 +261,7 @@ class RawKeyEventDataAndroid extends RawKeyEventData {
       ModifierKey.scrollLockModifier => metaState & modifierScrollLock != 0,
       ModifierKey.functionModifier => metaState & modifierFunction != 0,
       ModifierKey.symbolModifier => metaState & modifierSym != 0,
-    };
+    }
   }
 
   @override

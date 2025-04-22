@@ -375,7 +375,7 @@ class _OptionsState extends State<Options> {
                           value: true,
                           groupValue: widget.model.lerpTo,
                           onChanged: (bool? value) {
-                            widget.model.lerpTo = value!;
+                            widget.model.lerpTo = value;
                           },
                         ),
                         const Text('To'),
@@ -387,7 +387,7 @@ class _OptionsState extends State<Options> {
                           value: false,
                           groupValue: widget.model.lerpTo,
                           onChanged: (bool? value) {
-                            widget.model.lerpTo = value!;
+                            widget.model.lerpTo = value;
                           },
                         ),
                         const Text('From'),
@@ -491,6 +491,6 @@ ShapeBorder? lerpBorder(StarBorder border, LerpTarget target, double t, {bool to
       side: lerpToBorder,
       borderRadius: BorderRadius.circular(10),
     ),
-  };
+  }
   return to ? border.lerpTo(targetBorder, t) : border.lerpFrom(targetBorder, t);
 }

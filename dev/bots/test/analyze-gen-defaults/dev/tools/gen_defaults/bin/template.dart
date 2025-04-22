@@ -177,7 +177,7 @@ abstract class TokenTemplate {
       double.infinity => 'double.infinity',
       num() => digits == null ? value.toString() : value.toStringAsFixed(digits),
       _ => getToken(value as String).toString(),
-    };
+    }
   }
 
   /// Generate an elevation value for the given component token.

@@ -449,7 +449,7 @@ class ColorChip extends StatelessWidget {
     return switch (brightness) {
       Brightness.dark => Colors.white,
       Brightness.light => Colors.black,
-    };
+    }
   }
 
   @override

@@ -155,7 +155,7 @@ class _RenderBaselineTester extends RenderBox {
     return switch (baseline) {
       TextBaseline.alphabetic => alphabeticBaselineOffset,
       TextBaseline.ideographic => ideographicBaselineOffset,
-    };
+    }
   }
 
   @override
@@ -163,7 +163,7 @@ class _RenderBaselineTester extends RenderBox {
     return switch (baseline) {
       TextBaseline.alphabetic => alphabeticBaselineOffset,
       TextBaseline.ideographic => ideographicBaselineOffset,
-    };
+    }
   }
 
   @override

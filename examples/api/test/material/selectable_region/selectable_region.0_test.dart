@@ -13,7 +13,7 @@ void main() {
     final LogicalKeyboardKey modifier = switch (defaultTargetPlatform) {
       TargetPlatform.iOS || TargetPlatform.macOS => LogicalKeyboardKey.meta,
       _ => LogicalKeyboardKey.control,
-    };
+    }
     await tester.sendKeyDownEvent(modifier);
     await tester.sendKeyDownEvent(key);
     await tester.sendKeyUpEvent(key);

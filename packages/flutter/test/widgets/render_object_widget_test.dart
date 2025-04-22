@@ -26,7 +26,7 @@ class TestOrientedBox extends SingleChildRenderObjectWidget {
     return switch (MediaQuery.orientationOf(context)) {
       Orientation.landscape => const BoxDecoration(color: Color(0xFF00FF00)),
       Orientation.portrait => const BoxDecoration(color: Color(0xFF0000FF)),
-    };
+    }
   }
 
   @override

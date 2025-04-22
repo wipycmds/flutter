@@ -107,7 +107,7 @@ class _DoubleClampVisitor extends RecursiveAstVisitor<void> {
         false,
 
       _ => true,
-    };
+    }
     if (!isAllowed) {
       clampAccessNodes.add(node);
     }

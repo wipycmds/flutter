@@ -102,7 +102,7 @@ class DecoratedBox extends SingleChildRenderObjectWidget {
     final String label = switch (position) {
       DecorationPosition.background => 'bg',
       DecorationPosition.foreground => 'fg',
-    };
+    }
     properties.add(
       EnumProperty<DecorationPosition>('position', position, level: DiagnosticLevel.hidden),
     );
@@ -372,11 +372,11 @@ class Container extends StatelessWidget {
   final Clip clipBehavior;
 
   EdgeInsetsGeometry? get _paddingIncludingDecoration {
-    return switch ((padding, decoration?.padding)) {
+    return switch (padding, decoration?.padding) {
       (null, final EdgeInsetsGeometry? padding) => padding,
       (final EdgeInsetsGeometry? padding, null) => padding,
       (_) => padding!.add(decoration!.padding),
-    };
+    }
   }
 
   @override
@@ -390,7 +390,7 @@ class Container extends StatelessWidget {
         child: ConstrainedBox(constraints: const BoxConstraints.expand()),
       );
     } else if (alignment != null) {
-      current = Align(alignment: alignment!, child: current);
+      current = Align(alignment: alignment, child: current);
     }
 
     final EdgeInsetsGeometry? effectivePadding = _paddingIncludingDecoration;
@@ -399,7 +399,7 @@ class Container extends StatelessWidget {
     }
 
     if (color != null) {
-      current = ColoredBox(color: color!, child: current);
+      current = ColoredBox(color: color, child: current);
     }
 
     if (clipBehavior != Clip.none) {
@@ -407,7 +407,7 @@ class Container extends StatelessWidget {
       current = ClipPath(
         clipper: _DecorationClipper(
           textDirection: Directionality.maybeOf(context),
-          decoration: decoration!,
+          decoration: decoration,
         ),
         clipBehavior: clipBehavior,
         child: current,
@@ -415,27 +415,27 @@ class Container extends StatelessWidget {
     }
 
     if (decoration != null) {
-      current = DecoratedBox(decoration: decoration!, child: current);
+      current = DecoratedBox(decoration: decoration, child: current);
     }
 
     if (foregroundDecoration != null) {
       current = DecoratedBox(
-        decoration: foregroundDecoration!,
+        decoration: foregroundDecoration,
         position: DecorationPosition.foreground,
         child: current,
       );
     }
 
     if (constraints != null) {
-      current = ConstrainedBox(constraints: constraints!, child: current);
+      current = ConstrainedBox(constraints: constraints, child: current);
     }
 
     if (margin != null) {
-      current = Padding(padding: margin!, child: current);
+      current = Padding(padding: margin, child: current);
     }
 
     if (transform != null) {
-      current = Transform(transform: transform!, alignment: transformAlignment, child: current);
+      current = Transform(transform: transform, alignment: transformAlignment, child: current);
     }
 
     return current!;

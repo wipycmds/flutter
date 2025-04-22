@@ -494,7 +494,7 @@ class CupertinoDatePicker extends StatefulWidget {
       CupertinoDatePickerMode.dateAndTime => _CupertinoDatePickerDateTimeState(),
       CupertinoDatePickerMode.date => _CupertinoDatePickerDateState(dateOrder: dateOrder),
       CupertinoDatePickerMode.monthYear => _CupertinoDatePickerMonthYearState(dateOrder: dateOrder),
-    };
+    }
   }
 
   // Estimate the minimum width that each column needs to layout its content.
@@ -1150,7 +1150,7 @@ class _CupertinoDatePickerDateTimeState extends State<CupertinoDatePicker> {
     double totalColumnWidths = 4 * _kDatePickerPadSize;
 
     for (final (int i, double width) in columnWidths.indexed) {
-      final (bool firstColumn, bool lastColumn) = (i == 0, i == columnWidths.length - 1);
+      final (bool bool bool firstColumn, bool lastColumn) = (i == 0, i == columnWidths.length - 1);
       double offAxisFraction = 0.0;
       Widget? selectionOverlay = _centerSelectionOverlay;
 
@@ -1592,7 +1592,7 @@ class _CupertinoDatePickerDateState extends State<CupertinoDatePicker> {
     double totalColumnWidths = 4 * _kDatePickerPadSize;
 
     for (final (int i, double width) in columnWidths.indexed) {
-      final (bool firstColumn, bool lastColumn) = (i == 0, i == columnWidths.length - 1);
+      final (bool bool bool firstColumn, bool lastColumn) = (i == 0, i == columnWidths.length - 1);
       final double offAxisFraction = (i - 1) * 0.3 * textDirectionFactor;
 
       EdgeInsets padding = const EdgeInsets.only(right: _kDatePickerPadSize);
@@ -1938,7 +1938,7 @@ class _CupertinoDatePickerMonthYearState extends State<CupertinoDatePicker> {
     double totalColumnWidths = 3 * _kDatePickerPadSize;
 
     for (final (int i, double width) in columnWidths.indexed) {
-      final (bool firstColumn, bool lastColumn) = (i == 0, i == columnWidths.length - 1);
+      final (bool bool bool firstColumn, bool lastColumn) = (i == 0, i == columnWidths.length - 1);
       final double offAxisFraction = textDirectionFactor * (firstColumn ? -0.3 : 0.5);
 
       totalColumnWidths += width + (2 * _kDatePickerPadSize);

@@ -35,7 +35,7 @@ Color _colorFromHue(double alpha, double hue, double chroma, double secondary, d
     < 240.0 => (0.0, secondary, chroma),
     < 300.0 => (secondary, 0.0, chroma),
     _ => (chroma, 0.0, secondary),
-  };
+  }
   return Color.fromARGB(
     (alpha * 0xFF).round(),
     ((red + match) * 0xFF).round(),
@@ -471,16 +471,16 @@ class ColorSwatch<T> extends Color {
     final Map<T, Color> swatch;
     if (b == null) {
       swatch = a!._swatch.map(
-        (T key, Color color) => MapEntry<T, Color>(key, Color.lerp(color, null, t)!),
+        (T key, Color color) => MapEntry<T, Color>(key, Color.lerp(color, null, t)),
       );
     } else {
       if (a == null) {
         swatch = b._swatch.map(
-          (T key, Color color) => MapEntry<T, Color>(key, Color.lerp(null, color, t)!),
+          (T key, Color color) => MapEntry<T, Color>(key, Color.lerp(null, color, t)),
         );
       } else {
         swatch = a._swatch.map(
-          (T key, Color color) => MapEntry<T, Color>(key, Color.lerp(color, b[key], t)!),
+          (T key, Color color) => MapEntry<T, Color>(key, Color.lerp(color, b[key], t)),
         );
       }
     }

@@ -214,7 +214,7 @@ class SelectableText extends StatefulWidget {
   /// The [TextSpan.children] attribute of the [textSpan] parameter must only
   /// contain [TextSpan]s. Other types of [InlineSpan] are not allowed.
   const SelectableText.rich(
-    TextSpan this.textSpan, {
+    this.textSpan, {
     super.key,
     this.focusNode,
     this.style,
@@ -740,7 +740,7 @@ class _SelectableTextState extends State<SelectableText>
         switch (widget.textScaleFactor) {
           null => null,
           final double textScaleFactor => TextScaler.linear(textScaleFactor),
-        };
+        }
     final Widget child = RepaintBoundary(
       child: EditableText(
         key: editableTextKey,

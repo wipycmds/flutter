@@ -143,7 +143,7 @@ class TestImgElement {
       return switch (_resultSuccessful) {
         true => Future<JSAny?>.value().toJS,
         false => Future<JSAny?>.error(Error()).toJS,
-      };
+      }
     }
     _callbacksAssigned = true;
     return JSPromise<JSAny?>(

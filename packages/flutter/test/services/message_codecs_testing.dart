@@ -54,7 +54,7 @@ bool deepEqualsTypedData(TypedData valueA, TypedData valueB) {
     Float32List() => valueB is Float32List && deepEqualsList(valueA, valueB),
     Float64List() => valueB is Float64List && deepEqualsList(valueA, valueB),
     _ => throw 'Unexpected typed data: $valueA',
-  };
+  }
 }
 
 bool deepEqualsList(List<dynamic> valueA, List<dynamic> valueB) {

@@ -25,9 +25,9 @@ class BottomSheetExampleApp extends StatelessWidget {
 enum AnimationStyles { defaultStyle, custom, none }
 
 const List<(AnimationStyles, String)> animationStyleSegments = <(AnimationStyles, String)>[
-  (AnimationStyles.defaultStyle, 'Default'),
-  (AnimationStyles.custom, 'Custom'),
-  (AnimationStyles.none, 'None'),
+  AnimationStyles.defaultStyle, 'Default',
+  AnimationStyles.custom, 'Custom',
+  AnimationStyles.none, 'None',
 ];
 
 class BottomSheetExample extends StatefulWidget {
@@ -58,7 +58,7 @@ class _BottomSheetExampleState extends State<BottomSheetExample> {
                     reverseDuration: const Duration(seconds: 1),
                   ),
                   AnimationStyles.none => AnimationStyle.noAnimation,
-                };
+                }
                 _animationStyleSelection = styles;
               });
             },

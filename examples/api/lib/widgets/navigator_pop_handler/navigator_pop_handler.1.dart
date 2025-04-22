@@ -19,7 +19,7 @@ enum _TabPage {
       'home' => _TabPage.home,
       'one' => _TabPage.one,
       _ => null,
-    };
+    }
   }
 }
 
@@ -49,7 +49,7 @@ class NavigatorPopHandlerApp extends StatelessWidget {
               return const _UnknownPage();
             },
           ),
-        };
+        }
       },
     );
   }

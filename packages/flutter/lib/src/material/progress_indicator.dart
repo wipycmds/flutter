@@ -186,7 +186,7 @@ class _LinearProgressIndicatorPainter extends CustomPainter {
     final double effectiveTrackGap = switch (value) {
       null || 1.0 => 0.0,
       _ => trackGap ?? 0.0,
-    };
+    }
 
     final Rect trackRect;
     if (value != null && effectiveTrackGap > 0) {
@@ -203,7 +203,7 @@ class _LinearProgressIndicatorPainter extends CustomPainter {
           size.width - clampDouble(value!, 0.0, 1.0) * size.width - effectiveTrackGap,
           size.height,
         ),
-      };
+      }
     } else {
       trackRect = Offset.zero & size;
     }
@@ -220,11 +220,11 @@ class _LinearProgressIndicatorPainter extends CustomPainter {
     void drawStopIndicator() {
       // Limit the stop indicator radius to the height of the indicator.
       final double radius = math.min(stopIndicatorRadius!, size.height / 2);
-      final Paint indicatorPaint = Paint()..color = stopIndicatorColor!;
+      final Paint indicatorPaint = Paint()..color = stopIndicatorColor;
       final Offset position = switch (textDirection) {
         TextDirection.rtl => Offset(size.height / 2, size.height / 2),
         TextDirection.ltr => Offset(size.width - size.height / 2, size.height / 2),
-      };
+      }
       canvas.drawCircle(position, radius, indicatorPaint);
     }
 
@@ -241,7 +241,7 @@ class _LinearProgressIndicatorPainter extends CustomPainter {
       final double left = switch (textDirection) {
         TextDirection.rtl => size.width - width - x,
         TextDirection.ltr => x,
-      };
+      }
 
       final Rect activeRect = Offset(left, 0.0) & Size(width, size.height);
       if (indicatorBorderRadius != null) {
@@ -470,7 +470,7 @@ class _LinearProgressIndicatorState extends State<LinearProgressIndicator>
             ? _LinearProgressIndicatorDefaultsM3Year2023(context)
             : _LinearProgressIndicatorDefaultsM3(context),
       false => _LinearProgressIndicatorDefaultsM2(context),
-    };
+    }
     final Color trackColor =
         widget.backgroundColor ?? indicatorTheme.linearTrackColor ?? defaults.linearTrackColor!;
     final double minHeight =
@@ -599,7 +599,7 @@ class _CircularProgressIndicatorPainter extends CustomPainter {
     if (trackColor != null) {
       final Paint backgroundPaint =
           Paint()
-            ..color = trackColor!
+            ..color = trackColor
             ..strokeWidth = strokeWidth
             ..strokeCap = strokeCap ?? StrokeCap.round
             ..style = PaintingStyle.stroke;
@@ -944,7 +944,7 @@ class _CircularProgressIndicatorState extends State<CircularProgressIndicator>
             )
             : _CircularProgressIndicatorDefaultsM3(context, indeterminate: widget.value == null),
       false => _CircularProgressIndicatorDefaultsM2(context, indeterminate: widget.value == null),
-    };
+    }
     final Color? trackColor =
         widget.backgroundColor ?? indicatorTheme.circularTrackColor ?? defaults.circularTrackColor;
     final double strokeWidth =
@@ -1239,7 +1239,7 @@ class _RefreshProgressIndicatorState extends _CircularProgressIndicatorState {
     final ProgressIndicatorThemeData defaults = switch (Theme.of(context).useMaterial3) {
       true => _CircularProgressIndicatorDefaultsM3Year2023(context, indeterminate: value == null),
       false => _CircularProgressIndicatorDefaultsM2(context, indeterminate: value == null),
-    };
+    }
     final ProgressIndicatorThemeData indicatorTheme = ProgressIndicatorTheme.of(context);
     final Color backgroundColor =
         widget.backgroundColor ??

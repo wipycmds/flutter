@@ -75,7 +75,7 @@ Future<void> testWithNewIOSSimulator(
     {'userOverriddenBuild': final String build} => build,
     {'preferredBuild': final String build} => build,
     _ => null,
-  };
+  }
 
   String? iOSSimRuntime;
 

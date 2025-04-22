@@ -244,7 +244,7 @@ class SingleChildScrollView extends StatelessWidget {
     final AxisDirection axisDirection = _getDirection(context);
     Widget? contents = child;
     if (padding != null) {
-      contents = Padding(padding: padding!, child: contents);
+      contents = Padding(padding: padding, child: contents);
     }
     final bool effectivePrimary =
         primary ??
@@ -424,7 +424,7 @@ class _RenderSingleChildViewport extends RenderBox
     return switch (axis) {
       Axis.horizontal => size.width,
       Axis.vertical => size.height,
-    };
+    }
   }
 
   double get _minScrollExtent {
@@ -447,7 +447,7 @@ class _RenderSingleChildViewport extends RenderBox
     return switch (axis) {
       Axis.horizontal => constraints.heightConstraints(),
       Axis.vertical => constraints.widthConstraints(),
-    };
+    }
   }
 
   @override
@@ -514,7 +514,7 @@ class _RenderSingleChildViewport extends RenderBox
       AxisDirection.left => Offset(position - child!.size.width + size.width, 0.0),
       AxisDirection.right => Offset(-position, 0.0),
       AxisDirection.down => Offset(0.0, -position),
-    };
+    }
   }
 
   bool _shouldClipAtPaintOffset(Offset paintOffset) {
@@ -624,7 +624,7 @@ class _RenderSingleChildViewport extends RenderBox
       AxisDirection.left => (size.width, contentSize.width - bounds.right, bounds.width),
       AxisDirection.right => (size.width, bounds.left, bounds.width),
       AxisDirection.down => (size.height, bounds.top, bounds.height),
-    };
+    }
 
     final double targetOffset =
         leadingScrollOffset - (mainAxisExtent - targetMainAxisExtent) * alignment;

@@ -432,7 +432,7 @@ class RefreshIndicatorState extends State<RefreshIndicator>
     final bool? indicatorAtTopNow = switch (notification.metrics.axisDirection) {
       AxisDirection.down || AxisDirection.up => true,
       AxisDirection.left || AxisDirection.right => null,
-    };
+    }
     if (indicatorAtTopNow != _isIndicatorAtTop) {
       if (_status == RefreshIndicatorStatus.drag || _status == RefreshIndicatorStatus.armed) {
         _dismiss(RefreshIndicatorStatus.canceled);

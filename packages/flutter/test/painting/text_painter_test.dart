@@ -1865,7 +1865,7 @@ void main() {
 
     expect(painter.maxIntrinsicWidth, text.length * fontSize);
     switch (painter.computeLineMetrics()) {
-      case [ui.LineMetrics(width: final double width)]:
+      case const <>[ui.LineMetrics(width: final double width)]:
         expect(width, text.length * fontSize);
       case final List<ui.LineMetrics> metrics:
         expect(metrics, hasLength(1));

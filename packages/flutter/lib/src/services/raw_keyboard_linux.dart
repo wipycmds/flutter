@@ -326,7 +326,7 @@ class GLFWKeyHelper implements KeyHelper {
       capsLockKeyCode => modifierCapsLock,
       numLockKeyCode => modifierNumericPad,
       _ => 0,
-    };
+    }
 
     return isDown ? modifiers | modifierChange : modifiers & ~modifierChange;
   }
@@ -351,7 +351,7 @@ class GLFWKeyHelper implements KeyHelper {
       ModifierKey.functionModifier => false,
       ModifierKey.symbolModifier => false,
       ModifierKey.scrollLockModifier => false,
-    };
+    }
   }
 
   @override
@@ -457,7 +457,7 @@ class GtkKeyHelper implements KeyHelper {
       capsLockKeyCode || shiftLockKeyCode => modifierCapsLock,
       numLockKeyCode => modifierMod2,
       _ => 0,
-    };
+    }
 
     return isDown ? modifiers | modifierChange : modifiers & ~modifierChange;
   }
@@ -482,7 +482,7 @@ class GtkKeyHelper implements KeyHelper {
       ModifierKey.functionModifier => false,
       ModifierKey.symbolModifier => false,
       ModifierKey.scrollLockModifier => false,
-    };
+    }
   }
 
   @override

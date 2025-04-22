@@ -888,7 +888,7 @@ class WidgetTester extends WidgetController implements HitTestDispatcher, Ticker
           binding.renderViews.contains(innerTarget)
               ? null
               : _lastWhereOrNull(
-                collectAllElementsFrom(binding.rootElement!, skipOffstage: true),
+                collectAllElementsFrom(binding.rootElement, skipOffstage: true),
                 (Element element) => element.renderObject == innerTarget,
               );
       if (innerTargetElement == null) {
@@ -940,7 +940,7 @@ class WidgetTester extends WidgetController implements HitTestDispatcher, Ticker
             int() || double() || bool() => 'const ${key.runtimeType}(${key.value})',
             final String value => "const Key('$value')",
             _ => null,
-          };
+          }
           if (keyLabel != null) {
             final Iterable<Element> matches = find.byKey(key).evaluate();
             if (matches.length == 1) {

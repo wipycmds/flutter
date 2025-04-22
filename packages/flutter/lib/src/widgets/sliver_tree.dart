@@ -834,13 +834,12 @@ class _TreeSliverState<T> extends State<TreeSliver<T>>
     // animations keys each time we build with an updated active node list.
     _activeAnimations.clear();
     for (final TreeSliverNode<T> node in _currentAnimationForParent.keys) {
-      final _AnimationRecord animationRecord = _currentAnimationForParent[node]!;
+      final _AnimationRecord animationRecord = _currentAnimationForParent[node];
       final int leadingChildIndex = _activeNodes.indexOf(node) + 1;
-      final TreeSliverNodesAnimation animatingChildren = (
+      final TreeSliverNodesAnimation animatingChildren = 
         fromIndex: leadingChildIndex,
         toIndex: leadingChildIndex + node.children.length - 1,
         value: animationRecord.animation.value,
-      );
       _activeAnimations[animationRecord.key] = animatingChildren;
     }
   }
@@ -918,13 +917,12 @@ class _TreeSliverState<T> extends State<TreeSliver<T>>
         parent: controller,
         curve: widget.toggleAnimationStyle?.curve ?? TreeSliver.defaultAnimationCurve,
       );
-      _currentAnimationForParent[node] = (
+      _currentAnimationForParent[node] = 
         controller: controller,
         animation: newAnimation,
         // This key helps us keep track of the lifetime of this animation in the
         // render object, since the indexes can change at any time.
         key: UniqueKey(),
-      );
       switch (node._expanded) {
         case true:
           // Expanding

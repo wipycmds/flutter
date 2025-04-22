@@ -757,7 +757,7 @@ abstract class ScrollPosition extends ViewportOffset with ScrollMetrics {
       AxisDirection.down => (SemanticsAction.scrollUp, SemanticsAction.scrollDown),
       AxisDirection.left => (SemanticsAction.scrollRight, SemanticsAction.scrollLeft),
       AxisDirection.right => (SemanticsAction.scrollLeft, SemanticsAction.scrollRight),
-    };
+    }
 
     final Set<SemanticsAction> actions = <SemanticsAction>{
       if (pixels > minScrollExtent) backward,
@@ -780,7 +780,7 @@ abstract class ScrollPosition extends ViewportOffset with ScrollMetrics {
         ScrollPositionAlignmentPolicy.keepVisibleAtStart,
       ScrollPositionAlignmentPolicy.keepVisibleAtStart =>
         ScrollPositionAlignmentPolicy.keepVisibleAtEnd,
-    };
+    }
   }
 
   ScrollPositionAlignmentPolicy _applyAxisDirectionToAlignmentPolicy(
@@ -793,7 +793,7 @@ abstract class ScrollPosition extends ViewportOffset with ScrollMetrics {
       // Scrollable.
       AxisDirection.up || AxisDirection.left => _maybeFlipAlignment(alignmentPolicy),
       AxisDirection.down || AxisDirection.right => alignmentPolicy,
-    };
+    }
   }
 
   /// Animates the position such that the given object is as visible as possible

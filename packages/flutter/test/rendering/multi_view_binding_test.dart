@@ -83,7 +83,7 @@ void main() {
     binding.performSemanticsAction(
       const SemanticsActionEvent(type: SemanticsAction.copy, viewId: 1, nodeId: 11),
     );
-    expect(owner1.semanticsOwner.performedActions.single, (11, SemanticsAction.copy, null));
+    expect(owner1.semanticsOwner.performedActions.single, 11, SemanticsAction.copy, null);
     expect(owner2.semanticsOwner.performedActions, isEmpty);
     owner1.semanticsOwner.performedActions.clear();
 
@@ -91,7 +91,7 @@ void main() {
       const SemanticsActionEvent(type: SemanticsAction.tap, viewId: 2, nodeId: 22),
     );
     expect(owner1.semanticsOwner.performedActions, isEmpty);
-    expect(owner2.semanticsOwner.performedActions.single, (22, SemanticsAction.tap, null));
+    expect(owner2.semanticsOwner.performedActions.single, 22, SemanticsAction.tap, null);
     owner2.semanticsOwner.performedActions.clear();
 
     binding.performSemanticsAction(
@@ -211,6 +211,6 @@ class SemanticsOwnerSpy extends Fake implements SemanticsOwner {
 
   @override
   void performAction(int id, SemanticsAction action, [Object? args]) {
-    performedActions.add((id, action, args));
+    performedActions.add(id, action, args);
   }
 }

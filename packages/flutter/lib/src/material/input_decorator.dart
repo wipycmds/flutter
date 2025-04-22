@@ -528,7 +528,7 @@ class FloatingLabelAlignment {
       -1.0 => 'FloatingLabelAlignment.start',
       0.0 => 'FloatingLabelAlignment.center',
       _ => 'FloatingLabelAlignment(x: ${x.toStringAsFixed(1)})',
-    };
+    }
   }
 
   @override
@@ -886,7 +886,7 @@ class _RenderDecoration extends RenderBox
     final (Size counterSize, double counterAscent) = switch (counter) {
       final RenderBox box => (layoutChild(box, constraints), getBaseline(box, constraints)),
       null => (Size.zero, 0.0),
-    };
+    }
 
     final BoxConstraints helperErrorConstraints = constraints.deflate(
       EdgeInsets.only(left: counterSize.width),
@@ -904,7 +904,7 @@ class _RenderDecoration extends RenderBox
         math.max(counterAscent, getBaseline(helperError, helperErrorConstraints)) + subtextGap;
     final double bottomHeight = math.max(counterAscent, helperErrorHeight) + subtextGap;
     final double subtextHeight = math.max(counterSize.height, helperErrorHeight) + subtextGap;
-    return (ascent: ascent, bottomHeight: bottomHeight, subtextHeight: subtextHeight);
+    return ascent: ascent, bottomHeight: bottomHeight, subtextHeight: subtextHeight;
   }
 
   // Returns a value used by performLayout to position all of the renderers.
@@ -1327,7 +1327,7 @@ class _RenderDecoration extends RenderBox
       final double x = switch (textDirection) {
         TextDirection.rtl => 0.0,
         TextDirection.ltr => _boxSize(icon).width,
-      };
+      }
       _boxParentData(container).offset = Offset(x, 0.0);
     }
 
@@ -1341,8 +1341,8 @@ class _RenderDecoration extends RenderBox
       final double x = switch (textDirection) {
         TextDirection.rtl => overallWidth - icon!.size.width,
         TextDirection.ltr => 0.0,
-      };
-      centerLayout(icon!, x);
+      }
+      centerLayout(icon, x);
     }
 
     final double subtextBaseline = (layout.subtextSize?.ascent ?? 0.0) + layout.containerHeight;
@@ -1388,32 +1388,32 @@ class _RenderDecoration extends RenderBox
         {
           if (prefixIcon != null) {
             start += contentPadding.start;
-            start -= centerLayout(prefixIcon!, start - prefixIcon!.size.width);
+            start -= centerLayout(prefixIcon, start - prefixIcon!.size.width);
             start -= prefixToInputGap;
           }
           if (label != null) {
             if (decoration.alignLabelWithHint) {
-              baselineLayout(label!, start - label!.size.width);
+              baselineLayout(label, start - label!.size.width);
             } else {
-              centerLayout(label!, start - label!.size.width);
+              centerLayout(label, start - label!.size.width);
             }
           }
           if (prefix != null) {
-            start -= baselineLayout(prefix!, start - prefix!.size.width);
+            start -= baselineLayout(prefix, start - prefix!.size.width);
           }
           if (input != null) {
-            baselineLayout(input!, start - input!.size.width);
+            baselineLayout(input, start - input!.size.width);
           }
           if (hint != null) {
-            baselineLayout(hint!, start - hint!.size.width);
+            baselineLayout(hint, start - hint!.size.width);
           }
           if (suffixIcon != null) {
             end -= contentPadding.end;
-            end += centerLayout(suffixIcon!, end);
+            end += centerLayout(suffixIcon, end);
             end += inputToSuffixGap;
           }
           if (suffix != null) {
-            end += baselineLayout(suffix!, end);
+            end += baselineLayout(suffix, end);
           }
           break;
         }
@@ -1421,39 +1421,39 @@ class _RenderDecoration extends RenderBox
         {
           if (prefixIcon != null) {
             start -= contentPadding.start;
-            start += centerLayout(prefixIcon!, start);
+            start += centerLayout(prefixIcon, start);
             start += prefixToInputGap;
           }
           if (label != null) {
             if (decoration.alignLabelWithHint) {
-              baselineLayout(label!, start);
+              baselineLayout(label, start);
             } else {
-              centerLayout(label!, start);
+              centerLayout(label, start);
             }
           }
           if (prefix != null) {
-            start += baselineLayout(prefix!, start);
+            start += baselineLayout(prefix, start);
           }
           if (input != null) {
-            baselineLayout(input!, start);
+            baselineLayout(input, start);
           }
           if (hint != null) {
-            baselineLayout(hint!, start);
+            baselineLayout(hint, start);
           }
           if (suffixIcon != null) {
             end += contentPadding.end;
-            end -= centerLayout(suffixIcon!, end - suffixIcon!.size.width);
+            end -= centerLayout(suffixIcon, end - suffixIcon!.size.width);
             end -= inputToSuffixGap;
           }
           if (suffix != null) {
-            end -= baselineLayout(suffix!, end - suffix!.size.width);
+            end -= baselineLayout(suffix, end - suffix!.size.width);
           }
           break;
         }
     }
 
     if (label != null) {
-      final double labelX = _boxParentData(label!).offset.dx;
+      final double labelX = _boxParentData(label).offset.dx;
       // +1 shifts the range of x from (-1.0, 1.0) to (0.0, 2.0).
       final double floatAlign = decoration.floatingLabelAlignment._x + 1;
       final double floatWidth = _boxSize(label).width * _kFinalLabelScale;
@@ -1508,7 +1508,7 @@ class _RenderDecoration extends RenderBox
     doPaint(container);
 
     if (label != null) {
-      final Offset labelOffset = _boxParentData(label!).offset;
+      final Offset labelOffset = _boxParentData(label).offset;
       final double labelHeight = _boxSize(label).height;
       final double labelWidth = _boxSize(label).width;
       // +1 shifts the range of x from (-1.0, 1.0) to (0.0, 2.0).
@@ -1527,7 +1527,7 @@ class _RenderDecoration extends RenderBox
           isOutlineBorder ? outlinedFloatingY : contentPadding.top + _densityOffset.dy / 2;
       final double scale = lerpDouble(1.0, _kFinalLabelScale, t)!;
       final double centeredFloatX =
-          _boxParentData(container!).offset.dx + _boxSize(container).width / 2.0 - floatWidth / 2.0;
+          _boxParentData(container).offset.dx + _boxSize(container).width / 2.0 - floatWidth / 2.0;
       final double startX;
       double floatStartX;
       switch (textDirection) {
@@ -1576,7 +1576,7 @@ class _RenderDecoration extends RenderBox
   @override
   void applyPaintTransform(RenderObject child, Matrix4 transform) {
     if (child == label && _labelTransform != null) {
-      final Offset labelOffset = _boxParentData(label!).offset;
+      final Offset labelOffset = _boxParentData(label).offset;
       transform
         ..multiply(_labelTransform!)
         ..translate(-labelOffset.dx, -labelOffset.dy);
@@ -1674,7 +1674,7 @@ class _Decorator extends SlottedMultiChildRenderObjectWidget<_DecorationSlot, Re
       _DecorationSlot.helperError => decoration.helperError,
       _DecorationSlot.counter => decoration.counter,
       _DecorationSlot.container => decoration.container,
-    };
+    }
   }
 
   @override
@@ -2243,7 +2243,7 @@ class _InputDecoratorState extends State<InputDecorator> with TickerProviderStat
     final IconButtonThemeData iconButtonTheme = IconButtonTheme.of(context);
 
     final TextStyle labelStyle = _getInlineLabelStyle(themeData, defaults);
-    final TextBaseline textBaseline = labelStyle.textBaseline!;
+    final TextBaseline textBaseline = labelStyle.textBaseline;
 
     final TextStyle hintStyle = _getInlineHintStyle(themeData, defaults);
     final String? hintText = decoration.hintText;
@@ -2302,7 +2302,7 @@ class _InputDecoratorState extends State<InputDecorator> with TickerProviderStat
             <= 0.25 => -value,
             < 0.75 => value - 0.5,
             _ => (1.0 - value) * 4.0,
-          };
+          }
           // Shakes the floating label to the left and right
           // when the errorText first appears.
           return Matrix4.translationValues(shakeOffset * 4.0, 0.0, 0.0);
@@ -2498,7 +2498,7 @@ class _InputDecoratorState extends State<InputDecorator> with TickerProviderStat
     final bool flipHorizontal = switch (textDirection) {
       TextDirection.ltr => false,
       TextDirection.rtl => true,
-    };
+    }
     final EdgeInsets? resolvedPadding = decoration.contentPadding?.resolve(textDirection);
     final EdgeInsetsDirectional? decorationContentPadding =
         resolvedPadding == null
@@ -4996,12 +4996,14 @@ class _InputDecoratorDefaultsM2 extends InputDecorationTheme {
 
   @override
   Color? get fillColor => MaterialStateColor.resolveWith((Set<MaterialState> states) {
-    return switch ((Theme.of(context).brightness, states.contains(MaterialState.disabled))) {
-      (Brightness.dark, true) => const Color(0x0DFFFFFF), //  5% white
-      (Brightness.dark, false) => const Color(0x1AFFFFFF), // 10% white
-      (Brightness.light, true) => const Color(0x05000000), //  2% black
-      (Brightness.light, false) => const Color(0x0A000000), //  4% black
-    };
+    if (states.contains(MaterialState.disabled)) {
+      return Theme.of(context).brightness == Brightness.dark
+        ? const Color(0x0DFFFFFF) //  5% white
+        : const Color(0x05000000); //  2% black
+    }
+    return Theme.of(context).brightness == Brightness.dark
+      ? const Color(0x1AFFFFFF) // 10% white
+      : const Color(0x0A000000); //  4% black
   });
 
   @override
@@ -5012,10 +5014,9 @@ class _InputDecoratorDefaultsM2 extends InputDecorationTheme {
     if (states.contains(MaterialState.focused)) {
       return Theme.of(context).colorScheme.primary;
     }
-    return switch (Theme.of(context).brightness) {
-      Brightness.dark => Colors.white70,
-      Brightness.light => Colors.black45,
-    };
+    return Theme.of(context).brightness == Brightness.dark
+      ? Colors.white70
+      : Colors.black45;
   });
 
   @override
@@ -5026,10 +5027,9 @@ class _InputDecoratorDefaultsM2 extends InputDecorationTheme {
     if (states.contains(MaterialState.focused)) {
       return Theme.of(context).colorScheme.primary;
     }
-    return switch (Theme.of(context).brightness) {
-      Brightness.dark => Colors.white70,
-      Brightness.light => Colors.black45,
-    };
+    return Theme.of(context).brightness == Brightness.dark
+      ? Colors.white70
+      : Colors.black45;
   });
 
   @override
@@ -5043,10 +5043,9 @@ class _InputDecoratorDefaultsM2 extends InputDecorationTheme {
     if (states.contains(MaterialState.focused)) {
       return Theme.of(context).colorScheme.primary;
     }
-    return switch (Theme.of(context).brightness) {
-      Brightness.dark => Colors.white70,
-      Brightness.light => Colors.black45,
-    };
+    return Theme.of(context).brightness == Brightness.dark
+      ? Colors.white70
+      : Colors.black45;
   });
 }
 

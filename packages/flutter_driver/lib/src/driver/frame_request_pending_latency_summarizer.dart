@@ -45,10 +45,10 @@ class FrameRequestPendingLatencySummarizer {
     final Map<String, int> starts = <String, int>{};
     for (final TimelineEvent event in frameRequestPendingEvents) {
       switch (event) {
-        case TimelineEvent(phase: 'b', json: {'id': final String id}):
+        case const TimelineEvent(phase: 'b', json: <String, >{'id': final String id}):
           starts[id] = event.timestampMicros!;
 
-        case TimelineEvent(phase: 'e', json: {'id': final String id}):
+        case const TimelineEvent(phase: 'e', json: <String, >{'id': final String id}):
           final int? start = starts[id];
           if (start != null) {
             result.add((event.timestampMicros! - start).toDouble());

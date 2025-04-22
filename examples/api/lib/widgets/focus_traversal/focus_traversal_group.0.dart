@@ -69,7 +69,7 @@ class _OrderedButtonState<T> extends State<OrderedButton<T>> {
     final FocusOrder order = switch (widget.order) {
       final num number => NumericFocusOrder(number.toDouble()),
       final Object? object => LexicalFocusOrder(object.toString()),
-    };
+    }
 
     return FocusTraversalOrder(
       order: order,

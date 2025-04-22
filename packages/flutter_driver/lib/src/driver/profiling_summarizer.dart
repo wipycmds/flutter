@@ -120,7 +120,7 @@ class ProfilingSummarizer {
       _kGpuProfile => ProfileType.GPU,
       _kMemoryProfile => ProfileType.Memory,
       _ => throw Exception('Invalid profiling event: $eventName.'),
-    };
+    }
   }
 
   double _getProfileValue(ProfileType profileType, TimelineEvent e) {

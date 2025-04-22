@@ -19,8 +19,8 @@ class IndicatorAnimationExampleApp extends StatelessWidget {
 
 const List<(TabIndicatorAnimation, String)> indicatorAnimationSegments =
     <(TabIndicatorAnimation, String)>[
-      (TabIndicatorAnimation.linear, 'Linear'),
-      (TabIndicatorAnimation.elastic, 'Elastic'),
+      TabIndicatorAnimation.linear, 'Linear',
+      TabIndicatorAnimation.elastic, 'Elastic',
     ];
 
 class IndicatorAnimationExample extends StatefulWidget {

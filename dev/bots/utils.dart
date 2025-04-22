@@ -690,7 +690,7 @@ List<T> selectIndexOfTotalSubshard<T>(List<T> tests, {String subshardKey = kSubs
   final int start = numberOfItemsInPreviousBuckets;
   final int end = start + buckets[subShardIndex - 1];
 
-  return (start, end);
+  return start, end;
 }
 
 Future<void> _runFromList(

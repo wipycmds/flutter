@@ -703,7 +703,7 @@ class BouncingScrollPhysics extends ScrollPhysics {
         switch (decelerationRate) {
           ScrollDecelerationRate.fast => 0.26,
           ScrollDecelerationRate.normal => 0.52,
-        };
+        }
   }
 
   @override

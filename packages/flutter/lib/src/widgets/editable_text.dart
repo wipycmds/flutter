@@ -2966,14 +2966,13 @@ class EditableTextState extends State<EditableText>
     // widget.renderObject.getRectForComposingRange might fail. In cases where
     // the current frame is different from the previous we fall back to
     // renderObject.preferredLineHeight.
-    final InlineSpan span = renderEditable.text!;
+    final InlineSpan span = renderEditable.text;
     final String prevText = span.toPlainText();
     final String currText = textEditingValue.text;
     if (prevText != currText || !selection.isValid || selection.isCollapsed) {
-      return (
+      return 
         startGlyphHeight: renderEditable.preferredLineHeight,
         endGlyphHeight: renderEditable.preferredLineHeight,
-      );
     }
 
     final String selectedGraphemes = selection.textInside(currText);
@@ -2985,10 +2984,9 @@ class EditableTextState extends State<EditableText>
     final Rect? endCharacterRect = renderEditable.getRectForComposingRange(
       TextRange(start: selection.end - lastSelectedGraphemeExtent, end: selection.end),
     );
-    return (
+    return 
       startGlyphHeight: startCharacterRect?.height ?? renderEditable.preferredLineHeight,
       endGlyphHeight: endCharacterRect?.height ?? renderEditable.preferredLineHeight,
-    );
   }
 
   /// {@template flutter.widgets.EditableText.getAnchors}
@@ -3002,7 +3000,7 @@ class EditableTextState extends State<EditableText>
   TextSelectionToolbarAnchors get contextMenuAnchors {
     if (renderEditable.lastSecondaryTapDownPosition != null) {
       return TextSelectionToolbarAnchors(
-        primaryAnchor: renderEditable.lastSecondaryTapDownPosition!,
+        primaryAnchor: renderEditable.lastSecondaryTapDownPosition,
       );
     }
 
@@ -3515,7 +3513,7 @@ class EditableTextState extends State<EditableText>
         // Only non-null when starting a floating cursor via long press.
         if (point.startLocation != null) {
           shouldResetOrigin = false;
-          (startCaretCenter, currentTextPosition) = point.startLocation!;
+          startCaretCenter, currentTextPosition = point.startLocation;
         } else {
           shouldResetOrigin = true;
           currentTextPosition = TextPosition(
@@ -4002,13 +4000,13 @@ class EditableTextState extends State<EditableText>
       return;
     }
     switch (notification) {
-      case ScrollStartNotification() when _dataWhenToolbarShowScheduled != null:
-      case ScrollEndNotification() when _dataWhenToolbarShowScheduled == null:
+      case const ScrollStartNotification() when _dataWhenToolbarShowScheduled != null:
+      case const ScrollEndNotification() when _dataWhenToolbarShowScheduled == null:
         break;
-      case ScrollEndNotification() when _dataWhenToolbarShowScheduled!.value != _value:
+      case const ScrollEndNotification() when _dataWhenToolbarShowScheduled!.value != _value:
         _dataWhenToolbarShowScheduled = null;
         _disposeScrollNotificationObserver();
-      case ScrollNotification(:final BuildContext? context)
+      case const ScrollNotification(:final BuildContext? context)
           when !_isInternalScrollableNotification(context) &&
               _scrollableNotificationIsFromSameSubtree(context):
         _handleContextMenuOnScroll(notification);
@@ -4068,7 +4066,7 @@ class EditableTextState extends State<EditableText>
               : selectionBoxes
                   .map((TextBox box) => box.toRect())
                   .reduce((Rect result, Rect rect) => result.expandToInclude(rect));
-      _dataWhenToolbarShowScheduled = (value: _value, selectionBounds: selectionBounds);
+      _dataWhenToolbarShowScheduled = value: _value, selectionBounds: selectionBounds;
       _selectionOverlay?.hideToolbar();
     } else if (notification is ScrollEndNotification) {
       if (_dataWhenToolbarShowScheduled == null) {
@@ -4577,7 +4575,7 @@ class EditableTextState extends State<EditableText>
       // handles visible on Android.
       // Unregister as a listener to the text controller while making the change.
       widget.controller.removeListener(_didChangeTextEditingValue);
-      widget.controller.selection = _adjustedSelectionWhenFocused()!;
+      widget.controller.selection = _adjustedSelectionWhenFocused();
       widget.controller.addListener(_didChangeTextEditingValue);
     }
     _updateRemoteEditingValueIfNeeded();
@@ -4620,7 +4618,7 @@ class EditableTextState extends State<EditableText>
     final bool isDesktop = switch (defaultTargetPlatform) {
       TargetPlatform.android || TargetPlatform.iOS || TargetPlatform.fuchsia => false,
       TargetPlatform.macOS || TargetPlatform.linux || TargetPlatform.windows => true,
-    };
+    }
     final bool shouldSelectAll =
         widget.selectionEnabled &&
         (kIsWeb || isDesktop) &&
@@ -4684,12 +4682,12 @@ class EditableTextState extends State<EditableText>
       return;
     }
 
-    final InlineSpan inlineSpan = renderEditable.text!;
-    final TextScaler effectiveTextScaler = switch ((widget.textScaler, widget.textScaleFactor)) {
+    final InlineSpan inlineSpan = renderEditable.text;
+    final TextScaler effectiveTextScaler = switch (widget.textScaler, widget.textScaleFactor) {
       (final TextScaler textScaler, _) => textScaler,
       (null, final double textScaleFactor) => TextScaler.linear(textScaleFactor),
       (null, null) => MediaQuery.textScalerOf(context),
-    };
+    }
 
     final _ScribbleCacheKey newCacheKey = _ScribbleCacheKey(
       inlineSpan: inlineSpan,
@@ -5500,11 +5498,11 @@ class EditableTextState extends State<EditableText>
     super.build(context); // See AutomaticKeepAliveClientMixin.
 
     final TextSelectionControls? controls = widget.selectionControls;
-    final TextScaler effectiveTextScaler = switch ((widget.textScaler, widget.textScaleFactor)) {
+    final TextScaler effectiveTextScaler = switch (widget.textScaler, widget.textScaleFactor) {
       (final TextScaler textScaler, _) => textScaler,
       (null, final double textScaleFactor) => TextScaler.linear(textScaleFactor),
       (null, null) => MediaQuery.textScalerOf(context),
-    };
+    }
 
     return _CompositionCallback(
       compositeCallback: _compositeCallback,
@@ -5739,8 +5737,8 @@ class EditableTextState extends State<EditableText>
         _value,
         composingRegionOutOfRange,
         _style,
-        _spellCheckConfiguration.misspelledTextStyle!,
-        spellCheckResults!,
+        _spellCheckConfiguration.misspelledTextStyle,
+        spellCheckResults,
       );
     }
 

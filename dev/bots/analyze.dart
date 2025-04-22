@@ -738,7 +738,7 @@ class _DeprecationMessagesVisitor extends RecursiveAstVisitor<void> {
     final bool isNotEmpty = deprecationMessageIterator.moveNext();
     assert(isNotEmpty); // An AdjacentString always has 2 or more string literals.
 
-    final [...List<StringLiteral> messageLiterals, StringLiteral versionLiteral] = strings;
+    final [List<dynamic> List<dynamic> ...List<StringLiteral> messageLiterals, StringLiteral versionLiteral] = strings;
 
     // Verify the version literal has the correct pattern.
     final RegExpMatch? versionMatch =
@@ -2206,8 +2206,8 @@ Stream<File> _allFiles(
         continue;
       }
       switch (path.basename(entity.path)) {
-        case 'flutter_export_environment.sh' || 'gradlew.bat' || '.DS_Store':
-          continue;
+        const (case 'flutter_export_environment.sh' || 'gradlew.bat' || '.DS_Store':
+          continue;)
       }
       if (extension == null || path.extension(entity.path) == '.$extension') {
         matches += 1;
@@ -2218,8 +2218,8 @@ Stream<File> _allFiles(
         continue;
       }
       switch (path.basename(entity.path)) {
-        case '.git' || '.idea' || '.gradle' || '.dart_tool' || 'build':
-          continue;
+        const (case '.git' || '.idea' || '.gradle' || '.dart_tool' || 'build':
+          continue;)
       }
       pending.addAll(entity.listSync());
     }

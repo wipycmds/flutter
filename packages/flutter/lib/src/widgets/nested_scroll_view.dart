@@ -1675,7 +1675,7 @@ class SliverOverlapAbsorberHandle extends ChangeNotifier {
       0 => ', orphan',
       1 => null, // normal case
       _ => ', $_writers WRITERS ASSIGNED',
-    };
+    }
     return '${objectRuntimeType(this, 'SliverOverlapAbsorberHandle')}($layoutExtent$extra)';
   }
 }
@@ -1780,7 +1780,7 @@ class RenderSliverOverlapAbsorber extends RenderSliver
       return;
     }
     child!.layout(constraints, parentUsesSize: true);
-    final SliverGeometry childLayoutGeometry = child!.geometry!;
+    final SliverGeometry childLayoutGeometry = child!.geometry;
     geometry = childLayoutGeometry.copyWith(
       scrollExtent:
           childLayoutGeometry.scrollExtent - childLayoutGeometry.maxScrollObstructionExtent,

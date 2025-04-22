@@ -66,15 +66,13 @@ class RelativeRect {
   /// argument is used for the [right] property.
   factory RelativeRect.fromDirectional({
     required TextDirection textDirection,
-    required double start,
     required double top,
-    required double end,
     required double bottom,
   }) {
     final (double left, double right) = switch (textDirection) {
       TextDirection.rtl => (end, start),
       TextDirection.ltr => (start, end),
-    };
+    }
     return RelativeRect.fromLTRB(left, top, right, bottom);
   }
 
@@ -253,15 +251,15 @@ class StackParentData extends ContainerBoxParentData<RenderBox> {
   /// This method should only be called when [isPositioned] is true for the child.
   BoxConstraints positionedChildConstraints(Size stackSize) {
     assert(isPositioned);
-    final double? width = switch ((left, right)) {
+    final double? width = switch (left, right) {
       (final double left?, final double right?) => stackSize.width - right - left,
       (_, _) => this.width,
-    };
+    }
 
-    final double? height = switch ((top, bottom)) {
+    final double? height = switch (top, bottom) {
       (final double top?, final double bottom?) => stackSize.height - bottom - top,
       (_, _) => this.height,
-    };
+    }
     assert(height == null || !height.isNaN);
     assert(width == null || !width.isNaN);
     return BoxConstraints.tightFor(
@@ -552,13 +550,13 @@ class RenderStack extends RenderBox
       StackParentData(:final double left?) => left,
       StackParentData(:final double right?) => size.width - right - child.size.width,
       StackParentData() => alignment.alongOffset(size - child.size as Offset).dx,
-    };
+    }
 
     final double y = switch (childParentData) {
       StackParentData(:final double top?) => top,
       StackParentData(:final double bottom?) => size.height - bottom - child.size.height,
       StackParentData() => alignment.alongOffset(size - child.size as Offset).dy,
-    };
+    }
 
     childParentData.offset = Offset(x, y);
     return x < 0.0 ||
@@ -589,7 +587,7 @@ class RenderStack extends RenderBox
         stackSize.height - bottom - child.getDryLayout(childConstraints).height,
       StackParentData() =>
         alignment.alongOffset(stackSize - child.getDryLayout(childConstraints) as Offset).dy,
-    };
+    }
     return baselineOffset + y;
   }
 
@@ -599,7 +597,7 @@ class RenderStack extends RenderBox
       StackFit.loose => constraints.loosen(),
       StackFit.expand => BoxConstraints.tight(constraints.biggest),
       StackFit.passthrough => constraints,
-    };
+    }
 
     final Alignment alignment = _resolvedAlignment;
     final Size size = getDryLayout(constraints);
@@ -634,7 +632,7 @@ class RenderStack extends RenderBox
       StackFit.loose => constraints.loosen(),
       StackFit.expand => BoxConstraints.tight(constraints.biggest),
       StackFit.passthrough => constraints,
-    };
+    }
 
     RenderBox? child = firstChild;
     while (child != null) {
@@ -823,7 +821,7 @@ class RenderIndexedStack extends RenderStack {
       StackFit.loose => constraints.loosen(),
       StackFit.expand => BoxConstraints.tight(constraints.biggest),
       StackFit.passthrough => constraints,
-    };
+    }
 
     final Alignment alignment = _resolvedAlignment;
     final Size size = getDryLayout(constraints);

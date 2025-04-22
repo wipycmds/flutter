@@ -19,7 +19,7 @@ void main() {
       AxisDirection.left => Offset(-dx, 0.0),
       AxisDirection.right => Offset(dx, 0.0),
       _ => throw ArgumentError('$direction is not supported'),
-    };
+    }
 
     await tester.drag(finder, offset);
   }

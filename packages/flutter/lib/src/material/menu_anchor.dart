@@ -1989,12 +1989,12 @@ class _SubmenuButtonState extends State<SubmenuButton> {
     final Axis orientation = _parent?._orientation ?? Axis.vertical;
     // Move the submenu over by the size of the menu padding, so that
     // the first menu item aligns with the submenu button that opens it.
-    menuPaddingOffset += switch ((orientation, Directionality.of(context))) {
+    menuPaddingOffset += switch (orientation, Directionality.of(context)) {
       (Axis.horizontal, TextDirection.rtl) => Offset(menuPadding.right, 0),
       (Axis.horizontal, TextDirection.ltr) => Offset(-menuPadding.left, 0),
       (Axis.vertical, TextDirection.rtl) => Offset(0, -menuPadding.top),
       (Axis.vertical, TextDirection.ltr) => Offset(0, -menuPadding.top),
-    };
+    }
     final Set<MaterialState> states = <MaterialState>{
       if (!_enabled) MaterialState.disabled,
       if (_isHovered) MaterialState.hovered,
@@ -2186,9 +2186,9 @@ class _SubmenuDirectionalFocusAction extends DirectionalFocusAction {
   void invoke(DirectionalFocusIntent intent) {
     assert(_debugMenuInfo('${intent.direction}: Invoking directional focus intent.'));
     final TextDirection directionality = Directionality.of(submenu.context);
-    switch ((_orientation, directionality, intent.direction)) {
-      case (Axis.horizontal, TextDirection.ltr, TraversalDirection.left):
-      case (Axis.horizontal, TextDirection.rtl, TraversalDirection.right):
+    switch (_orientation, directionality, intent.direction) {
+      case Axis.horizontal, TextDirection.ltr, TraversalDirection.left:
+      case Axis.horizontal, TextDirection.rtl, TraversalDirection.right:
         assert(_debugMenuInfo('Moving to previous $MenuBar item'));
         // Focus this MenuBar SubmenuButton, then move focus to the previous focusable
         // MenuBar item.
@@ -2196,8 +2196,8 @@ class _SubmenuDirectionalFocusAction extends DirectionalFocusAction {
           ..requestFocus()
           ..previousFocus();
         return;
-      case (Axis.horizontal, TextDirection.ltr, TraversalDirection.right):
-      case (Axis.horizontal, TextDirection.rtl, TraversalDirection.left):
+      case Axis.horizontal, TextDirection.ltr, TraversalDirection.right:
+      case Axis.horizontal, TextDirection.rtl, TraversalDirection.left:
         assert(_debugMenuInfo('Moving to next $MenuBar item'));
         // Focus this MenuBar SubmenuButton, then move focus to the next focusable
         // MenuBar item.
@@ -2205,7 +2205,7 @@ class _SubmenuDirectionalFocusAction extends DirectionalFocusAction {
           ..requestFocus()
           ..nextFocus();
         return;
-      case (Axis.horizontal, _, TraversalDirection.down):
+      case Axis.horizontal, _, TraversalDirection.down:
         if (isSubmenu) {
           // If this is a top-level (horizontal) button in a menubar, focus the
           // first item in this button's submenu.
@@ -2215,7 +2215,7 @@ class _SubmenuDirectionalFocusAction extends DirectionalFocusAction {
           }
           return;
         }
-      case (Axis.horizontal, _, TraversalDirection.up):
+      case Axis.horizontal, _, TraversalDirection.up:
         if (isSubmenu) {
           // If this is a top-level (horizontal) button in a menubar, focus the
           // last item in this button's submenu. This makes navigating into
@@ -2226,8 +2226,8 @@ class _SubmenuDirectionalFocusAction extends DirectionalFocusAction {
           }
           return;
         }
-      case (Axis.vertical, TextDirection.ltr, TraversalDirection.left):
-      case (Axis.vertical, TextDirection.rtl, TraversalDirection.right):
+      case Axis.vertical, TextDirection.ltr, TraversalDirection.left:
+      case Axis.vertical, TextDirection.rtl, TraversalDirection.right:
         if (_parent?._parent?._orientation == Axis.horizontal) {
           if (isSubmenu) {
             _parent!.widget.childFocusNode
@@ -2258,8 +2258,8 @@ class _SubmenuDirectionalFocusAction extends DirectionalFocusAction {
           assert(_debugMenuInfo('Exiting submenu'));
         }
         return;
-      case (Axis.vertical, TextDirection.ltr, TraversalDirection.right) when isSubmenu:
-      case (Axis.vertical, TextDirection.rtl, TraversalDirection.left) when isSubmenu:
+      case Axis.vertical, TextDirection.ltr, TraversalDirection.right when isSubmenu:
+      case Axis.vertical, TextDirection.rtl, TraversalDirection.left when isSubmenu:
         assert(_debugMenuInfo('Entering submenu'));
         if (_anchor._isOpen) {
           _anchor._firstItemFocusNode?.requestFocus();
@@ -2381,7 +2381,7 @@ class _LocalizedShortcutLabeler {
       keySeparator = '+';
     }
     if (serialized.trigger != null) {
-      final LogicalKeyboardKey trigger = serialized.trigger!;
+      final LogicalKeyboardKey trigger = serialized.trigger;
       final List<String> modifiers = <String>[
         if (_usesSymbolicModifiers) ...<String>[
           // macOS/iOS platform convention uses this ordering, with ⌘ always last.
@@ -3176,7 +3176,7 @@ class _MenuItemLabel extends StatelessWidget {
             padding: EdgeInsetsDirectional.only(start: horizontalPadding),
             child: Text(
               _LocalizedShortcutLabeler.instance.getShortcutLabel(
-                shortcut!,
+                shortcut,
                 MaterialLocalizations.of(context),
               ),
             ),
@@ -3277,7 +3277,7 @@ class _MenuLayout extends SingleChildLayoutDelegate {
         directionalOffset = switch (textDirection) {
           TextDirection.rtl => Offset(-alignmentOffset.dx, alignmentOffset.dy),
           TextDirection.ltr => alignmentOffset,
-        };
+        }
       } else {
         directionalOffset = alignmentOffset;
       }
@@ -3446,7 +3446,7 @@ class _MenuPanelState extends State<_MenuPanel> {
     final (MenuStyle? themeStyle, MenuStyle defaultStyle) = switch (widget.orientation) {
       Axis.horizontal => (MenuBarTheme.of(context).style, _MenuBarDefaultsM3(context)),
       Axis.vertical => (MenuTheme.of(context).style, _MenuDefaultsM3(context)),
-    };
+    }
     final MenuStyle? widgetStyle = widget.menuStyle;
 
     T? effectiveValue<T>(T? Function(MenuStyle? style) getProperty) {
@@ -3575,7 +3575,7 @@ class _MenuPanelState extends State<_MenuPanel> {
     return switch (widget.orientation) {
       Axis.horizontal => IntrinsicHeight(child: child),
       Axis.vertical => IntrinsicWidth(child: child),
-    };
+    }
   }
 }
 
@@ -3608,7 +3608,7 @@ class _Submenu extends StatelessWidget {
     final (MenuStyle? themeStyle, MenuStyle defaultStyle) = switch (anchor._parent?._orientation) {
       Axis.horizontal || null => (MenuBarTheme.of(context).style, _MenuBarDefaultsM3(context)),
       Axis.vertical => (MenuTheme.of(context).style, _MenuDefaultsM3(context)),
-    };
+    }
     T? effectiveValue<T>(T? Function(MenuStyle? style) getProperty) {
       return getProperty(menuStyle) ?? getProperty(themeStyle) ?? getProperty(defaultStyle);
     }
@@ -3627,7 +3627,7 @@ class _Submenu extends StatelessWidget {
     final VisualDensity visualDensity =
         effectiveValue((MenuStyle? style) => style?.visualDensity) ??
         Theme.of(context).visualDensity;
-    final AlignmentGeometry alignment = effectiveValue((MenuStyle? style) => style?.alignment)!;
+    final AlignmentGeometry alignment = effectiveValue((MenuStyle? style) => style?.alignment);
     final EdgeInsetsGeometry padding =
         resolve<EdgeInsetsGeometry?>((MenuStyle? style) => style?.padding) ?? EdgeInsets.zero;
     final Offset densityAdjustment = visualDensity.baseSizeAdjustment;
@@ -3640,7 +3640,7 @@ class _Submenu extends StatelessWidget {
     final EdgeInsetsGeometry resolvedPadding = padding
         .add(EdgeInsets.fromLTRB(dx, dy, dx, dy))
         .clamp(EdgeInsets.zero, EdgeInsetsGeometry.infinity);
-    final BuildContext anchorContext = anchor._anchorKey.currentContext!;
+    final BuildContext anchorContext = anchor._anchorKey.currentContext;
     final RenderBox overlay = Overlay.of(anchorContext).context.findRenderObject()! as RenderBox;
 
     Offset upperLeft = Offset.zero;

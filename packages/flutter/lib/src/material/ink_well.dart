@@ -1000,7 +1000,7 @@ class _InkResponseState extends State<_InkResponseStateWidget>
               _HighlightType.pressed => widget.highlightColor ?? Theme.of(context).highlightColor,
               _HighlightType.focus => widget.focusColor ?? Theme.of(context).focusColor,
               _HighlightType.hover => widget.hoverColor ?? Theme.of(context).hoverColor,
-            };
+            }
         final RenderBox referenceBox = context.findRenderObject()! as RenderBox;
         _highlights[type] = InkHighlight(
           controller: Material.of(context),
@@ -1109,7 +1109,7 @@ class _InkResponseState extends State<_InkResponseStateWidget>
     final bool showFocus = switch (FocusManager.instance.highlightMode) {
       FocusHighlightMode.touch => false,
       FocusHighlightMode.traditional => _shouldShowFocus,
-    };
+    }
     updateHighlight(_HighlightType.focus, value: showFocus);
   }
 
@@ -1329,7 +1329,7 @@ class _InkResponseState extends State<_InkResponseStateWidget>
           widget.overlayColor?.resolve(focused) ?? widget.focusColor ?? theme.focusColor,
         _HighlightType.hover =>
           widget.overlayColor?.resolve(hovered) ?? widget.hoverColor ?? theme.hoverColor,
-      };
+      }
     }
 
     for (final _HighlightType type in _highlights.keys) {

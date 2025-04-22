@@ -225,10 +225,10 @@ class RevealedOffset {
     final bool inverted = leadingEdgeOffset.offset < trailingEdgeOffset.offset;
     final RevealedOffset smaller;
     final RevealedOffset larger;
-    (smaller, larger) =
+    smaller, larger =
         inverted
-            ? (leadingEdgeOffset, trailingEdgeOffset)
-            : (trailingEdgeOffset, leadingEdgeOffset);
+            ? leadingEdgeOffset, trailingEdgeOffset
+            : trailingEdgeOffset, leadingEdgeOffset;
     if (currentOffset > larger.offset) {
       return larger;
     } else if (currentOffset < smaller.offset) {
@@ -790,7 +790,7 @@ abstract class RenderViewportBase<ParentDataClass extends ContainerParentDataMix
         final Size size = switch (axis) {
           Axis.vertical => Size(child.constraints.crossAxisExtent, child.geometry!.layoutExtent),
           Axis.horizontal => Size(child.geometry!.layoutExtent, child.constraints.crossAxisExtent),
-        };
+        }
         canvas.drawRect(((offset + paintOffsetOf(child)) & size).deflate(0.5), paint);
         child = childAfter(child);
       }
@@ -803,7 +803,7 @@ abstract class RenderViewportBase<ParentDataClass extends ContainerParentDataMix
     final (double mainAxisPosition, double crossAxisPosition) = switch (axis) {
       Axis.vertical => (position.dy, position.dx),
       Axis.horizontal => (position.dx, position.dy),
-    };
+    }
     final SliverHitTestResult sliverResult = SliverHitTestResult.wrap(result);
     for (final RenderSliver child in childrenInHitTestOrder) {
       if (!child.geometry!.visible) {
@@ -898,7 +898,7 @@ abstract class RenderViewportBase<ParentDataClass extends ContainerParentDataMix
       pivotExtent = switch (axis) {
         Axis.horizontal => pivot.size.width,
         Axis.vertical => pivot.size.height,
-      };
+      }
       rect ??= target.paintBounds;
       rectLocal = MatrixUtils.transformRect(target.getTransformTo(pivot), rect);
     } else if (onlySlivers) {
@@ -930,7 +930,7 @@ abstract class RenderViewportBase<ParentDataClass extends ContainerParentDataMix
       rectLocal = rect;
     } else {
       assert(rect != null);
-      return RevealedOffset(offset: offset.pixels, rect: rect!);
+      return RevealedOffset(offset: offset.pixels, rect: rect);
     }
 
     assert(child.parent == this);
@@ -946,7 +946,7 @@ abstract class RenderViewportBase<ParentDataClass extends ContainerParentDataMix
       AxisDirection.left => pivotExtent - rectLocal.right,
       AxisDirection.right => rectLocal.left,
       AxisDirection.down => rectLocal.top,
-    };
+    }
 
     // So far leadingScrollOffset is the scroll offset of `rect` in the `child`
     // sliver's sliver coordinate system. The sign of this value indicates
@@ -983,13 +983,13 @@ abstract class RenderViewportBase<ParentDataClass extends ContainerParentDataMix
         leadingScrollOffset -= switch (axis) {
           Axis.vertical => targetRect.height,
           Axis.horizontal => targetRect.width,
-        };
+        } {}
     }
 
     final double mainAxisExtentDifference = switch (axis) {
       Axis.horizontal => size.width - extentOfPinnedSlivers - rectLocal.width,
       Axis.vertical => size.height - extentOfPinnedSlivers - rectLocal.height,
-    };
+    }
 
     final double targetOffset = leadingScrollOffset - mainAxisExtentDifference * alignment;
     final double offsetDifference = offset.pixels - targetOffset;
@@ -999,7 +999,7 @@ abstract class RenderViewportBase<ParentDataClass extends ContainerParentDataMix
       AxisDirection.down => targetRect.translate(0.0, offsetDifference),
       AxisDirection.left => targetRect.translate(-offsetDifference, 0.0),
       AxisDirection.right => targetRect.translate(offsetDifference, 0.0),
-    };
+    }
 
     return RevealedOffset(offset: targetOffset, rect: targetRect);
   }
@@ -1027,7 +1027,7 @@ abstract class RenderViewportBase<ParentDataClass extends ContainerParentDataMix
       AxisDirection.left => Offset(size.width - layoutOffset - child.geometry!.paintExtent, 0.0),
       AxisDirection.right => Offset(layoutOffset, 0.0),
       AxisDirection.down => Offset(0.0, layoutOffset),
-    };
+    }
   }
 
   @override
@@ -1456,7 +1456,7 @@ class RenderViewport extends RenderViewportBase<SliverPhysicalContainerParentDat
     final (double mainAxisExtent, double crossAxisExtent) = switch (axis) {
       Axis.vertical => (size.height, size.width),
       Axis.horizontal => (size.width, size.height),
-    };
+    }
 
     final double centerOffsetAdjustment = center!.centerOffsetAdjustment;
     final int maxLayoutCycles = _maxLayoutCyclesPerChild * childCount;
@@ -1535,7 +1535,7 @@ class RenderViewport extends RenderViewportBase<SliverPhysicalContainerParentDat
     _calculatedCacheExtent = switch (cacheExtentStyle) {
       CacheExtentStyle.pixel => cacheExtent,
       CacheExtentStyle.viewport => mainAxisExtent * _cacheExtent,
-    };
+    }
 
     final double fullCacheExtent = mainAxisExtent + 2 * _calculatedCacheExtent!;
     final double centerCacheOffset = centerOffset + _calculatedCacheExtent!;
@@ -1687,7 +1687,7 @@ class RenderViewport extends RenderViewportBase<SliverPhysicalContainerParentDat
       AxisDirection.right => parentMainAxisPosition - paintOffset.dx,
       AxisDirection.up => child.geometry!.paintExtent - (parentMainAxisPosition - paintOffset.dy),
       AxisDirection.left => child.geometry!.paintExtent - (parentMainAxisPosition - paintOffset.dx),
-    };
+    }
   }
 
   @override
@@ -1872,7 +1872,7 @@ class RenderShrinkWrappingViewport extends RenderViewportBase<SliverLogicalConta
       size = switch (axis) {
         Axis.vertical => Size(constraints.maxWidth, constraints.minHeight),
         Axis.horizontal => Size(constraints.minWidth, constraints.maxHeight),
-      };
+      }
       offset.applyViewportDimension(0.0);
       _maxScrollExtent = 0.0;
       _shrinkWrapExtent = 0.0;
@@ -1886,7 +1886,7 @@ class RenderShrinkWrappingViewport extends RenderViewportBase<SliverLogicalConta
     final (double mainAxisExtent, double crossAxisExtent) = switch (axis) {
       Axis.vertical => (constraints.maxHeight, constraints.maxWidth),
       Axis.horizontal => (constraints.maxWidth, constraints.maxHeight),
-    };
+    }
 
     double correction;
     double effectiveExtent;
@@ -1898,7 +1898,7 @@ class RenderShrinkWrappingViewport extends RenderViewportBase<SliverLogicalConta
         effectiveExtent = switch (axis) {
           Axis.vertical => constraints.constrainHeight(_shrinkWrapExtent),
           Axis.horizontal => constraints.constrainWidth(_shrinkWrapExtent),
-        };
+        }
         final bool didAcceptViewportDimension = offset.applyViewportDimension(effectiveExtent);
         final bool didAcceptContentDimension = offset.applyContentDimensions(
           0.0,
@@ -1912,7 +1912,7 @@ class RenderShrinkWrappingViewport extends RenderViewportBase<SliverLogicalConta
     size = switch (axis) {
       Axis.vertical => constraints.constrainDimensions(crossAxisExtent, effectiveExtent),
       Axis.horizontal => constraints.constrainDimensions(effectiveExtent, crossAxisExtent),
-    };
+    }
   }
 
   double _attemptLayout(double mainAxisExtent, double crossAxisExtent, double correctedOffset) {
@@ -1935,7 +1935,7 @@ class RenderShrinkWrappingViewport extends RenderViewportBase<SliverLogicalConta
     _calculatedCacheExtent = switch (cacheExtentStyle) {
       CacheExtentStyle.pixel => cacheExtent,
       CacheExtentStyle.viewport => mainAxisExtent * _cacheExtent,
-    };
+    }
 
     return layoutChildSequence(
       child: firstChild,
@@ -2030,7 +2030,7 @@ class RenderShrinkWrappingViewport extends RenderViewportBase<SliverLogicalConta
       AxisDirection.down || AxisDirection.right => parentMainAxisPosition - layoutOffset,
       AxisDirection.up => size.height - parentMainAxisPosition - layoutOffset,
       AxisDirection.left => size.width - parentMainAxisPosition - layoutOffset,
-    };
+    }
   }
 
   @override

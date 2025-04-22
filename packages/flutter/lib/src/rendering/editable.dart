@@ -75,7 +75,7 @@ class TextSelectionPoint {
       TextDirection.ltr => '$point-ltr',
       TextDirection.rtl => '$point-rtl',
       null => '$point',
-    };
+    }
   }
 
   @override
@@ -1376,7 +1376,7 @@ class RenderEditable extends RenderBox
       }
     }
     config
-      ..attributedValue = _cachedAttributedValue!
+      ..attributedValue = _cachedAttributedValue
       ..isObscured = obscureText
       ..isMultiline = _isMultiline
       ..textDirection = textDirection
@@ -1511,7 +1511,7 @@ class RenderEditable extends RenderBox
         }
         late final SemanticsNode newChild;
         if (_cachedChildNodes?.isNotEmpty ?? false) {
-          newChild = _cachedChildNodes!.remove(_cachedChildNodes!.keys.first)!;
+          newChild = _cachedChildNodes!.remove(_cachedChildNodes!.keys.first);
         } else {
           final UniqueKey key = UniqueKey();
           newChild = SemanticsNode(key: key, showOnScreen: _createShowOnScreenFor(key));
@@ -1529,7 +1529,7 @@ class RenderEditable extends RenderBox
 
   VoidCallback? _createShowOnScreenFor(Key key) {
     return () {
-      final SemanticsNode node = _cachedChildNodes![key]!;
+      final SemanticsNode node = _cachedChildNodes![key];
       showOnScreen(descendant: this, rect: node.rect);
     };
   }
@@ -1696,7 +1696,7 @@ class RenderEditable extends RenderBox
 
   Axis get _viewportAxis => _isMultiline ? Axis.vertical : Axis.horizontal;
 
-  Offset get _paintOffset => switch (_viewportAxis) {
+  Offset get _paintOffset => switch (viewportAxis) {
     Axis.horizontal => Offset(-offset.pixels, 0.0),
     Axis.vertical => Offset(0.0, -offset.pixels),
   };
@@ -1706,7 +1706,7 @@ class RenderEditable extends RenderBox
     return switch (_viewportAxis) {
       Axis.horizontal => size.width,
       Axis.vertical => size.height,
-    };
+    }
   }
 
   double _getMaxScrollExtent(Size contentSize) {
@@ -1714,7 +1714,7 @@ class RenderEditable extends RenderBox
     return switch (_viewportAxis) {
       Axis.horizontal => math.max(0.0, contentSize.width - size.width),
       Axis.vertical => math.max(0.0, contentSize.height - size.height),
-    };
+    }
   }
 
   // We need to check the paint offset here because during animation, the start of
@@ -2113,7 +2113,7 @@ class RenderEditable extends RenderBox
   /// programmatically manipulate its `value` or `selection` directly.
   /// {@endtemplate}
   void selectPosition({required SelectionChangedCause cause}) {
-    selectPositionAt(from: _lastTapDownPosition!, cause: cause);
+    selectPositionAt(from: _lastTapDownPosition, cause: cause);
   }
 
   /// Select text between the global positions [from] and [to].
@@ -2147,7 +2147,7 @@ class RenderEditable extends RenderBox
   ///
   /// {@macro flutter.rendering.RenderEditable.selectPosition}
   void selectWord({required SelectionChangedCause cause}) {
-    selectWordsInRange(from: _lastTapDownPosition!, cause: cause);
+    selectWordsInRange(from: _lastTapDownPosition, cause: cause);
   }
 
   /// Selects the set words of a paragraph that intersect a given range of global positions.
@@ -2193,7 +2193,7 @@ class RenderEditable extends RenderBox
     _computeTextMetricsIfNeeded();
     assert(_lastTapDownPosition != null);
     final TextPosition position = _textPainter.getPositionForOffset(
-      globalToLocal(_lastTapDownPosition!) - _paintOffset,
+      globalToLocal(_lastTapDownPosition) - _paintOffset,
     );
     final TextRange word = _textPainter.getWordBoundary(position);
     late TextSelection newSelection;
@@ -2426,7 +2426,7 @@ class RenderEditable extends RenderBox
         preferredLineHeight * (minLines ?? maxLines),
         preferredLineHeight * maxLines,
       ),
-    };
+    }
 
     size = Size(width, constraints.constrainHeight(preferredHeight));
     final Size contentSize = Size(_textPainter.width + _caretMargin, _textPainter.height);

@@ -109,7 +109,7 @@ class _TextButtonExampleState extends State<TextButtonExample> {
         Colors.cyan.withOpacity(1.0),
         Colors.yellow.withOpacity(1.0),
       ),
-    };
+    }
 
     // This gradient's appearance reflects the button's state.
     // Always return a gradient decoration so that AnimatedContainer

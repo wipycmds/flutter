@@ -72,9 +72,9 @@ class Adb {
   Future<(bool connected, String? error)> isDeviceConnected() async {
     final AdbStringResult result = await _runString(<String>['shell', 'echo', 'connected']);
     if (result.exitCode != 0) {
-      return (false, result.stderr);
+      return false, result.stderr;
     } else {
-      return (true, null);
+      return true, null;
     }
   }
 

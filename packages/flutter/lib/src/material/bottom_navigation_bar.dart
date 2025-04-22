@@ -559,7 +559,7 @@ class _BottomNavigationTile extends StatelessWidget {
     size = switch (type) {
       BottomNavigationBarType.fixed => 1,
       BottomNavigationBarType.shifting => (flex! * 1000.0).round(),
-    };
+    }
 
     Widget result = InkResponse(
       onTap: onTap,
@@ -570,7 +570,7 @@ class _BottomNavigationTile extends StatelessWidget {
         child: _Tile(
           layout: layout,
           icon: _TileIcon(
-            colorTween: iconColorTween!,
+            colorTween: iconColorTween,
             animation: animation,
             iconSize: iconSize,
             selected: selected,
@@ -579,7 +579,7 @@ class _BottomNavigationTile extends StatelessWidget {
             unselectedIconTheme: unselectedIconTheme,
           ),
           label: _Label(
-            colorTween: labelColorTween!,
+            colorTween: labelColorTween,
             animation: animation,
             item: item,
             selectedLabelStyle: selectedLabelStyle,
@@ -712,7 +712,7 @@ class _Label extends StatelessWidget {
     final double? unselectedFontSize = unselectedLabelStyle.fontSize;
 
     final TextStyle customStyle =
-        TextStyle.lerp(unselectedLabelStyle, selectedLabelStyle, animation.value)!;
+        TextStyle.lerp(unselectedLabelStyle, selectedLabelStyle, animation.value);
     Widget text = DefaultTextStyle.merge(
       style: customStyle.copyWith(
         fontSize: selectedFontSize,
@@ -820,7 +820,7 @@ class _BottomNavigationBarState extends State<BottomNavigationBar> with TickerPr
   //
   // Unselected labels are shown by default for [BottomNavigationBarType.fixed],
   // and hidden by default for [BottomNavigationBarType.shifting].
-  bool get _defaultShowUnselected => switch (_effectiveType) {
+  bool get _defaultShowUnselected => switch (effectiveType) {
     BottomNavigationBarType.shifting => false,
     BottomNavigationBarType.fixed => true,
   };
@@ -857,7 +857,7 @@ class _BottomNavigationBarState extends State<BottomNavigationBar> with TickerPr
   void _pushCircle(int index) {
     if (widget.items[index].backgroundColor != null) {
       _circles.add(
-        _Circle(state: this, index: index, color: widget.items[index].backgroundColor!, vsync: this)
+        _Circle(state: this, index: index, color: widget.items[index].backgroundColor, vsync: this)
           ..controller.addStatusListener((AnimationStatus status) {
             if (status.isCompleted) {
               setState(() {
@@ -922,7 +922,7 @@ class _BottomNavigationBarState extends State<BottomNavigationBar> with TickerPr
     final Color themeColor = switch (themeData.brightness) {
       Brightness.light => themeData.colorScheme.primary,
       Brightness.dark => themeData.colorScheme.secondary,
-    };
+    }
 
     final TextStyle effectiveSelectedLabelStyle = _effectiveTextStyle(
       widget.selectedLabelStyle ?? bottomTheme.selectedLabelStyle,
@@ -1102,7 +1102,7 @@ class _BottomNavigationBarState extends State<BottomNavigationBar> with TickerPr
     final Color? backgroundColor = switch (_effectiveType) {
       BottomNavigationBarType.fixed => widget.backgroundColor ?? bottomTheme.backgroundColor,
       BottomNavigationBarType.shifting => _backgroundColor,
-    };
+    }
 
     return Semantics(
       explicitChildNodes: true,
@@ -1261,7 +1261,7 @@ class _RadialPainter extends CustomPainter {
       final double leftFraction = switch (textDirection) {
         TextDirection.rtl => 1.0 - circle.horizontalLeadingOffset,
         TextDirection.ltr => circle.horizontalLeadingOffset,
-      };
+      }
       final Offset center = Offset(leftFraction * size.width, size.height / 2.0);
       final Tween<double> radiusTween = Tween<double>(begin: 0.0, end: _maxRadius(center, size));
       canvas.drawCircle(center, radiusTween.transform(circle.animation.value), paint);

@@ -61,7 +61,7 @@ void main() {
       expect(
         fakePlatformViewRegistry.views,
         unorderedEquals(<FakePlatformView>[
-          (id: currentViewId + 1, viewType: 'webview', params: null, htmlElement: _mockHtmlElement),
+          id: currentViewId + 1, viewType: 'webview', params: null, htmlElement: _mockHtmlElement,
         ]),
       );
     });
@@ -94,7 +94,7 @@ void main() {
       expect(
         fakePlatformViewRegistry.views,
         unorderedEquals(<FakePlatformView>[
-          (id: currentViewId + 1, viewType: 'webview', params: null, htmlElement: _mockHtmlElement),
+          id: currentViewId + 1, viewType: 'webview', params: null, htmlElement: _mockHtmlElement,
         ]),
       );
     });
@@ -122,13 +122,13 @@ void main() {
       expect(
         fakePlatformViewRegistry.views,
         unorderedEquals(<FakePlatformView>[
-          (
+          
             id: currentViewId + 1,
             viewType: 'webview',
             params: 'foobar',
             htmlElement: _mockHtmlElement,
-          ),
-          (id: currentViewId + 2, viewType: 'webview', params: 123, htmlElement: _mockHtmlElement),
+          ,
+          id: currentViewId + 2, viewType: 'webview', params: 123, htmlElement: _mockHtmlElement,
         ]),
       );
     });
@@ -156,7 +156,7 @@ void main() {
       expect(
         fakePlatformViewRegistry.views,
         unorderedEquals(<FakePlatformView>[
-          (id: currentViewId + 1, viewType: 'webview', params: null, htmlElement: _mockHtmlElement),
+          id: currentViewId + 1, viewType: 'webview', params: null, htmlElement: _mockHtmlElement,
         ]),
       );
     });
@@ -180,7 +180,7 @@ void main() {
       expect(
         fakePlatformViewRegistry.views,
         unorderedEquals(<FakePlatformView>[
-          (id: currentViewId + 2, viewType: 'maps', params: null, htmlElement: _mockHtmlElement),
+          id: currentViewId + 2, viewType: 'maps', params: null, htmlElement: _mockHtmlElement,
         ]),
       );
     });
@@ -225,7 +225,7 @@ void main() {
       expect(
         fakePlatformViewRegistry.views,
         unorderedEquals(<FakePlatformView>[
-          (id: currentViewId + 1, viewType: 'webview', params: null, htmlElement: _mockHtmlElement),
+          id: currentViewId + 1, viewType: 'webview', params: null, htmlElement: _mockHtmlElement,
         ]),
       );
     });
@@ -442,7 +442,7 @@ class FakePlatformViewRegistry implements ui_web.PlatformViewRegistry {
     if (_findRegisteredViewFactory(viewType) != null) {
       return false;
     }
-    _registeredViewTypes.add((viewType: viewType, isVisible: isVisible, viewFactory: viewFactory));
+    _registeredViewTypes.add(viewType: viewType, isVisible: isVisible, viewFactory: viewFactory);
     return true;
   }
 
@@ -466,7 +466,7 @@ class FakePlatformViewRegistry implements ui_web.PlatformViewRegistry {
       'create' => _create(call),
       'dispose' => _dispose(call),
       _ => Future<dynamic>.sync(() => null),
-    };
+    }
   }
 
   Future<dynamic> _create(MethodCall call) async {
@@ -493,12 +493,12 @@ class FakePlatformViewRegistry implements ui_web.PlatformViewRegistry {
     final ui_web.ParameterizedPlatformViewFactory viewFactory =
         registered.viewFactory as ui_web.ParameterizedPlatformViewFactory;
 
-    _views.add((
+    _views.add(
       id: id,
       viewType: viewType,
       params: params,
       htmlElement: viewFactory(id, params: params),
-    ));
+    );
     return null;
   }
 

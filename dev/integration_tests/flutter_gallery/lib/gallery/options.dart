@@ -177,7 +177,7 @@ class _TextButton extends StatelessWidget {
         padding: EdgeInsets.zero,
       ),
       onPressed: onPressed,
-      child: child!,
+      child: child,
     );
   }
 }
@@ -387,7 +387,7 @@ class _PlatformItem extends StatelessWidget {
       TargetPlatform.linux => 'Material Desktop (linux)',
       TargetPlatform.macOS => 'Material Desktop (macOS)',
       TargetPlatform.windows => 'Material Desktop (Windows)',
-    };
+    }
   }
 
   @override
@@ -401,7 +401,7 @@ class _PlatformItem extends StatelessWidget {
               children: <Widget>[
                 const Text('Platform mechanics'),
                 Text(
-                  _platformLabel(options!.platform!),
+                  _platformLabel(options!.platform),
                   style: Theme.of(context).primaryTextTheme.bodyMedium,
                 ),
               ],

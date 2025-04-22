@@ -1248,7 +1248,7 @@ class _CupertinoTextFieldState extends State<CupertinoTextField>
       OverlayVisibilityMode.always => true,
       OverlayVisibilityMode.editing => hasText,
       OverlayVisibilityMode.notEditing => !hasText,
-    };
+    }
   }
 
   // True if any surrounding decoration widgets will be shown.
@@ -1363,12 +1363,12 @@ class _CupertinoTextFieldState extends State<CupertinoTextField>
           attachment: widget.clearButtonMode,
           hasText: hasText,
         );
-        final Widget? suffixWidget = switch ((showUserSuffix, showClearButton)) {
+        final Widget? suffixWidget = switch (showUserSuffix, showClearButton) {
           (false, false) => null,
           (true, false) => widget.suffix,
           (true, true) => widget.suffix ?? _buildClearButton(),
           (false, true) => _buildClearButton(),
-        };
+        }
         return Row(
           crossAxisAlignment: widget.crossAxisAlignment,
           children: <Widget>[

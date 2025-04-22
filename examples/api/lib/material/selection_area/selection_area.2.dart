@@ -75,19 +75,19 @@ class _MyHomePageState extends State<MyHomePage> {
     int currentOffset = 0;
     // Map bulleted list span to a local range using its concrete length calculated
     // from the length of its title and each individual bullet.
-    dataSourceMap[(
+    dataSourceMap[
           startOffset: currentOffset,
           endOffset: bulletListTitle.length + bullets.join().length,
-        )] =
+        ] =
         bulletedList;
     currentOffset += bulletListTitle.length;
     widgetSpanMaps[currentOffset] = bulletSourceMap;
     // Map individual bullets to a local range.
     for (final String bullet in bullets) {
-      bulletSourceMap[(
+      bulletSourceMap[
         startOffset: currentOffset,
         endOffset: currentOffset + bullet.length,
-      )] = TextSpan(text: bullet);
+      ] = TextSpan(text: bullet);
       currentOffset += bullet.length;
     }
 
@@ -97,18 +97,18 @@ class _MyHomePageState extends State<MyHomePage> {
     );
     const TextSpan thirdTextParagraph = TextSpan(text: 'This is some text in another text widget.');
     // Map second and third paragraphs to local ranges.
-    dataSourceMap[(
+    dataSourceMap[
           startOffset: currentOffset,
           endOffset:
               currentOffset + secondTextParagraph.toPlainText(includeSemanticsLabels: false).length,
-        )] =
+        ] =
         secondTextParagraph;
     currentOffset += secondTextParagraph.toPlainText(includeSemanticsLabels: false).length;
-    dataSourceMap[(
+    dataSourceMap[
           startOffset: currentOffset,
           endOffset:
               currentOffset + thirdTextParagraph.toPlainText(includeSemanticsLabels: false).length,
-        )] =
+        ] =
         thirdTextParagraph;
 
     // Save the origin data so we can revert our changes.
@@ -318,7 +318,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         in widgetSpanSourceMap.entries)
                       Padding(
                         padding: const EdgeInsets.only(left: 20.0),
-                        child: Text.rich(widgetSpanSourceMap[entry.key]!),
+                        child: Text.rich(widgetSpanSourceMap[entry.key]),
                       ),
                   ],
                 ),

@@ -117,7 +117,7 @@ class _SliverResizingHeader extends SlottedMultiChildRenderObjectWidget<_Slot, R
       _Slot.minExtent => minExtentPrototype,
       _Slot.maxExtent => maxExtentPrototype,
       _Slot.child => child,
-    };
+    }
   }
 
   @override
@@ -144,10 +144,10 @@ class _RenderSliverResizingHeader extends RenderSliver
     return switch (constraints.axis) {
       Axis.vertical => box.size.height,
       Axis.horizontal => box.size.width,
-    };
+    }
   }
 
-  double get childExtent => child == null ? 0 : boxExtent(child!);
+  double get childExtent => child == null ? 0 : boxExtent(child);
 
   @override
   void setupParentData(RenderObject child) {
@@ -178,7 +178,7 @@ class _RenderSliverResizingHeader extends RenderSliver
         -(geometry.scrollExtent - (geometry.paintExtent + constraints.scrollOffset)),
         0.0,
       ),
-    };
+    }
   }
 
   @override
@@ -192,19 +192,19 @@ class _RenderSliverResizingHeader extends RenderSliver
     double minExtent = 0;
     if (minExtentPrototype != null) {
       minExtentPrototype!.layout(prototypeBoxConstraints, parentUsesSize: true);
-      minExtent = boxExtent(minExtentPrototype!);
+      minExtent = boxExtent(minExtentPrototype);
     }
 
     late final double maxExtent;
     if (maxExtentPrototype != null) {
       maxExtentPrototype!.layout(prototypeBoxConstraints, parentUsesSize: true);
-      maxExtent = boxExtent(maxExtentPrototype!);
+      maxExtent = boxExtent(maxExtentPrototype);
     } else {
       final Size childSize = child!.getDryLayout(prototypeBoxConstraints);
       maxExtent = switch (constraints.axis) {
         Axis.vertical => childSize.height,
         Axis.horizontal => childSize.width,
-      };
+      }
     }
 
     final double scrollOffset = constraints.scrollOffset;

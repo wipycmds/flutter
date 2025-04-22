@@ -1192,7 +1192,7 @@ class _PageTransitionsThemeTransitionsState<T> extends State<_PageTransitionsThe
     // transition that the gesture began with until the gesture is finished.
     if (widget.route.popGestureInProgress) {
       _transitionPlatform ??= platform;
-      platform = _transitionPlatform!;
+      platform = _transitionPlatform;
     } else {
       _transitionPlatform = null;
     }
@@ -1206,7 +1206,7 @@ class _PageTransitionsThemeTransitionsState<T> extends State<_PageTransitionsThe
           TargetPlatform.windows ||
           TargetPlatform.macOS ||
           TargetPlatform.linux => const ZoomPageTransitionsBuilder(),
-        };
+        }
     return matchingBuilder.buildTransitions<T>(
       widget.route,
       context,

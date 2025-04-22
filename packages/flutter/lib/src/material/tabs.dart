@@ -195,7 +195,7 @@ class Tab extends StatelessWidget implements PreferredSizeWidget {
       label = _buildLabelText();
     } else if (text == null && child == null) {
       calculatedHeight = _kTabHeight;
-      label = icon!;
+      label = icon;
     } else {
       calculatedHeight = _kTextAndIconTabHeight;
       final EdgeInsetsGeometry effectiveIconMargin =
@@ -294,9 +294,9 @@ class _TabStyle extends AnimatedWidget {
 
     return MaterialStateColor.resolveWith((Set<MaterialState> states) {
       if (states.contains(MaterialState.selected)) {
-        return Color.lerp(selectedColor, unselectedColor, animation.value)!;
+        return Color.lerp(selectedColor, unselectedColor, animation.value);
       }
-      return Color.lerp(unselectedColor, selectedColor, animation.value)!;
+      return Color.lerp(unselectedColor, selectedColor, animation.value);
     });
   }
 
@@ -325,11 +325,11 @@ class _TabStyle extends AnimatedWidget {
     final Color defaultIconColor = switch (theme.colorScheme.brightness) {
       Brightness.light => kDefaultIconDarkColor,
       Brightness.dark => kDefaultIconLightColor,
-    };
+    }
     final IconThemeData? customIconTheme = switch (IconTheme.of(context)) {
       final IconThemeData iconTheme when iconTheme.color != defaultIconColor => iconTheme,
       _ => null,
-    };
+    }
     final Color iconColor = _resolveWithLabelColor(
       context,
       iconTheme: customIconTheme,
@@ -384,7 +384,7 @@ class _TabLabelBarRenderer extends RenderFlex {
       case TextDirection.ltr:
         xOffsets.add(size.width);
     }
-    onPerformLayout(xOffsets, textDirection!, size.width);
+    onPerformLayout(xOffsets, textDirection, size.width);
   }
 }
 
@@ -409,7 +409,7 @@ class _TabLabelBar extends Flex {
       mainAxisAlignment: mainAxisAlignment,
       mainAxisSize: mainAxisSize,
       crossAxisAlignment: crossAxisAlignment,
-      textDirection: getEffectiveTextDirection(context)!,
+      textDirection: getEffectiveTextDirection(context),
       verticalDirection: verticalDirection,
       onPerformLayout: onPerformLayout,
     );
@@ -554,10 +554,10 @@ class _IndicatorPainter extends CustomPainter {
     assert(tabIndex >= 0);
     assert(tabIndex <= maxTabIndex);
     double tabLeft, tabRight;
-    (tabLeft, tabRight) = switch (_currentTextDirection!) {
+    tabLeft, tabRight = switch (_currentTextDirection!) {
       TextDirection.rtl => (_currentTabOffsets![tabIndex + 1], _currentTabOffsets![tabIndex]),
       TextDirection.ltr => (_currentTabOffsets![tabIndex], _currentTabOffsets![tabIndex + 1]),
-    };
+    }
 
     if (indicatorSize == TabBarIndicatorSize.label) {
       final double tabWidth = tabKeys[tabIndex].currentContext!.size!.width;
@@ -590,7 +590,7 @@ class _IndicatorPainter extends CustomPainter {
     _currentRect = switch (indicatorAnimation) {
       TabIndicatorAnimation.linear => _applyLinearEffect(size: size, value: value),
       TabIndicatorAnimation.elastic => _applyElasticEffect(size: size, value: value),
-    };
+    }
 
     assert(_currentRect != null);
 
@@ -602,8 +602,8 @@ class _IndicatorPainter extends CustomPainter {
     if (showDivider && dividerHeight! > 0) {
       final Paint dividerPaint =
           Paint()
-            ..color = dividerColor!
-            ..strokeWidth = dividerHeight!;
+            ..color = dividerColor
+            ..strokeWidth = dividerHeight;
       final Offset dividerP1 = Offset(0, size.height - (dividerPaint.strokeWidth / 2));
       final Offset dividerP2 = Offset(size.width, size.height - (dividerPaint.strokeWidth / 2));
       canvas.drawLine(dividerP1, dividerP2, dividerPaint);
@@ -653,7 +653,7 @@ class _IndicatorPainter extends CustomPainter {
             : controller.previousIndex;
     final Rect toRect = indicatorRect(size, to);
     final Rect fromRect = indicatorRect(size, from);
-    final Rect rect = Rect.lerp(fromRect, toRect, (value - from).abs())!;
+    final Rect rect = Rect.lerp(fromRect, toRect, (value - from).abs());
 
     // If the tab animation is completed, there is no need to stretch the indicator
     // This only works for the tab change animation via tab index, not when
@@ -684,7 +684,7 @@ class _IndicatorPainter extends CustomPainter {
     final bool isMovingRight = switch (textDirection) {
       TextDirection.ltr => controller.indexIsChanging ? index > value : value > index,
       TextDirection.rtl => controller.indexIsChanging ? value > index : index > value,
-    };
+    }
     if (isMovingRight) {
       leftFraction = accelerateInterpolation(tabChangeProgress);
       rightFraction = decelerateInterpolation(tabChangeProgress);
@@ -706,11 +706,11 @@ class _IndicatorPainter extends CustomPainter {
       lerpRectLeft = switch (isMovingRight) {
         true => lerpDouble(fromRect.left, toRect.left, leftFraction)!,
         false => lerpDouble(toRect.left, fromRect.left, leftFraction)!,
-      };
+      }
       lerpRectRight = switch (isMovingRight) {
         true => lerpDouble(fromRect.right, toRect.right, rightFraction)!,
         false => lerpDouble(toRect.right, fromRect.right, rightFraction)!,
-      };
+      }
     }
 
     return Rect.fromLTRB(lerpRectLeft, rect.top, lerpRectRight, rect.bottom);
@@ -1478,7 +1478,7 @@ class _TabBarState extends State<TabBar> {
     final bool primaryWithLabelIndicator = switch (indicatorSize) {
       TabBarIndicatorSize.label => widget._isPrimary,
       TabBarIndicatorSize.tab => false,
-    };
+    }
     final BorderRadius? effectiveBorderRadius =
         theme.useMaterial3 && primaryWithLabelIndicator
             ? BorderRadius.only(
@@ -1546,7 +1546,7 @@ class _TabBarState extends State<TabBar> {
     final TabIndicatorAnimation defaultTabIndicatorAnimation = switch (indicatorSize) {
       TabBarIndicatorSize.label => TabIndicatorAnimation.elastic,
       TabBarIndicatorSize.tab => TabIndicatorAnimation.linear,
-    };
+    }
 
     _indicatorPainter =
         !_controllerIsValid
@@ -1690,7 +1690,7 @@ class _TabBarState extends State<TabBar> {
         trailingPosition == null
             ? middlePosition
             : lerpDouble(middlePosition, trailingPosition, value - index)!,
-    };
+    }
 
     _scrollController!.jumpTo(offset);
   }
@@ -1983,7 +1983,7 @@ class _TabBarState extends State<TabBar> {
           TabAlignment.start ||
           TabAlignment.startOffset ||
           TabAlignment.fill => AlignmentDirectional.centerStart,
-        };
+        }
 
         final Color dividerColor =
             widget.dividerColor ?? tabBarTheme.dividerColor ?? _defaults.dividerColor!;
@@ -2514,29 +2514,29 @@ class _TabPageSelectorState extends State<TabPageSelector> {
       // The selection's animation is animating from previousValue to value.
       final double t = 1.0 - _indexChangeProgress(tabController);
       if (tabController.index == tabIndex) {
-        background = selectedColorTween.lerp(t)!;
+        background = selectedColorTween.lerp(t);
       } else if (tabController.previousIndex == tabIndex) {
-        background = previousColorTween.lerp(t)!;
+        background = previousColorTween.lerp(t);
       } else {
-        background = selectedColorTween.begin!;
+        background = selectedColorTween.begin;
       }
     } else {
       // The selection's offset reflects how far the TabBarView has / been dragged
       // to the previous page (-1.0 to 0.0) or the next page (0.0 to 1.0).
       final double offset = tabController.offset;
       if (tabController.index == tabIndex) {
-        background = selectedColorTween.lerp(1.0 - offset.abs())!;
+        background = selectedColorTween.lerp(1.0 - offset.abs());
       } else if (tabController.index == tabIndex - 1 && offset > 0.0) {
-        background = selectedColorTween.lerp(offset)!;
+        background = selectedColorTween.lerp(offset);
       } else if (tabController.index == tabIndex + 1 && offset < 0.0) {
-        background = selectedColorTween.lerp(-offset)!;
+        background = selectedColorTween.lerp(-offset);
       } else {
-        background = selectedColorTween.begin!;
+        background = selectedColorTween.begin;
       }
     }
     return TabPageSelectorIndicator(
       backgroundColor: background,
-      borderColor: selectedColorTween.end!,
+      borderColor: selectedColorTween.end,
       size: widget.indicatorSize,
       borderStyle: widget.borderStyle ?? BorderStyle.solid,
     );
@@ -2682,7 +2682,7 @@ class _TabsPrimaryDefaultsM3 extends TabBarThemeData {
     return switch (indicatorSize) {
       TabBarIndicatorSize.label => 3.0,
       TabBarIndicatorSize.tab   => 2.0,
-    };
+    }
   }
 
   // TODO(davidmartos96): This value doesn't currently exist in

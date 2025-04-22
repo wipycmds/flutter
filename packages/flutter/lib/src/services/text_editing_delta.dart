@@ -22,7 +22,7 @@ TextAffinity? _toTextAffinity(String? affinity) {
     'TextAffinity.downstream' => TextAffinity.downstream,
     'TextAffinity.upstream' => TextAffinity.upstream,
     _ => null,
-  };
+  }
 }
 
 // Replaces a range of text in the original string with the text given in the

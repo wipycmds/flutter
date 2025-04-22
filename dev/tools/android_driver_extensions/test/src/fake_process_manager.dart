@@ -29,7 +29,7 @@ final class FakeProcessManager extends ProcessManager {
     Encoding? stderrEncoding = systemEncoding,
   }) {
     final List<String> strings = command.map((Object e) => '$e').toList();
-    final [String executable, ...List<String> arguments] = strings;
+    final [List<String> List<String> String executable, ...List<String> arguments] = strings;
     return _runDelegate(executable, arguments);
   }
 

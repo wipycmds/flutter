@@ -127,7 +127,7 @@ class _StopwatchVisitor extends RecursiveAstVisitor<void> {
       InterfaceType(element: final ClassElement classElement) =>
         !_implementsStopwatch(classElement),
       InterfaceType(element: InterfaceElement()) => true,
-    };
+    }
     if (isAllowed || _hasTrailingFlutterIgnore(node)) {
       return;
     }
@@ -143,7 +143,7 @@ class _StopwatchVisitor extends RecursiveAstVisitor<void> {
       ) =>
         _isInternal(libraryElement) || !_implementsStopwatch(classElement),
       Element() || null => true,
-    };
+    }
     if (isAllowed || _hasTrailingFlutterIgnore(node)) {
       return;
     }

@@ -31,7 +31,7 @@ final Map<Object?, Object?> testManifest = <Object?, Object?>{
 
 class TestAssetBundle extends CachingAssetBundle {
   TestAssetBundle({required Map<Object?, Object?> manifest}) {
-    this.manifest = const StandardMessageCodec().encodeMessage(manifest)!;
+    this.manifest = const StandardMessageCodec().encodeMessage(manifest);
   }
 
   late final ByteData manifest;
@@ -47,7 +47,7 @@ class TestAssetBundle extends CachingAssetBundle {
       'assets/3.0x/image.png' => testByteData(3.0),
       'assets/4.0x/image.png' => testByteData(4.0),
       _ => throw ArgumentError('Unexpected key: $key'),
-    };
+    }
     return SynchronousFuture<ByteData>(data);
   }
 
@@ -70,7 +70,7 @@ class TestAssetImage extends AssetImage {
   ImageStreamCompleter loadImage(AssetBundleImageKey key, ImageDecoderCallback decode) {
     late ImageInfo imageInfo;
     key.bundle.load(key.name).then<void>((ByteData data) {
-      final ui.Image image = images[scaleOf(data)]!;
+      final ui.Image image = images[scaleOf(data)];
       imageInfo = ImageInfo(image: image, scale: key.scale);
     });
     return FakeImageStreamCompleter(SynchronousFuture<ImageInfo>(imageInfo));

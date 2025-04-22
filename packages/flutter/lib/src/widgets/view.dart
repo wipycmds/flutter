@@ -242,7 +242,7 @@ class _ViewState extends State<View> with WidgetsBindingObserver {
     _viewHasFocus = switch (event.state) {
       ViewFocusState.focused => event.viewId == widget.view.viewId,
       ViewFocusState.unfocused => false,
-    };
+    }
     if (event.viewId != widget.view.viewId) {
       return;
     }

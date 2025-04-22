@@ -299,10 +299,10 @@ class FilledButton extends ButtonStyleButton {
     ButtonLayerBuilder? backgroundBuilder,
     ButtonLayerBuilder? foregroundBuilder,
   }) {
-    final MaterialStateProperty<Color?>? overlayColorProp = switch ((
+    final MaterialStateProperty<Color?>? overlayColorProp = switch (
       foregroundColor,
       overlayColor,
-    )) {
+    ) {
       (null, null) => null,
       (_, Color(a: 0.0)) => WidgetStatePropertyAll<Color?>(overlayColor),
       (_, final Color color) ||
@@ -311,7 +311,7 @@ class FilledButton extends ButtonStyleButton {
         WidgetState.hovered: color.withOpacity(0.08),
         WidgetState.focused: color.withOpacity(0.1),
       }),
-    };
+    }
 
     return ButtonStyle(
       textStyle: MaterialStatePropertyAll<TextStyle?>(textStyle),
@@ -467,7 +467,7 @@ class FilledButton extends ButtonStyleButton {
     return switch (_variant) {
       _FilledButtonVariant.filled => _FilledButtonDefaultsM3(context),
       _FilledButtonVariant.tonal => _FilledTonalButtonDefaultsM3(context),
-    };
+    }
   }
 
   /// Returns the [FilledButtonThemeData.style] of the closest

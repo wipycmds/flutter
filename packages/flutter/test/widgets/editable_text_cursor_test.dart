@@ -1490,13 +1490,13 @@ void main() {
       RawFloatingCursorPoint(
         state: FloatingCursorDragState.Start,
         offset: Offset.zero,
-        startLocation: (
+        startLocation: 
           Offset.zero,
           TextPosition(
             offset: controller.selection.baseOffset,
             affinity: controller.selection.affinity,
           ),
-        ),
+        ,
       ),
     );
     await tester.pump();
@@ -1533,13 +1533,13 @@ void main() {
       RawFloatingCursorPoint(
         state: FloatingCursorDragState.Start,
         offset: Offset.zero,
-        startLocation: (
+        startLocation: 
           const Offset(800, 10),
           TextPosition(
             offset: controller.selection.baseOffset,
             affinity: controller.selection.affinity,
           ),
-        ),
+        ,
       ),
     );
     await tester.pump();

@@ -222,7 +222,7 @@ class Card extends StatelessWidget {
         _CardVariant.elevated => _CardDefaultsM3(context),
         _CardVariant.filled => _FilledCardDefaultsM3(context),
         _CardVariant.outlined => _OutlinedCardDefaultsM3(context),
-      };
+      }
     } else {
       defaults = _CardDefaultsM2(context);
     }

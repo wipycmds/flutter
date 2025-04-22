@@ -17,7 +17,7 @@ void main() {
     ImageProvider<Object> provider,
     Brightness brightness,
   ) async {
-    loadColorSchemeCalls.add((provider, brightness));
+    loadColorSchemeCalls.add(provider, brightness);
     final int index = example.DynamicColorExample.images.indexOf(provider);
     final int seedColor = 0xf * pow(0x10, index).toInt();
     return ColorScheme.fromSeed(seedColor: Color(seedColor), brightness: brightness);

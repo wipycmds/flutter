@@ -24,11 +24,11 @@ class ToggleButtonsApp extends StatelessWidget {
 enum ShirtSize { extraSmall, small, medium, large, extraLarge }
 
 const List<(ShirtSize, String)> shirtSizeOptions = <(ShirtSize, String)>[
-  (ShirtSize.extraSmall, 'XS'),
-  (ShirtSize.small, 'S'),
-  (ShirtSize.medium, 'M'),
-  (ShirtSize.large, 'L'),
-  (ShirtSize.extraLarge, 'XL'),
+  ShirtSize.extraSmall, 'XS',
+  ShirtSize.small, 'S',
+  ShirtSize.medium, 'M',
+  ShirtSize.large, 'L',
+  ShirtSize.extraLarge, 'XL',
 ];
 
 class ToggleButtonsExample extends StatefulWidget {

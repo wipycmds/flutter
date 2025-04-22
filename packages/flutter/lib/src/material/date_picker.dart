@@ -490,7 +490,7 @@ class _DatePickerDialogState extends State<DatePickerDialog> with RestorationMix
   void _handleOk() {
     if (_entryMode.value == DatePickerEntryMode.input ||
         _entryMode.value == DatePickerEntryMode.inputOnly) {
-      final FormState form = _formKey.currentState!;
+      final FormState form = _formKey.currentState;
       if (!form.validate()) {
         setState(() => _autovalidateMode.value = AutovalidateMode.always);
         return;
@@ -535,17 +535,17 @@ class _DatePickerDialogState extends State<DatePickerDialog> with RestorationMix
     final bool isCalendar = switch (_entryMode.value) {
       DatePickerEntryMode.calendar || DatePickerEntryMode.calendarOnly => true,
       DatePickerEntryMode.input || DatePickerEntryMode.inputOnly => false,
-    };
+    }
     final Orientation orientation = MediaQuery.orientationOf(context);
 
-    return switch ((isCalendar, orientation)) {
+    return switch (isCalendar, orientation) {
       (true, Orientation.portrait) when useMaterial3 => _calendarPortraitDialogSizeM3,
       (false, Orientation.portrait) when useMaterial3 => _inputPortraitDialogSizeM3,
       (true, Orientation.portrait) => _calendarPortraitDialogSizeM2,
       (false, Orientation.portrait) => _inputPortraitDialogSizeM2,
       (true, Orientation.landscape) => _calendarLandscapeDialogSize,
       (false, Orientation.landscape) => _inputLandscapeDialogSize,
-    };
+    }
   }
 
   static const Map<ShortcutActivator, Intent> _formShortcutMap = <ShortcutActivator, Intent>{
@@ -2955,14 +2955,12 @@ class _HighlightPainter extends CustomPainter {
     final bool rtl = switch (textDirection) {
       TextDirection.rtl || null => true,
       TextDirection.ltr => false,
-    };
+    }
 
     switch (style) {
       case _HighlightPainterStyle.highlightLeading when rtl:
       case _HighlightPainterStyle.highlightTrailing when !rtl:
         canvas.drawRect(Rect.fromLTWH(size.width / 2, 0, size.width / 2, size.height), paint);
-      case _HighlightPainterStyle.highlightLeading:
-      case _HighlightPainterStyle.highlightTrailing:
         canvas.drawRect(Rect.fromLTWH(0, 0, size.width / 2, size.height), paint);
       case _HighlightPainterStyle.highlightAll:
         canvas.drawRect(Rect.fromLTWH(0, 0, size.width, size.height), paint);
@@ -3010,7 +3008,7 @@ class _InputDateRangePickerDialog extends StatelessWidget {
     return switch (Directionality.of(context)) {
       TextDirection.rtl => '$endText – $startText',
       TextDirection.ltr => '$startText – $endText',
-    };
+    }
   }
 
   @override

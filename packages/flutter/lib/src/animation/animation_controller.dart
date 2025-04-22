@@ -346,7 +346,7 @@ class AnimationController extends Animation<double>
 
   /// Recreates the [Ticker] with the new [TickerProvider].
   void resync(TickerProvider vsync) {
-    final Ticker oldTicker = _ticker!;
+    final Ticker oldTicker = _ticker;
     _ticker = vsync.createTicker(_tick);
     _ticker!.absorbTicker(oldTicker);
   }
@@ -434,7 +434,7 @@ class AnimationController extends Animation<double>
       _status = switch (_direction) {
         _AnimationDirection.forward => AnimationStatus.forward,
         _AnimationDirection.reverse => AnimationStatus.reverse,
-      };
+      }
     }
   }
 
@@ -667,7 +667,7 @@ class AnimationController extends Animation<double>
       // for at least one frame.
       AnimationBehavior.normal when SemanticsBinding.instance.disableAnimations => 0.05,
       AnimationBehavior.normal || AnimationBehavior.preserve => 1.0,
-    };
+    }
     Duration? simulationDuration = duration;
     if (simulationDuration == null) {
       assert(!(this.duration == null && _direction == _AnimationDirection.forward));
@@ -809,7 +809,7 @@ class AnimationController extends Animation<double>
       // This is arbitrary (it was chosen because it worked for the drawer widget).
       AnimationBehavior.normal when SemanticsBinding.instance.disableAnimations => 200.0,
       AnimationBehavior.normal || AnimationBehavior.preserve => 1.0,
-    };
+    }
     final SpringSimulation simulation = SpringSimulation(
       springDescription,
       value,
@@ -1015,7 +1015,7 @@ class _InterpolationSimulation extends Simulation {
       0.0 => _begin,
       1.0 => _end,
       _ => _begin + (_end - _begin) * _curve.transform(t),
-    };
+    }
   }
 
   @override

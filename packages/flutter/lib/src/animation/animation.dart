@@ -372,7 +372,7 @@ abstract class Animation<T> extends Listenable implements ValueListenable<T> {
       AnimationStatus.reverse => '\u25C0', // <
       AnimationStatus.completed => '\u23ED', // >>|
       AnimationStatus.dismissed => '\u23EE', // |<<
-    };
+    }
   }
 }
 

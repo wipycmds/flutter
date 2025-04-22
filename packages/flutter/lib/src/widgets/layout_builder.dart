@@ -105,7 +105,7 @@ class _LayoutBuilderElement<ConstraintType extends Constraints> extends RenderOb
       SchedulerPhase.transientCallbacks ||
       SchedulerPhase.midFrameMicrotasks ||
       SchedulerPhase.persistentCallbacks => false,
-    };
+    }
     if (!deferMarkNeedsLayout) {
       renderObject.markNeedsLayout();
       return;

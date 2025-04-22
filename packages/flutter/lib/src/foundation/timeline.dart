@@ -204,8 +204,8 @@ final class AggregatedTimings {
   List<AggregatedTimedBlock> _computeAggregatedBlocks() {
     final Map<String, (double, int)> aggregate = <String, (double, int)>{};
     for (final TimedBlock block in timedBlocks) {
-      final (double, int) previousValue = aggregate.putIfAbsent(block.name, () => (0, 0));
-      aggregate[block.name] = (previousValue.$1 + block.duration, previousValue.$2 + 1);
+      final (double, int) previousValue = aggregate.putIfAbsent(block.name, () => 0, 0);
+      aggregate[block.name] = previousValue.$1 + block.duration, previousValue.$2 + 1;
     }
     return aggregate.entries.map<AggregatedTimedBlock>((MapEntry<String, (double, int)> entry) {
       return AggregatedTimedBlock(name: entry.key, duration: entry.value.$1, count: entry.value.$2);

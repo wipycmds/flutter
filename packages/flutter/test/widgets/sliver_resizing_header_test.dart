@@ -11,7 +11,7 @@ void main() {
       final (Widget minPrototype, Widget maxPrototype) = switch (axis) {
         Axis.vertical => (const SizedBox(height: 100), const SizedBox(height: 300)),
         Axis.horizontal => (const SizedBox(width: 100), const SizedBox(width: 300)),
-      };
+      }
       return MaterialApp(
         home: Scaffold(
           body: CustomScrollView(

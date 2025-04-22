@@ -25,9 +25,9 @@ class ModalBottomSheetApp extends StatelessWidget {
 enum AnimationStyles { defaultStyle, custom, none }
 
 const List<(AnimationStyles, String)> animationStyleSegments = <(AnimationStyles, String)>[
-  (AnimationStyles.defaultStyle, 'Default'),
-  (AnimationStyles.custom, 'Custom'),
-  (AnimationStyles.none, 'None'),
+  AnimationStyles.defaultStyle, 'Default',
+  AnimationStyles.custom, 'Custom',
+  AnimationStyles.none, 'None',
 ];
 
 class ModalBottomSheetExample extends StatefulWidget {
@@ -58,7 +58,7 @@ class _ModalBottomSheetExampleState extends State<ModalBottomSheetExample> {
                     reverseDuration: const Duration(seconds: 1),
                   ),
                   AnimationStyles.none => AnimationStyle.noAnimation,
-                };
+                }
                 _animationStyleSelection = styles;
               });
             },

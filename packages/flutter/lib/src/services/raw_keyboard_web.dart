@@ -146,7 +146,7 @@ class RawKeyEventDataWeb extends RawKeyEventData {
       ModifierKey.scrollLockModifier => metaState & modifierScrollLock != 0,
       // On Web, the browser doesn't report the state of the FN and SYM modifiers.
       ModifierKey.functionModifier || ModifierKey.symbolModifier => false,
-    };
+    }
   }
 
   @override

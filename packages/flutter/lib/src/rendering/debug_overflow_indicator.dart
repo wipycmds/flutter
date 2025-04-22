@@ -133,7 +133,7 @@ mixin DebugOverflowIndicatorMixin on RenderObject {
       > 10.0 => value.toStringAsFixed(0),
       > 1.0 => value.toStringAsFixed(1),
       _ => value.toStringAsPrecision(3),
-    };
+    }
   }
 
   List<_OverflowRegionData> _calculateOverflowRegions(RelativeRect overflow, Rect containerRect) {

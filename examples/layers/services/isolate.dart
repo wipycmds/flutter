@@ -258,7 +258,7 @@ class IsolateExampleState extends State<StatefulWidget> with SingleTickerProvide
       CalculationState.loading => 'Loading...',
       CalculationState.calculating => 'In Progress',
       CalculationState.idle => 'Idle',
-    };
+    }
   }
 
   void _updateState(String result, double progress) {

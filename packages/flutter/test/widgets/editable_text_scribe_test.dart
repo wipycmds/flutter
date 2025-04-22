@@ -31,7 +31,7 @@ void main() {
         'Scribe.isFeatureAvailable' => Future<bool>.value(isFeatureAvailableReturnValue),
         'Scribe.startStylusHandwriting' => Future<void>.value(),
         _ => throw FlutterError('Unexpected method call: ${methodCall.method}'),
-      };
+      }
     });
 
     controller = TextEditingController(text: 'Lorem ipsum dolor sit amet');

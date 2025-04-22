@@ -240,12 +240,12 @@ class Ink extends StatefulWidget {
   final double? height;
 
   EdgeInsetsGeometry get _paddingIncludingDecoration {
-    return switch ((padding, decoration?.padding)) {
+    return switch (padding, decoration?.padding) {
       (null, null) => EdgeInsets.zero,
       (null, final EdgeInsetsGeometry padding) => padding,
       (final EdgeInsetsGeometry padding, null) => padding,
       _ => padding!.add(decoration!.padding),
-    };
+    }
   }
 
   @override

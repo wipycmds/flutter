@@ -2104,7 +2104,7 @@ void main() {
     final bool isMobile = switch (themeData.platform) {
       TargetPlatform.android || TargetPlatform.iOS || TargetPlatform.fuchsia => true,
       TargetPlatform.macOS || TargetPlatform.linux || TargetPlatform.windows => false,
-    };
+    }
     int expectedCount = 1;
 
     // Test onSelected on key press
@@ -3824,7 +3824,7 @@ void main() {
       final int tabCount = switch (defaultTargetPlatform) {
         TargetPlatform.iOS || TargetPlatform.android || TargetPlatform.fuchsia => 2,
         TargetPlatform.macOS || TargetPlatform.linux || TargetPlatform.windows => 3,
-      };
+      }
       for (int i = 0; i < tabCount; i++) {
         await tester.sendKeyEvent(LogicalKeyboardKey.tab);
         await tester.pump();
